@@ -122,6 +122,8 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
       name.textContent = item.name; type.textContent = item.type;
       const productLink = document.querySelector('#stage-product-link');
       if (productLink) productLink.setAttribute('aria-label', `Explore ${item.name}`);
+      const zoomTrigger = document.querySelector('.hero-zoom-trigger');
+      if (zoomTrigger) zoomTrigger.dataset.zoomSrc = item.image;
       counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(products.length).padStart(2, '0')}`;
       [...dots.children].forEach((dot, i) => { dot.classList.toggle('active', i === current); dot.setAttribute('aria-current', i === current ? 'true' : 'false'); });
       image.classList.remove('is-changing');
@@ -144,6 +146,45 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', start);
   root.addEventListener('focusin', stop); root.addEventListener('focusout', start);
   show(0); start();
+})();
+
+// Marketplace-style product image zoom: click to open a clean full-screen viewer.
+(function initProductImageZoom() {
+  const modal = document.createElement('div');
+  modal.className = 'product-zoom-modal';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('aria-label', 'Product image zoom');
+  modal.hidden = true;
+  modal.innerHTML = '<button type="button" class="zoom-close" aria-label="Close image zoom">×</button><button type="button" class="zoom-prev" aria-label="Previous product image">←</button><figure><img alt=""><figcaption>Use + / − to zoom. Press Esc to close.</figcaption></figure><button type="button" class="zoom-next" aria-label="Next product image">→</button><div class="zoom-tools"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><button type="button" data-zoom="reset" aria-label="Reset zoom">Reset</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>';
+  document.body.appendChild(modal);
+  const largeImage = modal.querySelector('figure img');
+  const candidates = () => [...document.querySelectorAll('.catalog-image img, .featured-product-image img, .gallery-photo img, #stage-product-image')].filter(img => img.src && !img.closest('.product-zoom-modal'));
+  let index = 0, scale = 1, previousFocus = null;
+  function applyScale() { largeImage.style.transform = `scale(${scale})`; }
+  function showImage(img) {
+    const list = candidates(); index = Math.max(0, list.indexOf(img));
+    largeImage.src = img.dataset.zoomSrc || img.currentSrc || img.src; largeImage.alt = img.alt || 'YASH TECH product image';
+    scale = 1; applyScale(); modal.hidden = false; document.body.classList.add('zoom-open'); modal.querySelector('.zoom-close').focus();
+  }
+  function close() { modal.hidden = true; document.body.classList.remove('zoom-open'); if (previousFocus?.focus) previousFocus.focus(); }
+  function move(delta) { const list = candidates(); if (!list.length) return; index = (index + delta + list.length) % list.length; const img = list[index]; largeImage.src = img.dataset.zoomSrc || img.currentSrc || img.src; largeImage.alt = img.alt || 'YASH TECH product image'; scale = 1; applyScale(); }
+  document.addEventListener('click', event => {
+    const heroZoom = event.target.closest('.hero-zoom-trigger');
+    if (heroZoom) { event.preventDefault(); event.stopPropagation(); previousFocus = heroZoom; showImage(document.querySelector('#stage-product-image')); return; }
+    const img = event.target.closest('.catalog-image img, .featured-product-image img, .gallery-photo img');
+    if (!img) return;
+    event.preventDefault(); previousFocus = img; showImage(img);
+  });
+  modal.querySelector('.zoom-close').addEventListener('click', close);
+  modal.querySelector('.zoom-prev').addEventListener('click', () => move(-1));
+  modal.querySelector('.zoom-next').addEventListener('click', () => move(1));
+  modal.querySelectorAll('[data-zoom]').forEach(btn => btn.addEventListener('click', () => { const action = btn.dataset.zoom; scale = action === 'reset' ? 1 : Math.max(1, Math.min(4, scale + (action === 'in' ? .5 : -.5))); applyScale(); }));
+  modal.addEventListener('click', event => { if (event.target === modal) close(); });
+  document.addEventListener('keydown', event => { if (modal.hidden) return; if (event.key === 'Escape') close(); if (event.key === 'ArrowLeft') move(-1); if (event.key === 'ArrowRight') move(1); });
+  let startX = 0;
+  modal.addEventListener('touchstart', event => { startX = event.changedTouches[0].clientX; }, {passive:true});
+  modal.addEventListener('touchend', event => { const dx = event.changedTouches[0].clientX - startX; if (Math.abs(dx) > 65) move(dx < 0 ? 1 : -1); }, {passive:true});
 })();
 
 // Instagram: embed only verified public Reel permalinks configured in reels-config.js.
