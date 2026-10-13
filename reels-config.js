@@ -1,10 +1,9 @@
 /*
   YASH TECH Instagram Reel configuration
-  Official Instagram account: https://www.instagram.com/yashtechcctv/
+  Add public Reel permalinks below, for example:
+  { url: "https://www.instagram.com/reel/SHORTCODE/", label: "Solar camera demo" }
+  Use only content from the official YASH TECH account or content approved by its owner.
 */
 window.YASH_REELS = [
-  {
-    url: "https://www.instagram.com/yashtechcctv/",
-    label: "YASH TECH Official Instagram"
-  }
+  // Add verified public Reel URLs here. Do not paste passwords or access tokens.
 ];

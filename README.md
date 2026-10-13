@@ -53,3 +53,9 @@ The homepage now uses actual recovered YASH TECH product photographs in a produc
 - Added progressive reveal animation with reduced-motion support and keyboard focus styling.
 - See `SECURITY-DEPLOYMENT.md` for what is protected now and what a production backend/hosting setup still needs.
 - This remains a static website, not a database-backed admin CMS. GitHub Pages cannot run server-side code.
+
+
+## V5 updates
+- Homepage hero now has an auto-advancing featured-product slider with arrows and dot controls; it pauses on hover/focus and respects reduced-motion settings.
+- Instagram Reels use a single horizontal scroll row with previous/next controls and public Instagram embeds.
+- Instagram does not provide a reliable public profile-to-Reels embed feed without an approved API integration. Add the individual public Reel permalinks in `reels-config.js` to show playable embedded Reels.

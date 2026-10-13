@@ -95,7 +95,52 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   });
 }
 
-// Instagram: only render official embeds from explicitly configured, verified public Reel URLs.
+// Featured product auto-slider: local product images only; pauses on hover/focus and respects reduced motion.
+(function initHeroProductSlider() {
+  const root = document.querySelector('#hero-product-carousel');
+  const image = document.querySelector('#stage-product-image');
+  if (!root || !image) return;
+  const products = [
+    { image: 'assets/catalog/product-04.jpg', alt: 'YASH TECH 4G solar PTZ security camera', type: 'SMART OUTDOOR SECURITY', name: '4G & Solar Cameras' },
+    { image: 'assets/catalog/product-05.jpg', alt: 'YASH TECH smart Wi-Fi camera', type: 'CONNECTED HOME SECURITY', name: 'Smart Wi-Fi Cameras' },
+    { image: 'assets/catalog/product-13.jpg', alt: 'YASH TECH indoor dome CCTV camera', type: 'INDOOR SURVEILLANCE', name: 'Indoor Dome Cameras' },
+    { image: 'assets/catalog/product-22.jpeg', alt: 'YASH TECH NVR recording system', type: 'RECORDING & STORAGE', name: 'NVR Recording Systems' },
+    { image: 'assets/catalog/product-21.jpg', alt: 'YASH TECH CCTV security product', type: 'PROFESSIONAL SECURITY', name: 'CCTV System Essentials' }
+  ];
+  const name = document.querySelector('#stage-product-name');
+  const type = document.querySelector('#stage-product-type');
+  const counter = document.querySelector('#stage-counter');
+  const dots = document.querySelector('#stage-dots');
+  let current = 0, timer = null;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(index) {
+    current = (index + products.length) % products.length;
+    const item = products[current];
+    image.classList.add('is-changing');
+    window.setTimeout(() => {
+      image.src = item.image; image.alt = item.alt;
+      name.textContent = item.name; type.textContent = item.type;
+      counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(products.length).padStart(2, '0')}`;
+      [...dots.children].forEach((dot, i) => { dot.classList.toggle('active', i === current); dot.setAttribute('aria-current', i === current ? 'true' : 'false'); });
+      image.classList.remove('is-changing');
+    }, 120);
+  }
+  products.forEach((item, i) => {
+    const dot = document.createElement('button'); dot.type = 'button'; dot.className = 'stage-dot';
+    dot.setAttribute('aria-label', `Show product ${i + 1}: ${item.name}`);
+    dot.addEventListener('click', () => { show(i); restart(); }); dots.appendChild(dot);
+  });
+  function stop() { if (timer) window.clearInterval(timer); timer = null; }
+  function start() { stop(); if (!reduceMotion) timer = window.setInterval(() => show(current + 1), 4200); }
+  function restart() { start(); }
+  document.querySelector('#stage-prev')?.addEventListener('click', () => { show(current - 1); restart(); });
+  document.querySelector('#stage-next')?.addEventListener('click', () => { show(current + 1); restart(); });
+  root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', start);
+  root.addEventListener('focusin', stop); root.addEventListener('focusout', start);
+  show(0); start();
+})();
+
+// Instagram: embed only verified public Reel permalinks configured in reels-config.js.
 (function renderInstagramReels() {
   const wall = document.querySelector('#reel-wall');
   if (!wall) return;
@@ -103,22 +148,25 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     if (!item || typeof item.url !== 'string') return false;
     try { const url = new URL(item.url); return url.protocol === 'https:' && url.hostname === 'www.instagram.com' && /^\/reel\/[A-Za-z0-9_-]+\/?$/.test(url.pathname); }
     catch { return false; }
-  }).slice(0, 6);
+  }).slice(0, 10);
   if (!valid.length) {
-    wall.innerHTML = '<div class="reel-loading"><span class="reel-orbit">◎</span><strong>Product demos, on camera.</strong><p>Add verified public Reel links in <code>reels-config.js</code> to display the live Instagram embeds here.</p><a href="https://www.instagram.com/yashtechcctv/reels/" target="_blank" rel="noopener noreferrer">Watch latest Reels ↗</a></div><div class="reel-loading"><span class="reel-orbit">↗</span><strong>Installation inspiration.</strong><p>Show real installation clips and product walkthroughs from the official account.</p><a href="https://www.instagram.com/yashtechcctv/reels/" target="_blank" rel="noopener noreferrer">Explore the Reel gallery ↗</a></div><div class="reel-loading"><span class="reel-orbit">✳</span><strong>Follow YASH TECH.</strong><p>Security tips and new product content from Ramanathapuram.</p><a href="https://www.instagram.com/yashtechcctv/" target="_blank" rel="noopener noreferrer">Follow on Instagram ↗</a></div>';
-    return;
+    wall.innerHTML = '<div class="reel-loading"><span class="reel-orbit">▶</span><strong>Product demos</strong><p>Public Reel embeds appear here once their individual links are added to <code>reels-config.js</code>.</p><a href="https://www.instagram.com/yashtechcctv/reels/" target="_blank" rel="noopener noreferrer">Watch Reels on Instagram ↗</a></div><div class="reel-loading"><span class="reel-orbit">▶</span><strong>Installation clips</strong><p>Swipe horizontally to browse each Reel in this single-row showcase.</p><a href="https://www.instagram.com/yashtechcctv/reels/" target="_blank" rel="noopener noreferrer">Explore the Reel gallery ↗</a></div><div class="reel-loading"><span class="reel-orbit">◎</span><strong>Follow YASH TECH</strong><p>See new products and security updates from the official account.</p><a href="https://www.instagram.com/yashtechcctv/" target="_blank" rel="noopener noreferrer">Follow on Instagram ↗</a></div>';
+  } else {
+    wall.replaceChildren();
+    valid.forEach((item, index) => {
+      const card = document.createElement('article'); card.className = 'reel-card';
+      const quote = document.createElement('blockquote'); quote.className = 'instagram-media';
+      quote.setAttribute('data-instgrm-permalink', item.url); quote.setAttribute('data-instgrm-version', '14');
+      quote.style.cssText = 'background:#fff;border:0;margin:0 auto;max-width:100%;width:100%;';
+      const link = document.createElement('a'); link.href = item.url; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = item.label || `YASH TECH Reel ${index + 1}`;
+      quote.appendChild(link); card.appendChild(quote); wall.appendChild(card);
+    });
+    if (!document.querySelector('script[data-instagram-embed]')) {
+      const embedScript = document.createElement('script'); embedScript.src = 'https://www.instagram.com/embed.js'; embedScript.async = true; embedScript.dataset.instagramEmbed = 'true';
+      embedScript.onload = () => window.instgrm?.Embeds?.process?.(); document.body.appendChild(embedScript);
+    } else window.instgrm?.Embeds?.process?.();
   }
-  wall.replaceChildren();
-  valid.forEach((item, index) => {
-    const card = document.createElement('article'); card.className = 'reel-card';
-    const quote = document.createElement('blockquote'); quote.className = 'instagram-media';
-    quote.setAttribute('data-instgrm-permalink', item.url); quote.setAttribute('data-instgrm-version', '14');
-    quote.style.cssText = 'background:#fff;border:0;margin:0 auto;max-width:540px;width:100%;';
-    const link = document.createElement('a'); link.href = item.url; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = item.label || `YASH TECH Reel ${index + 1}`;
-    quote.appendChild(link); card.appendChild(quote); wall.appendChild(card);
-  });
-  if (!document.querySelector('script[data-instagram-embed]')) {
-    const embedScript = document.createElement('script'); embedScript.src = 'https://www.instagram.com/embed.js'; embedScript.async = true; embedScript.dataset.instagramEmbed = 'true';
-    embedScript.onload = () => window.instgrm?.Embeds?.process?.(); document.body.appendChild(embedScript);
-  } else window.instgrm?.Embeds?.process?.();
+  const scroll = direction => wall.scrollBy({ left: direction * Math.max(280, wall.clientWidth * .72), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  document.querySelector('#reel-prev')?.addEventListener('click', () => scroll(-1));
+  document.querySelector('#reel-next')?.addEventListener('click', () => scroll(1));
 })();
