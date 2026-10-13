@@ -10,7 +10,7 @@ if (menuButton && navLinks) {
     menuButton.setAttribute('aria-expanded', 'false');
   }));
 }
-const phone = '919385898667';
+const phone = '918667015532';
 function whatsappUrl(message) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
@@ -95,57 +95,106 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   });
 }
 
-// Featured product auto-slider: local product images only; pauses on hover/focus and respects reduced motion.
-(function initHeroProductSlider() {
-  const root = document.querySelector('#hero-product-carousel');
-  const image = document.querySelector('#stage-product-image');
-  if (!root || !image) return;
-  const products = [
-    { image: 'assets/catalog/product-04.jpg', alt: 'YASH TECH 4G solar PTZ security camera', type: 'SMART OUTDOOR SECURITY', name: '4G & Solar Cameras' },
-    { image: 'assets/catalog/product-05.jpg', alt: 'YASH TECH smart Wi-Fi camera', type: 'CONNECTED HOME SECURITY', name: 'Smart Wi-Fi Cameras' },
-    { image: 'assets/catalog/product-13.jpg', alt: 'YASH TECH indoor dome CCTV camera', type: 'INDOOR SURVEILLANCE', name: 'Indoor Dome Cameras' },
-    { image: 'assets/catalog/product-22.jpeg', alt: 'YASH TECH NVR recording system', type: 'RECORDING & STORAGE', name: 'NVR Recording Systems' },
-    { image: 'assets/catalog/product-21.jpg', alt: 'YASH TECH CCTV security product', type: 'PROFESSIONAL SECURITY', name: 'CCTV System Essentials' }
-  ];
-  const name = document.querySelector('#stage-product-name');
-  const type = document.querySelector('#stage-product-type');
-  const counter = document.querySelector('#stage-counter');
-  const dots = document.querySelector('#stage-dots');
-  let current = 0, timer = null;
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function show(index) {
-    current = (index + products.length) % products.length;
-    const item = products[current];
-    image.classList.add('is-changing');
-    window.setTimeout(() => {
-      image.src = item.image; image.alt = item.alt;
-      name.textContent = item.name; type.textContent = item.type;
-      const productLink = document.querySelector('#stage-product-link');
-      if (productLink) productLink.setAttribute('aria-label', `Explore ${item.name}`);
-      const zoomTrigger = document.querySelector('.hero-zoom-trigger');
-      if (zoomTrigger) zoomTrigger.dataset.zoomSrc = item.image;
-      counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(products.length).padStart(2, '0')}`;
-      [...dots.children].forEach((dot, i) => { dot.classList.toggle('active', i === current); dot.setAttribute('aria-current', i === current ? 'true' : 'false'); });
-      image.classList.remove('is-changing');
-      image.classList.remove('is-entering');
-      void image.offsetWidth;
-      image.classList.add('is-entering');
-      window.setTimeout(() => image.classList.remove('is-entering'), 850);
-    }, 180);
-  }
-  products.forEach((item, i) => {
-    const dot = document.createElement('button'); dot.type = 'button'; dot.className = 'stage-dot';
-    dot.setAttribute('aria-label', `Show product ${i + 1}: ${item.name}`);
-    dot.addEventListener('click', () => { show(i); restart(); }); dots.appendChild(dot);
+// Full-width campaign slider: pauseable autoplay, pointer effects, keyboard controls and touch swipes.
+(function initHeroBannerCarousel() {
+  const root = document.querySelector('#hero-carousel');
+  const viewport = document.querySelector('#hero-slide-viewport');
+  const track = document.querySelector('#hero-slides');
+  if (!root || !viewport || !track) return;
+  const slides = [...track.querySelectorAll('.hero-slide')];
+  const dots = document.querySelector('#hero-carousel-dots');
+  const number = document.querySelector('#hero-current-number');
+  const toggle = document.querySelector('#hero-play-toggle');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const touchMode = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  let current = 0, timer = null, paused = reducedMotion.matches, pointerDown = null, hasUserPaused = false;
+  const dotsList = slides.map((slide, index) => {
+    const button = document.createElement('button');
+    button.type = 'button'; button.className = 'hero-carousel-dot';
+    button.setAttribute('aria-label', `Show banner ${index + 1} of ${slides.length}`);
+    button.addEventListener('click', () => { go(index); restartIfRunning(); });
+    dots.appendChild(button); return button;
   });
+  function render() {
+    slides.forEach((slide, i) => {
+      const active = i === current;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', String(!active));
+      if (active) slide.removeAttribute('inert'); else slide.setAttribute('inert', '');
+      dotsList[i].classList.toggle('is-active', active);
+      dotsList[i].setAttribute('aria-current', active ? 'true' : 'false');
+    });
+    if (number) number.textContent = String(current + 1).padStart(2, '0');
+    root.style.setProperty('--hero-progress', `${((current + 1) / slides.length) * 100}%`);
+  }
+  function go(index) { current = (index + slides.length) % slides.length; render(); }
   function stop() { if (timer) window.clearInterval(timer); timer = null; }
-  function start() { stop(); if (!reduceMotion) timer = window.setInterval(() => show(current + 1), 4200); }
-  function restart() { start(); }
-  document.querySelector('#stage-prev')?.addEventListener('click', () => { show(current - 1); restart(); });
-  document.querySelector('#stage-next')?.addEventListener('click', () => { show(current + 1); restart(); });
-  root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', start);
-  root.addEventListener('focusin', stop); root.addEventListener('focusout', start);
-  show(0); start();
+  function start() {
+    stop();
+    if (!paused && !document.hidden && !reducedMotion.matches) timer = window.setInterval(() => go(current + 1), 5600);
+    if (toggle) { toggle.textContent = paused ? '▶' : 'Ⅱ'; toggle.setAttribute('aria-label', paused ? 'Start automatic banner rotation' : 'Pause automatic banner rotation'); toggle.setAttribute('aria-pressed', String(paused)); toggle.title = paused ? 'Start slideshow' : 'Pause slideshow'; }
+  }
+  function restartIfRunning() { if (!paused) start(); }
+  document.querySelector('#hero-prev')?.addEventListener('click', () => { go(current - 1); restartIfRunning(); });
+  document.querySelector('#hero-next')?.addEventListener('click', () => { go(current + 1); restartIfRunning(); });
+  toggle?.addEventListener('click', () => { paused = !paused; hasUserPaused = paused; start(); });
+  root.addEventListener('mouseenter', () => { stop(); root.classList.add('is-hovered'); });
+  root.addEventListener('mouseleave', () => { root.classList.remove('is-hovered'); if (!hasUserPaused && !reducedMotion.matches) { paused = false; start(); } });
+  root.addEventListener('focusin', stop);
+  root.addEventListener('focusout', event => { if (!root.contains(event.relatedTarget) && !hasUserPaused && !reducedMotion.matches) { paused = false; start(); } });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else start(); });
+  reducedMotion.addEventListener?.('change', event => { if (event.matches) { paused = true; stop(); } start(); });
+  root.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') { go(current - 1); restartIfRunning(); }
+    if (event.key === 'ArrowRight') { go(current + 1); restartIfRunning(); }
+  });
+  // Real pointer-follow halo and restrained tilt are enabled only for mouse/trackpad.
+  if (!touchMode) {
+    viewport.addEventListener('pointermove', event => {
+      const rect = viewport.getBoundingClientRect();
+      viewport.style.setProperty('--pointer-x', `${event.clientX - rect.left}px`);
+      viewport.style.setProperty('--pointer-y', `${event.clientY - rect.top}px`);
+      viewport.classList.add('has-pointer');
+    });
+    viewport.addEventListener('pointerleave', () => viewport.classList.remove('has-pointer'));
+  }
+  // Touch and pointer swipe navigation. Vertical page scrolling remains native.
+  viewport.addEventListener('pointerdown', event => {
+    if (event.target.closest('button,a')) return;
+    pointerDown = { x: event.clientX, y: event.clientY, id: event.pointerId };
+  }, { passive: true });
+  viewport.addEventListener('pointerup', event => {
+    if (!pointerDown) return;
+    const dx = event.clientX - pointerDown.x, dy = event.clientY - pointerDown.y;
+    if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy) * 1.2) { go(current + (dx < 0 ? 1 : -1)); restartIfRunning(); }
+    pointerDown = null;
+  }, { passive: true });
+  viewport.addEventListener('pointercancel', () => { pointerDown = null; });
+  render(); start();
+})();
+
+// Premium custom cursor: visible on mouse devices only, never blocks links or buttons.
+(function initPointerFollower() {
+  if (window.matchMedia('(hover: none), (pointer: coarse)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cursor = document.createElement('div'); cursor.className = 'pointer-follower'; cursor.setAttribute('aria-hidden', 'true');
+  cursor.innerHTML = '<span></span>';
+  document.body.appendChild(cursor);
+  let raf = 0, x = -100, y = -100, tx = -100, ty = -100;
+  document.addEventListener('pointermove', event => {
+    tx = event.clientX; ty = event.clientY; cursor.classList.add('is-visible');
+    if (!raf) raf = requestAnimationFrame(function update() {
+      x += (tx - x) * .24; y += (ty - y) * .24;
+      cursor.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%,-50%)`;
+      raf = (Math.abs(tx-x) + Math.abs(ty-y) > .4) ? requestAnimationFrame(update) : 0;
+    });
+  }, { passive: true });
+  document.addEventListener('pointerleave', () => cursor.classList.remove('is-visible'));
+  document.addEventListener('pointerdown', () => cursor.classList.add('is-pressed'));
+  document.addEventListener('pointerup', () => cursor.classList.remove('is-pressed'));
+  document.querySelectorAll('a,button,[role="button"]').forEach(el => {
+    el.addEventListener('pointerenter', () => cursor.classList.add('is-interactive'));
+    el.addEventListener('pointerleave', () => cursor.classList.remove('is-interactive'));
+  });
 })();
 
 // Marketplace-style product image zoom: click to open a clean full-screen viewer.
