@@ -164,3 +164,32 @@ body.zoom-open{overflow:hidden}
 .instagram-eyebrow{font-size:.65rem;font-weight:850;letter-spacing:.16em;color:#c4f568}.instagram-more-cta h3{font-size:clamp(1.35rem,2.5vw,1.8rem);letter-spacing:-.04em;margin:7px 0}.instagram-more-cta p{color:var(--muted);margin:0;max-width:520px}.instagram-more-link{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;color:#fff;background:linear-gradient(110deg,#7a3ff2,#e33c87 55%,#f4a14a);padding:13px 18px;border-radius:999px;font-weight:800;font-size:.84rem;box-shadow:0 8px 30px #a33e8520}.instagram-glyph{font-size:1.35rem;line-height:1}
 @media(max-width:760px){.ecommerce-stage .stage-image{height:clamp(250px,75vw,360px);padding:10px}.hero-zoom-trigger{top:50px;right:10px;padding:8px 10px}.featured-product-image{height:170px;padding:10px}.catalog-image{min-height:180px}.catalog-image img{height:190px;padding:10px}.gallery-photo img{padding:9px}.instagram-more-cta{align-items:flex-start;flex-direction:column}.instagram-more-link{white-space:normal}.product-zoom-modal{grid-template-columns:42px minmax(0,1fr) 42px;padding:68px 8px 22px}.product-zoom-modal figure{max-width:calc(100vw - 100px);max-height:calc(100dvh - 155px)}.product-zoom-modal figure img{max-height:calc(100dvh - 200px)}.zoom-prev,.zoom-next{width:36px;height:36px}.zoom-close{right:12px;top:12px;width:40px;height:40px}}
 @media(prefers-reduced-motion:reduce){.catalog-image img,.featured-product-image img,.image-zoom-trigger{transition:none!important}}
+
+/* V9 — final product-first carousel: complete product visible, no overlapping copy */
+.hero-product-stage.ecommerce-stage{align-self:center;width:100%;max-width:590px;min-width:0;padding:0;gap:0;overflow:visible}
+.ecommerce-stage .stage-topline{padding:0 0 15px;letter-spacing:.13em}
+.ecommerce-stage .stage-image{height:clamp(360px,38vw,470px);aspect-ratio:1 / 1;background:radial-gradient(ellipse at 50% 42%,#f7f9fa 0%,#edf1f3 65%,#e4eaee 100%);padding:clamp(28px,4.2vw,54px);border-radius:10px;overflow:hidden;box-shadow:0 16px 38px #00000018}
+.ecommerce-stage .stage-image img{object-fit:contain;object-position:center;width:100%;height:100%;padding:0;max-width:100%;max-height:100%;mix-blend-mode:multiply;transform-origin:center center}
+.ecommerce-stage .stage-caption{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:19px 2px 14px;margin:0;border:0;border-bottom:1px solid #24374a;background:transparent;min-height:88px}
+.ecommerce-stage .stage-caption>div{gap:6px}
+.ecommerce-stage .stage-caption strong{font-size:clamp(1.15rem,1.7vw,1.45rem);line-height:1.22}
+.ecommerce-stage .stage-explore-link{font-size:.78rem}
+.ecommerce-stage .hero-zoom-trigger{top:48px;right:12px}
+.ecommerce-stage .stage-slider-controls{padding-top:13px;gap:18px}
+.ecommerce-stage .stage-slider-controls>button{width:36px;height:36px;border-color:#344b60;background:#0a1521;color:#eaf3fa}
+.ecommerce-stage .stage-dots{gap:7px}
+.ecommerce-stage .stage-dot{width:6px;height:6px}
+.ecommerce-stage .stage-dot.active{width:21px}
+@media(max-width:760px){
+ .hero-product-stage.ecommerce-stage{width:100%;max-width:none;padding:0}
+ .ecommerce-stage .stage-topline{padding-bottom:12px}
+ .ecommerce-stage .stage-image{height:clamp(290px,83vw,390px);aspect-ratio:auto;padding:clamp(24px,7vw,38px);border-radius:8px}
+ .ecommerce-stage .stage-caption{min-height:0;padding:16px 0 13px;gap:10px}
+ .ecommerce-stage .stage-caption strong{font-size:1.05rem}
+ .ecommerce-stage .stage-caption>div>span{font-size:.58rem;line-height:1.4}
+ .ecommerce-stage .stage-explore-link{font-size:.68rem;gap:5px}
+ .ecommerce-stage .hero-zoom-trigger{top:43px;right:8px;padding:7px 10px}
+ .ecommerce-stage .stage-slider-controls{padding-top:12px}
+}
+@media(max-width:380px){.ecommerce-stage .stage-image{height:280px;padding:24px}.ecommerce-stage .stage-caption{align-items:flex-start;flex-direction:column}.ecommerce-stage .stage-explore-link{align-self:flex-start}}
+@media(prefers-reduced-motion:reduce){.ecommerce-stage .stage-image img.is-entering{animation:none;opacity:1;transform:none}}
