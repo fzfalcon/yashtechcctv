@@ -44,3 +44,12 @@ The homepage now uses actual recovered YASH TECH product photographs in a produc
 - Replaced the temporary YT lettermark with the actual YASH TECH logo across all pages.
 - Improved hero product image presentation using a clean product-photo panel to prevent the white-background image from visually overwhelming the hero.
 - Added a link to the official Instagram Reels profile for real product demonstrations and installation content.
+
+
+## V4 premium redesign and dynamic catalogue
+- Premium dark security aesthetic with lime/cyan accents, stronger type hierarchy, refined product cards and mobile-first responsive layouts.
+- Product catalogue includes live text search, category filtering, A–Z/Z–A sorting and a result count.
+- Homepage Reel wall can render official Instagram embeds from verified public Reel permalinks in `reels-config.js`; when none are configured, it shows a designed fallback that links to the official profile. Instagram does not expose an automatic full Reels feed to an ordinary static page, so add real public Reel URLs or connect an approved backend/API.
+- Added progressive reveal animation with reduced-motion support and keyboard focus styling.
+- See `SECURITY-DEPLOYMENT.md` for what is protected now and what a production backend/hosting setup still needs.
+- This remains a static website, not a database-backed admin CMS. GitHub Pages cannot run server-side code.

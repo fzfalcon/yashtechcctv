@@ -14,6 +14,11 @@
 <section class="page-hero"><div class="container"><div class="breadcrumbs"><a href="index.html">Home</a> / Products</div><div class="eyebrow"><span class="dot"></span>Products</div><h1>Explore the existing product catalogue.</h1><p class="lead">These products and categories were recovered from the previous public website. Ask YASH TECH to confirm current stock, specifications and pricing.</p></div></section>
 <main><section class="section"><div class="container">
 <div class="notice">Catalogue migrated from the public website archive. Product availability and prices are not verified. Duplicate entries are retained where the old catalogue listed them separately.</div>
+<div class="catalog-tools" aria-label="Find products">
+  <label class="catalog-search"><span aria-hidden="true">⌕</span><input id="catalog-search" type="search" placeholder="Search cameras, NVR, DVR…" autocomplete="off" aria-label="Search products"></label>
+  <label class="catalog-sort"><span>Sort</span><select id="catalog-sort" aria-label="Sort products"><option value="default">Recommended</option><option value="az">Name A–Z</option><option value="za">Name Z–A</option></select></label>
+  <span class="catalog-count" id="catalog-count" aria-live="polite">23 products</span>
+</div>
 <div style="display:flex;gap:9px;flex-wrap:wrap;margin:22px 0" id="catalog-filters">
 <button class="btn btn-primary" data-filter="all">All products</button>
 <button class="btn btn-ghost" data-filter="4G / Solar">4G / Solar</button>
@@ -50,5 +55,6 @@ document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListen
 </div><div class="footer-bottom"><span>© <span data-year></span> YASH TECH. All rights reserved.</span><span>Designed for clarity, confidence and safer spaces.</span></div>
 </div></footer>
 <a class="wa-float" data-wa-message="Hello YASH TECH, I would like to enquire about your security solutions." aria-label="Contact YASH TECH on WhatsApp"><span>◉</span><span class="wa-label">WhatsApp Us</span></a>
-<script src="script.js"></script>
+<script src="reels-config.js"></script>
+<script src="script.js" defer></script>
 </body></html>
