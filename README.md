@@ -59,3 +59,8 @@ The homepage now uses actual recovered YASH TECH product photographs in a produc
 - Homepage hero now has an auto-advancing featured-product slider with arrows and dot controls; it pauses on hover/focus and respects reduced-motion settings.
 - Instagram Reels use a single horizontal scroll row with previous/next controls and public Instagram embeds.
 - Instagram does not provide a reliable public profile-to-Reels embed feed without an approved API integration. Add the individual public Reel permalinks in `reels-config.js` to show playable embedded Reels.
+
+## Instagram demo gallery update
+- `reels-config.js` now contains the four Reel URLs supplied for the demo. Instagram may block or limit embedded playback; use the direct Instagram link if an embed fails.
+- The homepage has a visual product gallery using five existing product images recovered from the previous YASH TECH site. These are catalogue photos, not an automatic Instagram photo import.
+- Automatic profile-wide discovery/download of all Instagram posts is not included: public-profile scraping is unreliable and requires authorized media access for a robust ongoing sync.
