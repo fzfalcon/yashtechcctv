@@ -120,10 +120,16 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
     window.setTimeout(() => {
       image.src = item.image; image.alt = item.alt;
       name.textContent = item.name; type.textContent = item.type;
+      const productLink = document.querySelector('#stage-product-link');
+      if (productLink) productLink.setAttribute('aria-label', `Explore ${item.name}`);
       counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(products.length).padStart(2, '0')}`;
       [...dots.children].forEach((dot, i) => { dot.classList.toggle('active', i === current); dot.setAttribute('aria-current', i === current ? 'true' : 'false'); });
       image.classList.remove('is-changing');
-    }, 120);
+      image.classList.remove('is-entering');
+      void image.offsetWidth;
+      image.classList.add('is-entering');
+      window.setTimeout(() => image.classList.remove('is-entering'), 850);
+    }, 180);
   }
   products.forEach((item, i) => {
     const dot = document.createElement('button'); dot.type = 'button'; dot.className = 'stage-dot';
