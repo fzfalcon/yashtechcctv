@@ -33,3 +33,19 @@
 @media(max-width:1000px){.featured-products-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-hero-grid{gap:28px}.hero-product-stage{min-height:350px}.category-strip-grid{grid-template-columns:repeat(2,1fr)}.category-strip-grid>a:nth-child(3){border-left:1px solid #1d3a50}.category-strip-grid>a:nth-child(-n+2){border-bottom:1px solid #1d3a50}}
 @media(max-width:680px){.home-hero-grid{grid-template-columns:1fr;padding-top:49px;padding-bottom:38px;gap:31px}.home-hero h1{font-size:clamp(3rem,14vw,4.2rem)}.hero-subtitle{font-size:1rem}.hero-benefits{gap:10px 14px}.hero-product-stage{min-height:315px}.stage-image{inset:43px 12px 55px}.stage-corner-two{bottom:80px}.hero-bottom-line .container{justify-content:center;gap:10px;padding:12px 0}.hero-bottom-line span{font-size:.58rem}.hero-bottom-line i{display:none}.featured-section{padding-top:52px;padding-bottom:52px}.featured-products-grid{grid-template-columns:1fr 1fr;gap:11px}.featured-product-image{height:145px;padding:8px}.featured-product-copy{padding:12px}.featured-product-copy h3{font-size:.86rem;min-height:2.8em}.featured-product-copy p{font-size:.75rem;min-height:4.2em}.product-badge{font-size:.58rem;left:7px;top:7px;padding:4px 6px}.product-enquire{font-size:.72rem}.category-strip-grid>a{padding:15px 10px;gap:8px}.category-icon{width:34px;height:34px;font-size:1rem}.category-strip-grid strong{font-size:.78rem}.category-strip-grid small{font-size:.64rem}.why-grid{grid-template-columns:1fr;gap:28px}.home-cta{align-items:flex-start;flex-direction:column;padding:24px}.home-cta .btn{width:100%}}
 @media(max-width:380px){.featured-products-grid{grid-template-columns:1fr}.featured-product-image{height:200px}.featured-product-copy h3,.featured-product-copy p{min-height:0}}
+
+
+/* Brand and product photography refinements */
+.brand-logo{display:block;width:142px;height:auto;max-height:46px;object-fit:contain;object-position:left center}
+.brand{gap:13px;letter-spacing:normal}
+.stage-image{inset:67px 29px 82px;background:#f4f7f9;border:1px solid #d7e1e8;border-radius:13px;overflow:hidden;display:grid;place-items:center}
+.stage-image img{width:100%;height:100%;padding:10px;object-fit:contain;mix-blend-mode:multiply;filter:none;transform:none}
+.stage-caption{bottom:17px;background:rgba(5,20,33,.96)}
+.stage-corner-one,.stage-corner-two{display:none}
+.instagram-section{padding-top:10px;padding-bottom:20px}
+.instagram-band{display:flex;align-items:center;gap:20px;padding:25px 28px;border:1px solid #28485f;border-radius:19px;background:linear-gradient(105deg,#0d2235,#091827)}
+.instagram-symbol{width:52px;height:52px;border:1px solid #5d466d;border-radius:16px;display:grid;place-items:center;font-size:2rem;color:#f5b0d0;background:linear-gradient(145deg,#3a1b37,#10243a);flex:none}
+.instagram-copy{flex:1}
+.instagram-copy h2{font-size:1.35rem;margin:6px 0}
+.instagram-copy p{color:var(--muted);margin:0;font-size:.9rem}
+@media(max-width:680px){.brand-logo{width:125px;max-height:40px}.stage-image{inset:62px 16px 80px}.instagram-band{align-items:flex-start;flex-wrap:wrap;padding:20px}.instagram-copy{flex-basis:calc(100% - 75px)}.instagram-band .btn{width:100%}}

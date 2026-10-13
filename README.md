@@ -37,3 +37,10 @@ Other existing public-site content identified in the archive includes the About,
 
 ## Homepage refresh (v2)
 The homepage now uses actual recovered YASH TECH product photographs in a product-led hero and a four-item featured catalogue. The CSS-drawn camera illustration has been removed. Product enquiries open WhatsApp; confirm the recipient number and product availability before public launch.
+
+
+## Homepage v3 refinements
+- Added the original `images/logo.png` recovered from the old website archive.
+- Replaced the temporary YT lettermark with the actual YASH TECH logo across all pages.
+- Improved hero product image presentation using a clean product-photo panel to prevent the white-background image from visually overwhelming the hero.
+- Added a link to the official Instagram Reels profile for real product demonstrations and installation content.
