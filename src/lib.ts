@@ -4,7 +4,7 @@ export const INSTAGRAM_URL = 'https://www.instagram.com/yashtechcctv/';
 export const SITE_URL = 'https://yashtechcctv.com';
 
 export function asset(path: string) {
-  return `${BASE}${path.replace(/^\\//, '')}`;
+  return `${BASE}${path.startsWith('/') ? path.slice(1) : path}`;
 }
 
 export function waLink(message: string) {
