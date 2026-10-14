@@ -1,0 +1,51 @@
+[
+  {
+    "image": "assets/hero/smart-wifi-indoor.webp",
+    "title": "Smart Wi-Fi Indoor Camera",
+    "eyebrow": "SMART HOME SECURITY",
+    "description": "Keep an eye on your home and loved ones with clear video, two-way audio and smart alerts.",
+    "alt": "Smart Wi-Fi indoor CCTV camera"
+  },
+  {
+    "image": "assets/hero/solar-4g-outdoor.webp",
+    "title": "Solar-Powered 4G Security",
+    "eyebrow": "PROTECTION WITHOUT WIRES",
+    "description": "Flexible outdoor monitoring for locations that need cellular connectivity and solar power.",
+    "alt": "Solar powered 4G outdoor CCTV camera"
+  },
+  {
+    "image": "assets/hero/outdoor-bullet-camera.webp",
+    "title": "Outdoor Bullet Camera",
+    "eyebrow": "BUILT FOR THE OUTDOORS",
+    "description": "Reliable protection for home and business, day and night.",
+    "alt": "Outdoor bullet security camera"
+  },
+  {
+    "image": "assets/hero/nvr-dvr-recording.webp",
+    "title": "Recording & Monitoring Systems",
+    "eyebrow": "RECORD WITH CONFIDENCE",
+    "description": "Explore recording options for a practical security setup.",
+    "alt": "CCTV recording system"
+  },
+  {
+    "image": "assets/hero/cctv-combo-kit.webp",
+    "title": "Complete CCTV Solutions",
+    "eyebrow": "ONE TEAM, CONNECTED SECURITY",
+    "description": "Discuss cameras, recording, cabling and installation for your site.",
+    "alt": "Complete CCTV security system"
+  },
+  {
+    "image": "assets/hero/smart-security-solutions.webp",
+    "title": "Smarter Security Solutions",
+    "eyebrow": "SECURITY THAT FITS YOUR SITE",
+    "description": "Talk to YASH TECH about a solution for your home or business.",
+    "alt": "YASH TECH security solutions"
+  },
+  {
+    "image": "assets/hero/complete-cctv-solutions.webp",
+    "title": "Security From Start to Finish",
+    "eyebrow": "PRODUCTS · INSTALLATION · SUPPORT",
+    "description": "Get help selecting equipment and planning your installation.",
+    "alt": "Complete CCTV installation solutions"
+  }
+]

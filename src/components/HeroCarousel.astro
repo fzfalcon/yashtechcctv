@@ -1,0 +1,56 @@
+---
+import slides from '../data/slides.json';
+import { asset, BASE, waLink } from '../lib';
+---
+<section class="hero" aria-label="Featured security solutions" data-carousel>
+  {slides.map((slide, index) => <div class="hero-media" data-slide aria-hidden={index !== 0} style={`opacity:${index === 0 ? 1 : 0};`}><img src={asset(slide.image)} alt={slide.alt} width="1672" height="941" fetchpriority={index === 0 ? 'high' : undefined} loading={index === 0 ? 'eager' : 'lazy'} /></div>)}
+  <div class="container hero-content">
+    <div class="eyebrow" data-eyebrow>{slides[0].eyebrow}</div>
+    <h1 data-title>Security that sees <span>what matters.</span></h1>
+    <p data-description>{slides[0].description}</p>
+    <div class="hero-actions"><a class="btn btn-primary" href={waLink('Hello YASH TECH, I would like a quote for a CCTV/security solution.')}>Plan my security ↗</a><a class="btn btn-secondary" href={`${BASE}products/`}>Explore products</a></div>
+  </div>
+  <div class="container hero-bottom">
+    <div class="hero-status"><span class="live-dot"></span><span>SECURITY SYSTEMS · INSTALLATION · SUPPORT</span></div>
+    <div class="hero-controls"><button type="button" data-prev aria-label="Previous slide">←</button><span class="hero-count"><span data-current>01</span> / {String(slides.length).padStart(2,'0')}</span><button type="button" data-next aria-label="Next slide">→</button><button type="button" data-pause aria-label="Pause carousel">Ⅱ</button></div>
+  </div>
+  <div class="hero-progress"><span data-progress></span></div>
+</section>
+<script>
+  import slides from '../data/slides.json';
+  const carousel = document.querySelector<HTMLElement>('[data-carousel]');
+  if (carousel) {
+    const items = [...carousel.querySelectorAll<HTMLElement>('[data-slide]')];
+    const title = carousel.querySelector<HTMLElement>('[data-title]');
+    const eyebrow = carousel.querySelector<HTMLElement>('[data-eyebrow]');
+    const description = carousel.querySelector<HTMLElement>('[data-description]');
+    const current = carousel.querySelector<HTMLElement>('[data-current]');
+    const progress = carousel.querySelector<HTMLElement>('[data-progress]');
+    let index = 0, paused = false, timer = 0;
+    const render = (next: number) => {
+      index = (next + items.length) % items.length;
+      items.forEach((el, i) => {
+        el.style.opacity = i === index ? '1' : '0';
+        el.setAttribute('aria-hidden', String(i !== index));
+      });
+      const slide = slides[index];
+      if (title) title.innerHTML = slide.title.includes(' ') ? `${slide.title.split(' ').slice(0,-1).join(' ')} <span>${slide.title.split(' ').slice(-1)[0]}</span>` : slide.title;
+      if (eyebrow) eyebrow.textContent = slide.eyebrow;
+      if (description) description.textContent = slide.description;
+      if (current) current.textContent = String(index+1).padStart(2,'0');
+      if (progress) progress.style.width = `${((index+1)/items.length)*100}%`;
+    };
+    const restart = () => { window.clearInterval(timer); if (!paused) timer = window.setInterval(() => render(index+1), 6500); };
+    carousel.querySelector('[data-prev]')?.addEventListener('click', () => {render(index-1);restart()});
+    carousel.querySelector('[data-next]')?.addEventListener('click', () => {render(index+1);restart()});
+    carousel.querySelector('[data-pause]')?.addEventListener('click', (e) => {
+      paused = !paused;
+      (e.currentTarget as HTMLButtonElement).textContent = paused ? '▶' : 'Ⅱ';
+      (e.currentTarget as HTMLButtonElement).setAttribute('aria-label', paused ? 'Play carousel' : 'Pause carousel');
+      restart();
+    });
+    carousel.addEventListener('mouseenter', () => { window.clearInterval(timer); });
+    carousel.addEventListener('mouseleave', restart);
+    render(0); restart();
+  }
+</script>

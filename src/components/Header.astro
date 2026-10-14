@@ -1,0 +1,27 @@
+---
+import { BASE, asset, waLink } from '../lib';
+const current = Astro.url.pathname.replace(/\\/$/, '').split('/').pop() || 'index';
+const links = [
+  ['Home', `${BASE}`, 'index'],
+  ['Products', `${BASE}products/`, 'products'],
+  ['Services', `${BASE}services/`, 'services'],
+  ['Solutions', `${BASE}solutions/`, 'solutions'],
+  ['Gallery', `${BASE}gallery/`, 'gallery'],
+  ['About', `${BASE}about/`, 'about'],
+  ['Contact', `${BASE}contact/`, 'contact']
+];
+---
+<div class="topline"><div class="container"><span>Security systems · Installation · Technical support</span><span>Ramanathapuram, Tamil Nadu · Serving customers across India</span></div></div>
+<header class="header">
+  <div class="container nav">
+    <a class="brand" href={BASE} aria-label="YASH TECH home">
+      <img src={asset('assets/yash-tech-logo.png')} alt="YASH TECH logo" width="52" height="52" />
+      <span class="brand-word">YASH TECH<small>SMART SECURITY SOLUTIONS</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">Menu ☰</button>
+    <nav class="nav-links" id="main-nav" aria-label="Main navigation">
+      {links.map(([label, href, key]) => <a href={href} aria-current={current === key ? 'page' : undefined}>{label}</a>)}
+    </nav>
+    <a class="btn btn-primary nav-cta" href={waLink('Hello YASH TECH, I would like a quote for a security solution.')}>Get a Quote <span aria-hidden="true">↗</span></a>
+  </div>
+</header>

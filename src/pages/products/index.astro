@@ -1,0 +1,35 @@
+---
+import Layout from '../../components/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import products from '../../data/products.json';
+import { BASE } from '../../lib';
+const categories = [...new Set(products.map(p => p.category))];
+---
+<Layout title="CCTV Products | YASH TECH" description="Browse CCTV cameras, Wi-Fi and 4G cameras, dome and bullet cameras, power supplies, NVR and DVR products.">
+  <section class="page-hero"><div class="container"><div class="breadcrumbs"><a href={BASE}>Home</a> / Products</div><div class="eyebrow">Catalogue · 23 listings</div><h1>Explore the product catalogue.</h1><p>Search by product or category. Availability, model variants and pricing should be confirmed directly with YASH TECH.</p></div></section>
+  <section class="section"><div class="container"><div class="notice">Catalogue migrated from the previous website archive. Prices and current stock are not verified. Some archived listings may describe similar models.</div>
+    <div class="catalog-toolbar"><label class="catalog-search" style="flex:1;min-width:250px"><span class="muted">Search products</span><input class="field" id="product-search" type="search" placeholder="Search camera, NVR, DVR…" /></label><label><span class="muted">Category</span><select class="field filter-select" id="product-category"><option value="">All categories</option>{categories.map(category => <option value={category}>{category}</option>)}</select></label><span class="muted" id="product-count">{products.length} products</span></div>
+    <div class="grid-4" id="product-grid">{products.map(product => <ProductCard product={product} />)}</div><p id="no-products" hidden class="muted">No matching products. Try a different search.</p>
+  </div></section>
+  <script>
+    const search = document.querySelector<HTMLInputElement>('#product-search');
+    const category = document.querySelector<HTMLSelectElement>('#product-category');
+    const cards = [...document.querySelectorAll<HTMLElement>('[data-product]')];
+    const count = document.querySelector<HTMLElement>('#product-count');
+    const empty = document.querySelector<HTMLElement>('#no-products');
+    const filter = () => {
+      const query = search?.value.trim().toLowerCase() || '';
+      const selected = category?.value || '';
+      let visible = 0;
+      cards.forEach(card => {
+        const match = (card.dataset.title || '').includes(query) && (!selected || card.dataset.category === selected);
+        card.hidden = !match;
+        if (match) visible++;
+      });
+      if (count) count.textContent = `${visible} product${visible===1?'':'s'}`;
+      if (empty) empty.hidden = visible > 0;
+    };
+    search?.addEventListener('input', filter);
+    category?.addEventListener('change', filter);
+  </script>
+</Layout>

@@ -1,0 +1,894 @@
+[
+  {
+    "id": 1,
+    "slug": "product-01",
+    "title": "4G CCTV Camera with Sim Card Support.",
+    "category": "4G / Solar",
+    "image": "assets/catalog/product-01.jpg",
+    "alt": "4G CCTV Camera with Sim Card Support.",
+    "description": "4G SIM-based CCTV camera listing recovered from the previous YASH TECH website. Two similar entries appeared in the old catalogue; confirm which model is currently available.",
+    "specs": [
+      {
+        "label": "Network",
+        "value": "4G SIM-based standalone IP camera"
+      },
+      {
+        "label": "Image resolution",
+        "value": "3MP (as listed in the old catalogue)"
+      },
+      {
+        "label": "Night vision",
+        "value": "IR array; listed range up to 20 m"
+      },
+      {
+        "label": "Audio",
+        "value": "Built-in microphone and speaker; two-way audio"
+      },
+      {
+        "label": "Storage",
+        "value": "MicroSD card up to 128GB; cloud storage optional"
+      },
+      {
+        "label": "Connectivity",
+        "value": "Hotspot connection; the old listing says playback can be viewed without internet when connected to the camera hotspot"
+      },
+      {
+        "label": "Detection",
+        "value": "Human-detection alerts"
+      }
+    ],
+    "duplicateNote": "Similar entries appeared in the archived catalogue; confirm the exact model."
+  },
+  {
+    "id": 2,
+    "slug": "product-02",
+    "title": "4G CCTV Camera with Sim Card Support.",
+    "category": "4G / Solar",
+    "image": "assets/catalog/product-02.jpg",
+    "alt": "4G CCTV Camera with Sim Card Support.",
+    "description": "4G SIM-based CCTV camera listing recovered from the previous YASH TECH website. Two similar entries appeared in the old catalogue; confirm which model is currently available.",
+    "specs": [
+      {
+        "label": "Network",
+        "value": "4G SIM-based standalone IP camera"
+      },
+      {
+        "label": "Image resolution",
+        "value": "3MP (as listed in the old catalogue)"
+      },
+      {
+        "label": "Night vision",
+        "value": "IR array; listed range up to 20 m"
+      },
+      {
+        "label": "Audio",
+        "value": "Built-in microphone and speaker; two-way audio"
+      },
+      {
+        "label": "Storage",
+        "value": "MicroSD card up to 128GB; cloud storage optional"
+      },
+      {
+        "label": "Connectivity",
+        "value": "Hotspot connection; confirm remote-access requirements with YASH TECH"
+      },
+      {
+        "label": "Detection",
+        "value": "Human-detection alerts"
+      }
+    ],
+    "duplicateNote": "Similar entries appeared in the archived catalogue; confirm the exact model."
+  },
+  {
+    "id": 3,
+    "slug": "product-03",
+    "title": "YASHTECH 4G SIM Mini Pan Tilt CCTV Camera 3MP 12x Zoom | Outdoor Indoor Security Camera | IP65/66",
+    "category": "4G / Solar",
+    "image": "assets/catalog/product-03.jpg",
+    "alt": "YASHTECH 4G SIM Mini Pan Tilt CCTV Camera 3MP 12x Zoom | Outdoor Indoor Security Camera | IP65/66",
+    "description": "Recovered catalogue entry 03. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "3MP"
+      },
+      {
+        "label": "Zoom",
+        "value": "12× zoom (as listed in product title)"
+      },
+      {
+        "label": "Installation",
+        "value": "Indoor/outdoor use; IP65/IP66 rating shown in the old product title"
+      },
+      {
+        "label": "Audio",
+        "value": "Built-in microphone and speaker; two-way audio"
+      },
+      {
+        "label": "Motion alerts",
+        "value": "PIR motion alarm mentioned in the old listing"
+      },
+      {
+        "label": "Connectivity",
+        "value": "4G SIM connectivity"
+      },
+      {
+        "label": "Storage",
+        "value": "Confirm supported card capacity and cloud options for the exact model"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 4,
+    "slug": "product-04",
+    "title": "YASHTECH 4G Solar PTZ Camera 3MP Fixed Lens,Built-in 12000mAH Capacity Battery, PIR Detection, 256GB SD Card Supported, 2-Way Communication, IP66 Waterproof, Color Night Vision",
+    "category": "4G / Solar",
+    "image": "assets/catalog/product-04.jpg",
+    "alt": "YASHTECH 4G Solar PTZ Camera 3MP Fixed Lens,Built-in 12000mAH Capacity Battery, PIR Detection, 256GB SD Card Supported, 2-Way Communication, IP66 Waterproof, Color Night Vision",
+    "description": "Recovered catalogue entry 04. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "3MP; fixed lens (as listed in the old product title)"
+      },
+      {
+        "label": "Movement",
+        "value": "Horizontal rotation 350° and vertical tilt 90°"
+      },
+      {
+        "label": "Power",
+        "value": "Solar panel listed as 7W; old page contains conflicting battery-capacity values (12,000mAh in title and 18,000mAh in body), so confirm the exact model"
+      },
+      {
+        "label": "Detection",
+        "value": "Built-in PIR sensor"
+      },
+      {
+        "label": "Audio",
+        "value": "Built-in microphone and speaker; two-way audio"
+      },
+      {
+        "label": "Storage",
+        "value": "MicroSD up to 256GB; cloud storage optional"
+      },
+      {
+        "label": "Weather protection",
+        "value": "IP66 listed"
+      },
+      {
+        "label": "Network",
+        "value": "4G connection"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 5,
+    "slug": "product-05",
+    "title": "YASHTECH 1080P Full HD Smart WiFi Camera |360° with Pan & Tilt | View and Talk | Motion Alert | Night Vision |SD Card (Up to 128)",
+    "category": "Wi-Fi Cameras",
+    "image": "assets/catalog/product-05.jpg",
+    "alt": "YASHTECH 1080P Full HD Smart WiFi Camera |360° with Pan & Tilt | View and Talk | Motion Alert | Night Vision |SD Card (Up to 128)",
+    "description": "Recovered catalogue entry 05. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "2MP / 3MP / 5MP variants listed"
+      },
+      {
+        "label": "Pan and tilt",
+        "value": "Up to 360° indoor viewing"
+      },
+      {
+        "label": "Audio",
+        "value": "Two-way audio and alarm support"
+      },
+      {
+        "label": "Monitoring",
+        "value": "PC / mobile app"
+      },
+      {
+        "label": "Storage",
+        "value": "MicroSD card; cloud storage optional"
+      },
+      {
+        "label": "Detection",
+        "value": "Motion / human detection and push notifications"
+      },
+      {
+        "label": "Connectivity",
+        "value": "Wi-Fi; confirm exact model compatibility"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 6,
+    "slug": "product-06",
+    "title": "YASHTECH Smart home WiFi 10 X Zoom 3 MP Smart Security Camera Binocular Zoom Wide Angle 360 Viiew PTZ with Dual Lens Face Recognition Motion Detection Alarm Voice Home Store Live View WasTechPro StoneX CareCam Smart WiFi Outdoor Bullet CCTV Camera 1080p (Full HD)",
+    "category": "Wi-Fi Cameras",
+    "image": "assets/catalog/product-06.jpg",
+    "alt": "YASHTECH Smart home WiFi 10 X Zoom 3 MP Smart Security Camera Binocular Zoom Wide Angle 360 Viiew PTZ with Dual Lens Face Recognition Motion Detection Alarm Voice Home Store Live View WasTechPro StoneX CareCam Smart WiFi Outdoor Bullet CCTV Camera 1080p (Full HD)",
+    "description": "Recovered catalogue entry 06. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "2MP / 3MP / 5MP variants listed"
+      },
+      {
+        "label": "Movement",
+        "value": "Up to 355° viewing; indoor 10× zoom listed"
+      },
+      {
+        "label": "Audio",
+        "value": "Two-way audio and alarm support"
+      },
+      {
+        "label": "Monitoring",
+        "value": "PC / mobile app"
+      },
+      {
+        "label": "Storage",
+        "value": "MicroSD card; cloud storage optional"
+      },
+      {
+        "label": "Detection",
+        "value": "Motion / human detection and push notifications"
+      },
+      {
+        "label": "Additional features",
+        "value": "Dual-lens and face-recognition wording appears in the old product title; availability depends on the exact model"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 7,
+    "slug": "product-07",
+    "title": "YASHTECH Smarthome Wireless Wi-Fi 1920 x 2080p Smart Camera with Digital Zoom",
+    "category": "Wi-Fi Cameras",
+    "image": "assets/catalog/product-07.jpg",
+    "alt": "YASHTECH Smarthome Wireless Wi-Fi 1920 x 2080p Smart Camera with Digital Zoom",
+    "description": "Recovered catalogue entry 07. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "2MP / 3MP"
+      },
+      {
+        "label": "Viewing angle",
+        "value": "Up to 355°"
+      },
+      {
+        "label": "Audio",
+        "value": "Two-way audio and alarm support"
+      },
+      {
+        "label": "Monitoring",
+        "value": "PC / mobile app"
+      },
+      {
+        "label": "Storage",
+        "value": "MicroSD card; cloud storage optional"
+      },
+      {
+        "label": "Detection",
+        "value": "Motion / human detection and push notifications"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 8,
+    "slug": "product-08",
+    "title": "YASHTECH IP 67 Outdoor Security Bullet Camera, Color Night Vision, 1080P Full HD,Up to 256GB SD Card, WiFi & Ethernet Connection, Human Detection",
+    "category": "Wi-Fi Cameras",
+    "image": "assets/catalog/product-08.jpg",
+    "alt": "YASHTECH IP 67 Outdoor Security Bullet Camera, Color Night Vision, 1080P Full HD,Up to 256GB SD Card, WiFi & Ethernet Connection, Human Detection",
+    "description": "Recovered catalogue entry 08. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "2MP / 3MP / 5MP variants listed"
+      },
+      {
+        "label": "Viewing angle",
+        "value": "Up to 80° fixed lens"
+      },
+      {
+        "label": "Connectivity",
+        "value": "Wi-Fi and Ethernet; wireless kit support for up to 4 cameras listed"
+      },
+      {
+        "label": "Audio",
+        "value": "Two-way audio and alarm support"
+      },
+      {
+        "label": "Storage",
+        "value": "MicroSD card; cloud storage optional"
+      },
+      {
+        "label": "Detection",
+        "value": "Human detection"
+      },
+      {
+        "label": "Weather protection",
+        "value": "IP67 stated in product title; confirm the exact model's rating before outdoor installation"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 9,
+    "slug": "product-09",
+    "title": "1080P HD WiFi Bulb Light Wireless IP WiFi Camera, Fish Eye 360 Degree Panoramic Mini Lamp IR CCTV Home Security Camera (New Light Bulb Camera)",
+    "category": "Wi-Fi Cameras",
+    "image": "assets/catalog/product-09.jpg",
+    "alt": "1080P HD WiFi Bulb Light Wireless IP WiFi Camera, Fish Eye 360 Degree Panoramic Mini Lamp IR CCTV Home Security Camera (New Light Bulb Camera)",
+    "description": "Recovered catalogue entry 09. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Video",
+        "value": "1080p HD as stated in the old product title"
+      },
+      {
+        "label": "View",
+        "value": "Fish-eye / panoramic 360° view"
+      },
+      {
+        "label": "Night vision",
+        "value": "IR night vision stated in the old title"
+      },
+      {
+        "label": "Storage",
+        "value": "Memory card or cloud playback mentioned in the old description; exact capacity not specified"
+      },
+      {
+        "label": "Monitoring",
+        "value": "Mobile app (old listing references V380 Pro)"
+      },
+      {
+        "label": "Use",
+        "value": "Indoor and outdoor use was stated in the old description; confirm suitability for the chosen location"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 10,
+    "slug": "product-10",
+    "title": "YASHTECH 360 Degree Wireless Panoramic Bulb 360° IP Camera with Night Vision, 2-Way Audio and Micro 128GB SD Card Support",
+    "category": "Wi-Fi Cameras",
+    "image": "assets/catalog/product-10.jpg",
+    "alt": "YASHTECH 360 Degree Wireless Panoramic Bulb 360° IP Camera with Night Vision, 2-Way Audio and Micro 128GB SD Card Support",
+    "description": "Recovered catalogue entry 10. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "1.3MP / 2MP variants listed"
+      },
+      {
+        "label": "Viewing angle",
+        "value": "Up to 360° panoramic view"
+      },
+      {
+        "label": "Audio",
+        "value": "Two-way audio and alarm support"
+      },
+      {
+        "label": "Monitoring",
+        "value": "PC / mobile app"
+      },
+      {
+        "label": "Storage",
+        "value": "MicroSD card up to 128GB; cloud storage optional"
+      },
+      {
+        "label": "Detection",
+        "value": "Motion / human detection and push notifications"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 11,
+    "slug": "product-11",
+    "title": "YASHTECH 1080p 12mp Ptz Outdoor Ip66 Waterproof Pan Tilt Speed Dome Home Surveillance Camera",
+    "category": "Indoor Dome",
+    "image": "assets/catalog/product-11.jpg",
+    "alt": "YASHTECH 1080p 12mp Ptz Outdoor Ip66 Waterproof Pan Tilt Speed Dome Home Surveillance Camera",
+    "description": "Recovered catalogue entry 11. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "2MP / 3MP"
+      },
+      {
+        "label": "Movement",
+        "value": "Up to 355° viewing; 10× zoom listed"
+      },
+      {
+        "label": "Audio",
+        "value": "Two-way audio and alarm support"
+      },
+      {
+        "label": "Monitoring",
+        "value": "PC / mobile app"
+      },
+      {
+        "label": "Storage",
+        "value": "MicroSD card; cloud storage optional"
+      },
+      {
+        "label": "Detection",
+        "value": "Motion / human detection and push notifications"
+      },
+      {
+        "label": "Weather protection",
+        "value": "IP66 listed in the product title"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 12,
+    "slug": "product-12",
+    "title": "YASHTECH 1080p | 9Infrared and LED Burst for Live View Color Night Vision, Up to 128GB SD Card Support Motion Detection",
+    "category": "HD / IP Cameras",
+    "image": "assets/catalog/product-12.jpg",
+    "alt": "YASHTECH 1080p | 9Infrared and LED Burst for Live View Color Night Vision, Up to 128GB SD Card Support Motion Detection",
+    "description": "Recovered catalogue entry 12. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "2MP / 3MP"
+      },
+      {
+        "label": "Viewing angle",
+        "value": "Up to 80° fixed view"
+      },
+      {
+        "label": "Night vision",
+        "value": "9 infrared / LED array; colour night vision described in the old title"
+      },
+      {
+        "label": "Audio",
+        "value": "Two-way audio and alarm support"
+      },
+      {
+        "label": "Monitoring",
+        "value": "PC / mobile app"
+      },
+      {
+        "label": "Storage",
+        "value": "MicroSD card up to 128GB; cloud storage optional"
+      },
+      {
+        "label": "Detection",
+        "value": "Motion / human detection and push notifications"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 13,
+    "slug": "product-13",
+    "title": "INDOOR DOME",
+    "category": "Indoor Dome",
+    "image": "assets/catalog/product-13.jpg",
+    "alt": "INDOOR DOME",
+    "description": "Recovered catalogue entry 13. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "2MP / 5MP / 8MP variants"
+      },
+      {
+        "label": "Lens options",
+        "value": "2.8mm / 3.6mm / 6.0mm / 8.0mm"
+      },
+      {
+        "label": "Image sensor",
+        "value": "1/2.9-inch HD CMOS / Sony sensor (as listed)"
+      },
+      {
+        "label": "Night vision",
+        "value": "Smart IR LEDs; listed distances up to 20m / 40m depending on configuration"
+      },
+      {
+        "label": "Compatibility",
+        "value": "AHD, TVI, CVI and CVBS"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 14,
+    "slug": "product-14",
+    "title": "OUTDOOR BULLET",
+    "category": "Outdoor Bullet",
+    "image": "assets/catalog/product-14.jpg",
+    "alt": "OUTDOOR BULLET",
+    "description": "Recovered catalogue entry 14. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "2MP / 5MP / 8MP variants"
+      },
+      {
+        "label": "Lens options",
+        "value": "2.8mm / 3.6mm / 6.0mm / 8.0mm"
+      },
+      {
+        "label": "Image sensor",
+        "value": "HD CMOS / Sony sensor (as listed)"
+      },
+      {
+        "label": "Night vision",
+        "value": "12 / 18 / 36 smart IR LED configurations; listed distances up to 20m / 40m / 60m depending on configuration"
+      },
+      {
+        "label": "Compatibility",
+        "value": "AHD, TVI, CVI and CVBS"
+      },
+      {
+        "label": "Weather protection",
+        "value": "IP66 / IP67 housing options"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 15,
+    "slug": "product-15",
+    "title": "INDOOR DOME CV",
+    "category": "Indoor Dome",
+    "image": "assets/catalog/product-15.jpg",
+    "alt": "INDOOR DOME CV",
+    "description": "Recovered catalogue entry 15. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "2MP / 5MP"
+      },
+      {
+        "label": "Lens options",
+        "value": "3.6mm / 6.0mm / 8.0mm"
+      },
+      {
+        "label": "Night vision",
+        "value": "Dark-fighter day/night; warm LED array; listed range up to 20–25m"
+      },
+      {
+        "label": "Image sensor",
+        "value": "1/2.9-inch HD CMOS / Sony sensor (as listed)"
+      },
+      {
+        "label": "Compatibility",
+        "value": "AHD, TVI, CVI and CVBS"
+      },
+      {
+        "label": "Range",
+        "value": "The old page also lists 20m / 40m / 60m distance variants; confirm the specific configuration"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 16,
+    "slug": "product-16",
+    "title": "OUTDOOR BULLET CV",
+    "category": "Outdoor Bullet",
+    "image": "assets/catalog/product-16.jpg",
+    "alt": "OUTDOOR BULLET CV",
+    "description": "Recovered catalogue entry 16. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "2MP / 5MP"
+      },
+      {
+        "label": "Lens options",
+        "value": "3.6mm / 6.0mm / 8.0mm"
+      },
+      {
+        "label": "Night vision",
+        "value": "Dark-fighter day/night; warm LED array; listed range up to 20–25m"
+      },
+      {
+        "label": "Image sensor",
+        "value": "1/2.9-inch HD CMOS / Sony sensor (as listed)"
+      },
+      {
+        "label": "Compatibility",
+        "value": "AHD, TVI, CVI and CVBS"
+      },
+      {
+        "label": "Weather protection",
+        "value": "IP66 / IP67 listed"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 17,
+    "slug": "product-17",
+    "title": "INDOOR DOME",
+    "category": "Indoor Dome",
+    "image": "assets/catalog/product-17.jpg",
+    "alt": "INDOOR DOME",
+    "description": "Recovered catalogue entry 17. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "4MP / 5MP / 8MP variants"
+      },
+      {
+        "label": "Lens options",
+        "value": "3.6mm / 6.0mm / 8.0mm"
+      },
+      {
+        "label": "Image sensor",
+        "value": "1/2.9-inch progressive CMOS / Sony sensor (as listed)"
+      },
+      {
+        "label": "Video",
+        "value": "H.265+ dual-stream encoding; up to 20/25 FPS listed"
+      },
+      {
+        "label": "Features",
+        "value": "ONVIF; built-in microphone and PoE listed"
+      },
+      {
+        "label": "Housing",
+        "value": "Plastic or metal housing, optional"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 18,
+    "slug": "product-18",
+    "title": "OUTDOOR BULLET",
+    "category": "Outdoor Bullet",
+    "image": "assets/catalog/product-18.jpg",
+    "alt": "OUTDOOR BULLET",
+    "description": "Recovered catalogue entry 18. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "4MP / 5MP / 8MP variants"
+      },
+      {
+        "label": "Lens options",
+        "value": "3.6mm / 6.0mm / 8.0mm"
+      },
+      {
+        "label": "Image sensor",
+        "value": "1/2.9-inch progressive CMOS / Sony sensor (as listed)"
+      },
+      {
+        "label": "Video",
+        "value": "H.265+ dual-stream encoding; up to 20/25 FPS listed"
+      },
+      {
+        "label": "Features",
+        "value": "ONVIF; built-in microphone and PoE listed"
+      },
+      {
+        "label": "Weather protection",
+        "value": "IP66 / IP67 listed"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 19,
+    "slug": "product-19",
+    "title": "INDOOR DOME CV",
+    "category": "Indoor Dome",
+    "image": "assets/catalog/product-19.jpg",
+    "alt": "INDOOR DOME CV",
+    "description": "Recovered catalogue entry 19. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "4MP / 5MP / 8MP variants"
+      },
+      {
+        "label": "Lens options",
+        "value": "3.6mm / 6.0mm / 8.0mm"
+      },
+      {
+        "label": "Image sensor",
+        "value": "1/2.9-inch progressive CMOS / Sony sensor (as listed)"
+      },
+      {
+        "label": "Video",
+        "value": "H.265+ dual-stream encoding; up to 20/25 FPS listed"
+      },
+      {
+        "label": "Features",
+        "value": "ONVIF; built-in microphone and PoE listed"
+      },
+      {
+        "label": "Housing",
+        "value": "Plastic or metal housing, optional"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 20,
+    "slug": "product-20",
+    "title": "OUTDOOR BULLET CV",
+    "category": "Outdoor Bullet",
+    "image": "assets/catalog/product-20.jpg",
+    "alt": "OUTDOOR BULLET CV",
+    "description": "Recovered catalogue entry 20. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Resolution",
+        "value": "4MP / 5MP / 8MP variants"
+      },
+      {
+        "label": "Lens options",
+        "value": "3.6mm / 6.0mm / 8.0mm"
+      },
+      {
+        "label": "Image sensor",
+        "value": "1/2.9-inch progressive CMOS / Sony sensor (as listed)"
+      },
+      {
+        "label": "Video",
+        "value": "H.265+ dual-stream encoding; up to 20/25 FPS listed"
+      },
+      {
+        "label": "Features",
+        "value": "ONVIF; built-in microphone and PoE listed"
+      },
+      {
+        "label": "Weather protection",
+        "value": "IP66 / IP67 listed"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 21,
+    "slug": "product-21",
+    "title": "PRO SERIES PLASTIC SMPS",
+    "category": "Power Supplies",
+    "image": "assets/catalog/product-21.jpg",
+    "alt": "PRO SERIES PLASTIC SMPS",
+    "description": "Recovered catalogue entry 21. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Output",
+        "value": "DC 12V"
+      },
+      {
+        "label": "Ports",
+        "value": "4 / 8 / 16-channel variants"
+      },
+      {
+        "label": "Output per port",
+        "value": "12V DC, 1A maximum per port"
+      },
+      {
+        "label": "Voltage compensation",
+        "value": "Cable compensation switch for voltage boosting"
+      },
+      {
+        "label": "Design",
+        "value": "Compact, lightweight, wall-mountable white cabinet"
+      },
+      {
+        "label": "Power cable",
+        "value": "AC power cord; exact cable length not specified"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 22,
+    "slug": "product-22",
+    "title": "NVR 8/16/32 CH",
+    "category": "NVR",
+    "image": "assets/catalog/product-22.jpeg",
+    "alt": "NVR 8/16/32 CH",
+    "description": "Recovered catalogue entry 22. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Channel options",
+        "value": "8 / 16 / 32 channels"
+      },
+      {
+        "label": "Resolution support",
+        "value": "2MP / 5MP / 8MP"
+      },
+      {
+        "label": "Incoming bandwidth",
+        "value": "80 / 100 / 200 Mbps variants"
+      },
+      {
+        "label": "Drive bays",
+        "value": "1 / 2 / 4 SATA ports, depending on model"
+      },
+      {
+        "label": "Storage",
+        "value": "Up to 8TB per drive listed"
+      },
+      {
+        "label": "Compression",
+        "value": "H.265 / H.265 Pro / H.265 Pro+"
+      },
+      {
+        "label": "Network",
+        "value": "Multiple network services with CMS support"
+      },
+      {
+        "label": "Optional features",
+        "value": "Cloud technology and face-detection features are listed as optional"
+      },
+      {
+        "label": "Audio / wireless",
+        "value": "Built-in Wi-Fi and camera microphone input listed"
+      }
+    ],
+    "duplicateNote": ""
+  },
+  {
+    "id": 23,
+    "slug": "product-23",
+    "title": "DVR 4/8/16 CH",
+    "category": "DVR",
+    "image": "assets/catalog/product-23.jpeg",
+    "alt": "DVR 4/8/16 CH",
+    "description": "Recovered catalogue entry 23. Specifications below are transcribed from the archived YASH TECH website where available. Confirm exact model, availability and variant before purchase.",
+    "specs": [
+      {
+        "label": "Channel options",
+        "value": "4 / 8 / 16 channel variants; old description also references 32-channel configuration"
+      },
+      {
+        "label": "Resolution support",
+        "value": "2MP / 5MP / 8MP"
+      },
+      {
+        "label": "Compatibility",
+        "value": "AHD, CVBS, TVI, CVI and IP self-adaptive"
+      },
+      {
+        "label": "Video output",
+        "value": "VGA and HDMI Full HD outputs simultaneously"
+      },
+      {
+        "label": "Compression",
+        "value": "H.265 / H.265 Pro / H.265 Pro+"
+      },
+      {
+        "label": "Drive bays",
+        "value": "1 / 2 / 4 SATA interfaces depending on model"
+      },
+      {
+        "label": "Storage",
+        "value": "Up to 8TB per disk listed"
+      },
+      {
+        "label": "Network",
+        "value": "Multiple network services with CMS support"
+      },
+      {
+        "label": "Optional features",
+        "value": "Cloud technology and face-detection features are listed as optional"
+      },
+      {
+        "label": "Audio",
+        "value": "External microphone supported"
+      }
+    ],
+    "duplicateNote": ""
+  }
+]
