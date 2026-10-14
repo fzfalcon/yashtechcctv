@@ -3,7 +3,9 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 const base =
-  process.env.GITHUB_ACTIONS === 'true' ? '/yashtechcctv' : '/';
+  process.env.GITHUB_ACTIONS === 'true'
+    ? '/yashtechcctv'
+    : '/';
 
 export default defineConfig({
   site: 'https://fzfalcon.github.io',
@@ -11,6 +13,6 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
   vite: {
-    plugins: [tailwindcss() as any]
+    plugins: [tailwindcss()]
   }
 });
