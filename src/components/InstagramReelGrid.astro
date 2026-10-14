@@ -1,60 +1,41 @@
 ---
-import { asset } from '../lib';
-const { reels, compact = false } = Astro.props;
+interface Reel {
+  id: string;
+  number: string;
+  image?: string;
+}
+
+interface Props {
+  reels: Reel[];
+  compact?: boolean;
+}
+
+const { reels, compact = false }: Props = Astro.props;
 ---
 <div class:list={['instagram-reel-grid', compact && 'instagram-reel-grid--compact']}>
   {reels.map((reel) => (
-    <article class="reel-tile reveal" data-reel-tile>
-      <div class="reel-player" data-reel-player>
+    <article class="reel-tile reveal">
+      <div class="reel-player is-embedded">
+        <iframe
+          class="instagram-embed-frame"
+          src={`https://www.instagram.com/reel/${encodeURIComponent(reel.id)}/embed/`}
+          title={`YASH TECH Instagram Reel ${reel.number}`}
+          loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          width="400"
+          height="600"
+        ></iframe>
+      </div>
+      <div class="reel-tile-footer">
         <a
-          class="reel-cover"
+          class="text-link"
           href={`https://www.instagram.com/reel/${reel.id}/`}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`Open YASH TECH Reel ${reel.number} on Instagram`}
-        >
-          <img
-            src={asset(reel.image)}
-            alt={`YASH TECH product preview for Instagram Reel ${reel.number}`}
-            loading="lazy"
-            width="520"
-            height="640"
-          />
-          <span class="reel-cover-shade" aria-hidden="true"></span>
-          <span class="reel-cover-label"><strong>YASH TECH Reel {reel.number}</strong><small>Product preview · not the video thumbnail</small></span>
-          <span class="reel-play-icon" aria-hidden="true">▶</span>
-        </a>
-      </div>
-      <div class="reel-tile-footer">
-        <button class="reel-load-button" type="button" data-reel-id={reel.id} data-reel-number={reel.number}>
-          Play Reel here <span aria-hidden="true">↗</span>
-        </button>
-        <a class="text-link" href={`https://www.instagram.com/reel/${reel.id}/`} target="_blank" rel="noopener noreferrer">Open Instagram ↗</a>
+        >Open Reel on Instagram ↗</a>
       </div>
     </article>
   ))}
 </div>
-<script>
-  document.querySelectorAll<HTMLButtonElement>('.reel-load-button').forEach((button) => {
-    button.addEventListener('click', () => {
-      const player = button.closest('[data-reel-tile]')?.querySelector<HTMLElement>('[data-reel-player]');
-      const reelId = button.dataset.reelId;
-      const reelNumber = button.dataset.reelNumber || '';
-      if (!player || !reelId || player.dataset.loaded === 'true') return;
-
-      const frame = document.createElement('iframe');
-      frame.src = `https://www.instagram.com/reel/${encodeURIComponent(reelId)}/embed/`;
-      frame.title = `YASH TECH Instagram Reel ${reelNumber}`;
-      frame.loading = 'lazy';
-      frame.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
-      frame.referrerPolicy = 'strict-origin-when-cross-origin';
-      frame.allowFullscreen = true;
-      frame.className = 'instagram-embed-frame';
-      player.dataset.loaded = 'true';
-      player.classList.add('is-embedded');
-      player.replaceChildren(frame);
-      button.disabled = true;
-      button.textContent = 'Reel loaded';
-    });
-  });
-</script>

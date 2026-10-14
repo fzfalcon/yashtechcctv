@@ -1,15 +1,22 @@
 ---
 import { BASE, asset, waLink } from '../lib';
-const { product } = Astro.props;
+const { product, index = 0 } = Astro.props;
+const title = product.title.length > 88 ? `${product.title.slice(0, 85)}…` : product.title;
+const compareInfo = {
+  title: product.title,
+  category: product.category,
+  href: `${BASE}products/${product.slug}/`,
+  specs: (product.specs || []).slice(0, 4).map((row: { label: string; value: string }) => ({ label: row.label, value: row.value }))
+};
 ---
-<article class="surface-card product-card reveal" data-product data-category={product.category} data-title={product.title.toLowerCase()}>
-  <a href={`${BASE}products/${product.slug}/`} aria-label={`View ${product.title} details`}>
-    <div class="product-image"><img src={asset(product.image)} alt={product.alt || product.title} loading="lazy" width="520" height="420" /></div>
+<article class="product-card reveal" data-product data-category={product.category} data-title={product.title.toLowerCase()} style={`--card-order:${index % 4};`}>
+  <a class="product-card-image-link" href={`${BASE}products/${product.slug}/`} aria-label={`View ${product.title} details`}>
+    <div class="product-image"><span class="product-image-index">YT / {String(product.id).padStart(2, '0')}</span><img src={asset(product.image)} alt={product.alt || product.title} loading="lazy" width="520" height="420" /><span class="product-image-action" aria-hidden="true">↗</span></div>
   </a>
   <div class="product-info">
-    <span class="category-tag">{product.category}</span>
-    <h3><a href={`${BASE}products/${product.slug}/`}>{product.title}</a></h3>
-    <p>{product.description.length > 125 ? `${product.description.slice(0,122)}…` : product.description}</p>
-    <div class="product-meta"><a class="text-link" href={`${BASE}products/${product.slug}/`}>Specifications ↗</a><a class="text-link" href={waLink(`Hello YASH TECH, I am interested in ${product.title}. Please share current availability and price.`)} target="_blank" rel="noopener noreferrer">Ask price ↗</a></div>
+    <span class="category-tag"><i></i>{product.category}</span>
+    <h3><a href={`${BASE}products/${product.slug}/`}>{title}</a></h3>
+    <p>{product.description.length > 112 ? `${product.description.slice(0,109)}…` : product.description}</p>
+    <div class="product-meta"><a class="text-link" href={`${BASE}products/${product.slug}/`}>View details <span>↗</span></a><a class="product-enquire" href={waLink(`Hello YASH TECH, I am interested in ${product.title}. Please share current availability and price.`)} target="_blank" rel="noopener noreferrer">Ask price <span>↗</span></a><button class="compare-toggle" type="button" data-compare-toggle data-compare-info={JSON.stringify(compareInfo)} aria-pressed="false">Compare +</button></div>
   </div>
 </article>
