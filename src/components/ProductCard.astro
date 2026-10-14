@@ -2,7 +2,7 @@
 import { BASE, asset, waLink } from '../lib';
 const { product } = Astro.props;
 ---
-<article class="surface-card reveal" data-product data-category={product.category} data-title={product.title.toLowerCase()}>
+<article class="surface-card product-card reveal" data-product data-category={product.category} data-title={product.title.toLowerCase()}>
   <a href={`${BASE}products/${product.slug}/`} aria-label={`View ${product.title} details`}>
     <div class="product-image"><img src={asset(product.image)} alt={product.alt || product.title} loading="lazy" width="520" height="420" /></div>
   </a>

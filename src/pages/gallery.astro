@@ -1,60 +1,25 @@
 ---
 import Layout from '../components/Layout.astro';
-import { BASE, waLink } from '../lib';
+import InstagramReelGrid from '../components/InstagramReelGrid.astro';
+import { BASE } from '../lib';
+const reels = [{"id": "DecbWZYz1bk", "number": "01", "image": "assets/catalog/product-01.jpg"}, {"id": "DeCTb3UpncP", "number": "02", "image": "assets/catalog/product-02.jpg"}, {"id": "DeAPCdczwML", "number": "03", "image": "assets/catalog/product-03.jpg"}, {"id": "DdMsfgjTcNp", "number": "04", "image": "assets/catalog/product-04.jpg"}, {"id": "Dc3qrbtJdqC", "number": "05", "image": "assets/catalog/product-05.jpg"}, {"id": "Dcq5zDDJ18u", "number": "06", "image": "assets/catalog/product-06.jpg"}, {"id": "DcqyQ9jpLcy", "number": "07", "image": "assets/catalog/product-07.jpg"}, {"id": "DcquMAdprVQ", "number": "08", "image": "assets/catalog/product-08.jpg"}, {"id": "DcjU_3ZJqXj", "number": "09", "image": "assets/catalog/product-09.jpg"}, {"id": "DcJs70vS6Xe", "number": "10", "image": "assets/catalog/product-10.jpg"}];
 ---
-<Layout title="YASH TECH Gallery | Instagram Reels" description="Explore the official Instagram profile and supplied Reels. Playback and previews are controlled by Instagram.">
-  <section class="page-hero"><div class="container"><div class="breadcrumbs"><a href={BASE}>Home</a> / Gallery & updates</div><div class="eyebrow">Gallery & updates</div><h1>See more from YASH TECH.</h1><p>Explore the official Instagram profile and supplied Reels. Playback and previews are controlled by Instagram.</p></div></section>
-  <section class="section"><div class="container"><div class="reel-grid">
-    <a class="reel-card reveal" href="https://www.instagram.com/reel/DecbWZYz1bk/" target="_blank" rel="noopener noreferrer" aria-label="Open YASH TECH Instagram Reel 01">
-      <img src={`${BASE}assets/catalog/product-01.jpg`} alt="YASH TECH product preview for Instagram Reel 01" loading="lazy" />
-      <span class="reel-overlay"><strong>YASH TECH Reel 01</strong><small>Watch on Instagram ↗</small></span>
-      <span class="reel-play" aria-hidden="true">▶</span>
-    </a>
-    <a class="reel-card reveal" href="https://www.instagram.com/reel/DeCTb3UpncP/" target="_blank" rel="noopener noreferrer" aria-label="Open YASH TECH Instagram Reel 02">
-      <img src={`${BASE}assets/catalog/product-02.jpg`} alt="YASH TECH product preview for Instagram Reel 02" loading="lazy" />
-      <span class="reel-overlay"><strong>YASH TECH Reel 02</strong><small>Watch on Instagram ↗</small></span>
-      <span class="reel-play" aria-hidden="true">▶</span>
-    </a>
-    <a class="reel-card reveal" href="https://www.instagram.com/reel/DeAPCdczwML/" target="_blank" rel="noopener noreferrer" aria-label="Open YASH TECH Instagram Reel 03">
-      <img src={`${BASE}assets/catalog/product-03.jpg`} alt="YASH TECH product preview for Instagram Reel 03" loading="lazy" />
-      <span class="reel-overlay"><strong>YASH TECH Reel 03</strong><small>Watch on Instagram ↗</small></span>
-      <span class="reel-play" aria-hidden="true">▶</span>
-    </a>
-    <a class="reel-card reveal" href="https://www.instagram.com/reel/DdMsfgjTcNp/" target="_blank" rel="noopener noreferrer" aria-label="Open YASH TECH Instagram Reel 04">
-      <img src={`${BASE}assets/catalog/product-04.jpg`} alt="YASH TECH product preview for Instagram Reel 04" loading="lazy" />
-      <span class="reel-overlay"><strong>YASH TECH Reel 04</strong><small>Watch on Instagram ↗</small></span>
-      <span class="reel-play" aria-hidden="true">▶</span>
-    </a>
-    <a class="reel-card reveal" href="https://www.instagram.com/reel/Dc3qrbtJdqC/" target="_blank" rel="noopener noreferrer" aria-label="Open YASH TECH Instagram Reel 05">
-      <img src={`${BASE}assets/catalog/product-05.jpg`} alt="YASH TECH product preview for Instagram Reel 05" loading="lazy" />
-      <span class="reel-overlay"><strong>YASH TECH Reel 05</strong><small>Watch on Instagram ↗</small></span>
-      <span class="reel-play" aria-hidden="true">▶</span>
-    </a>
-    <a class="reel-card reveal" href="https://www.instagram.com/reel/Dcq5zDDJ18u/" target="_blank" rel="noopener noreferrer" aria-label="Open YASH TECH Instagram Reel 06">
-      <img src={`${BASE}assets/catalog/product-06.jpg`} alt="YASH TECH product preview for Instagram Reel 06" loading="lazy" />
-      <span class="reel-overlay"><strong>YASH TECH Reel 06</strong><small>Watch on Instagram ↗</small></span>
-      <span class="reel-play" aria-hidden="true">▶</span>
-    </a>
-    <a class="reel-card reveal" href="https://www.instagram.com/reel/DcqyQ9jpLcy/" target="_blank" rel="noopener noreferrer" aria-label="Open YASH TECH Instagram Reel 07">
-      <img src={`${BASE}assets/catalog/product-07.jpg`} alt="YASH TECH product preview for Instagram Reel 07" loading="lazy" />
-      <span class="reel-overlay"><strong>YASH TECH Reel 07</strong><small>Watch on Instagram ↗</small></span>
-      <span class="reel-play" aria-hidden="true">▶</span>
-    </a>
-    <a class="reel-card reveal" href="https://www.instagram.com/reel/DcquMAdprVQ/" target="_blank" rel="noopener noreferrer" aria-label="Open YASH TECH Instagram Reel 08">
-      <img src={`${BASE}assets/catalog/product-08.jpg`} alt="YASH TECH product preview for Instagram Reel 08" loading="lazy" />
-      <span class="reel-overlay"><strong>YASH TECH Reel 08</strong><small>Watch on Instagram ↗</small></span>
-      <span class="reel-play" aria-hidden="true">▶</span>
-    </a>
-    <a class="reel-card reveal" href="https://www.instagram.com/reel/DcjU_3ZJqXj/" target="_blank" rel="noopener noreferrer" aria-label="Open YASH TECH Instagram Reel 09">
-      <img src={`${BASE}assets/catalog/product-09.jpg`} alt="YASH TECH product preview for Instagram Reel 09" loading="lazy" />
-      <span class="reel-overlay"><strong>YASH TECH Reel 09</strong><small>Watch on Instagram ↗</small></span>
-      <span class="reel-play" aria-hidden="true">▶</span>
-    </a>
-    <a class="reel-card reveal" href="https://www.instagram.com/reel/DcJs70vS6Xe/" target="_blank" rel="noopener noreferrer" aria-label="Open YASH TECH Instagram Reel 10">
-      <img src={`${BASE}assets/catalog/product-10.jpg`} alt="YASH TECH product preview for Instagram Reel 10" loading="lazy" />
-      <span class="reel-overlay"><strong>YASH TECH Reel 10</strong><small>Watch on Instagram ↗</small></span>
-      <span class="reel-play" aria-hidden="true">▶</span>
-    </a>
-  </div><div class="instagram-follow"><div><div class="eyebrow">Follow our updates</div><h2>More from YASH TECH.</h2><p>Product videos, security tips and updates on our official Instagram profile.</p></div><a class="btn btn-primary" href="https://www.instagram.com/yashtechcctv/" target="_blank" rel="noopener noreferrer">Follow @yashtechcctv ↗</a></div></div></section>
-
+<Layout title="YASH TECH Gallery | Instagram Reels" description="Browse YASH TECH Instagram Reels, load public posts inline, or open the original Reel on Instagram.">
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumbs"><a href={BASE}>Home</a> / Gallery & updates</div>
+      <div class="eyebrow">Gallery & updates</div>
+      <h1>See more from YASH TECH.</h1>
+      <p>Each card has a local product-photo preview so the gallery is not blank. Select “Play Reel here” to load the actual public Instagram Reel, or open the Reel directly on Instagram.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <InstagramReelGrid reels={reels} />
+      <div class="instagram-follow-panel">
+        <div><div class="eyebrow">Follow our updates</div><h2>More from YASH TECH.</h2><p>Product videos, security tips and updates from our official Instagram account.</p></div>
+        <a class="btn btn-primary" href="https://www.instagram.com/yashtechcctv/" target="_blank" rel="noopener noreferrer">Follow @yashtechcctv ↗</a>
+      </div>
+    </div>
+  </section>
 </Layout>
