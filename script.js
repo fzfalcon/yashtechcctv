@@ -1,3 +1,60 @@
+
+// V20: lightweight desktop-only pointer glow, gentle card tilt and magnetic actions.
+// The site's existing pointer-follower remains the single custom cursor implementation.
+(() => {
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 761px)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!finePointer.matches || reducedMotion.matches) return;
+
+  document.body.classList.add('yt-pointer-glow');
+  window.addEventListener('pointermove', event => {
+    document.body.style.setProperty('--yt-pointer-x', `${event.clientX}px`);
+    document.body.style.setProperty('--yt-pointer-y', `${event.clientY}px`);
+  }, { passive: true });
+
+  const cards = document.querySelectorAll('.featured-product,.catalog-card,.reel-card,.service-card,.solution-card,.project-card,.about-card');
+  cards.forEach(card => {
+    card.addEventListener('pointermove', event => {
+      const rect = card.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      const tiltX = (0.5 - y) * 2.4;
+      const tiltY = (x - 0.5) * 2.4;
+      card.style.transform = `perspective(1000px) translateY(-2px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+    }, { passive: true });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; }, { passive: true });
+  });
+
+  document.querySelectorAll('.btn-primary,.wa-float').forEach(button => {
+    button.addEventListener('pointermove', event => {
+      const rect = button.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const dx = (event.clientX - (rect.left + rect.width / 2)) / rect.width;
+      const dy = (event.clientY - (rect.top + rect.height / 2)) / rect.height;
+      button.style.transform = `translate(${dx * 2}px,${dy * 2}px)`;
+    }, { passive: true });
+    button.addEventListener('pointerleave', () => { button.style.transform = ''; }, { passive: true });
+  });
+})();
+
+
+// V16: keep the service/location strip visible; collapse it after scrolling on mobile and desktop.
+(() => {
+  const topLine = document.querySelector('.topline');
+  if (!topLine) return;
+  const setHeight = () => document.documentElement.style.setProperty('--topline-height', `${topLine.getBoundingClientRect().height}px`);
+  const update = () => {
+    topLine.classList.toggle('is-compact', window.scrollY > 24);
+    requestAnimationFrame(setHeight);
+  };
+  setHeight();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', setHeight, { passive: true });
+  if ('ResizeObserver' in window) new ResizeObserver(setHeight).observe(topLine);
+  update();
+})();
+
 const menuButton = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 if (menuButton && navLinks) {
