@@ -5,18 +5,18 @@ import ProductCard from '../components/ProductCard.astro';
 import InstagramReelGrid from '../components/InstagramReelGrid.astro';
 import products from '../data/products.json';
 import { BASE, waLink } from '../lib';
-const instagramReels = [{"id": "DecbWZYz1bk", "number": "01", "image": "assets/catalog/product-01.jpg"}, {"id": "DeCTb3UpncP", "number": "02", "image": "assets/catalog/product-02.jpg"}, {"id": "DeAPCdczwML", "number": "03", "image": "assets/catalog/product-03.jpg"}, {"id": "DdMsfgjTcNp", "number": "04", "image": "assets/catalog/product-04.jpg"}, {"id": "Dc3qrbtJdqC", "number": "05", "image": "assets/catalog/product-05.jpg"}];
+const instagramReels = [{"id": "DecbWZYz1bk", "number": "01"}, {"id": "DeCTb3UpncP", "number": "02"}, {"id": "DeAPCdczwML", "number": "03"}];
 const featured = products.slice(0, 8);
 ---
 <Layout title="YASH TECH CCTV | Modern Security Solutions" description="Explore CCTV cameras, solar and 4G cameras, recording systems, installation and security solutions from YASH TECH in Ramanathapuram.">
   <HeroCarousel />
   <section class="trust-strip"><div class="container trust-grid"><div class="trust-item"><strong>Camera systems</strong><span>Wi-Fi, 4G, IP and HD options</span></div><div class="trust-item"><strong>Recording solutions</strong><span>DVR and NVR options</span></div><div class="trust-item"><strong>Installation support</strong><span>Plan for your property</span></div><div class="trust-item"><strong>Local expertise</strong><span>Ramanathapuram, Tamil Nadu</span></div></div></section>
-  <section class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">Product catalogue</div><h2>Find the right view.</h2></div><p>Explore the catalogue, compare product information and ask YASH TECH to confirm availability and pricing.</p></div><div class="grid-4">{featured.map(product => <ProductCard product={product} />)}</div><div style="display:flex;justify-content:center;margin-top:34px"><a class="btn btn-secondary" href={`${BASE}products/`}>Browse all 23 products ↗</a></div></div></section>
+  <section class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">Product catalogue</div><h2>Find the right view.</h2></div><p>Explore the catalogue, compare product information and ask YASH TECH to confirm availability and pricing.</p></div><div class="grid-4">{featured.map((product, index) => <ProductCard product={product} index={index} />)}</div><div style="display:flex;justify-content:center;margin-top:34px"><a class="btn btn-secondary" href={`${BASE}products/`}>Browse all 23 products ↗</a></div></div></section>
   <section class="section instagram-home-section">
     <div class="container">
       <div class="section-head">
         <div><div class="eyebrow">Instagram updates</div><h2>See YASH TECH in action.</h2></div>
-        <p>Watch the actual Instagram Reels embedded below, or open any Reel directly on Instagram.</p>
+        <p>Real posts from our Instagram account. Play them here or open the original Reel.</p>
       </div>
       <InstagramReelGrid reels={instagramReels} compact={true} />
       <div class="instagram-home-cta">
