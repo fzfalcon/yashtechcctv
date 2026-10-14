@@ -48,3 +48,10 @@ Product specs and availability were recovered from the archived public catalogue
 
 ## Note on static hosting
 This is a static website. The contact form prepares a WhatsApp message; it does not store submissions in a database. Customer accounts, stock management, or an admin dashboard would require a backend.
+
+
+## V23 visual fixes
+- Product cards use contained product imagery and aligned card content.
+- Instagram gallery cards now show local catalogue preview images instead of blank tiles.
+- Homepage includes a five-card Instagram section and profile links.
+- Reel preview images are catalogue images, not fetched Instagram thumbnails; each card opens its corresponding official Reel.
