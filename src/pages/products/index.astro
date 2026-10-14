@@ -7,9 +7,14 @@ const categories = [...new Set(products.map(p => p.category))];
 ---
 <Layout title="CCTV Products | YASH TECH" description="Browse CCTV cameras, Wi-Fi and 4G cameras, dome and bullet cameras, power supplies, NVR and DVR products.">
   <section class="page-hero"><div class="container"><div class="breadcrumbs"><a href={BASE}>Home</a> / Products</div><div class="eyebrow">Catalogue · 23 listings</div><h1>Explore the product catalogue.</h1><p>Search by product or category. Availability, model variants and pricing should be confirmed directly with YASH TECH.</p></div></section>
-  <section class="section"><div class="container"><div class="notice">Catalogue migrated from the previous website archive. Prices and current stock are not verified. Some archived listings may describe similar models.</div>
+  <section class="section catalog-page"><div class="container"><div class="notice">Catalogue migrated from the previous website archive. Prices and current stock are not verified. Some archived listings may describe similar models.</div>
     <div class="catalog-toolbar"><label class="catalog-search" style="flex:1;min-width:250px"><span class="muted">Search products</span><input class="field" id="product-search" type="search" placeholder="Search camera, NVR, DVR…" /></label><label><span class="muted">Category</span><select class="field filter-select" id="product-category"><option value="">All categories</option>{categories.map(category => <option value={category}>{category}</option>)}</select></label><span class="muted" id="product-count">{products.length} products</span></div>
-    <div class="grid-4" id="product-grid">{products.map(product => <ProductCard product={product} />)}</div><p id="no-products" hidden class="muted">No matching products. Try a different search.</p>
+    <div class="grid-4 catalog-product-grid" id="product-grid">{products.map((product, index) => <ProductCard product={product} index={index} />)}</div>
+    <p id="no-products" hidden class="muted">No matching products. Try a different search.</p>
+    <section class="compare-panel" id="compare-panel" hidden aria-live="polite">
+      <div class="compare-panel-head"><div><div class="eyebrow">Side-by-side</div><h2>Compare your shortlist.</h2><p id="compare-status">Choose up to three products to compare.</p></div><button class="btn btn-secondary" type="button" id="clear-compare">Clear shortlist</button></div>
+      <div class="compare-table-wrap" id="compare-table-wrap"></div>
+    </section>
   </div></section>
   <script>
     const search = document.querySelector<HTMLInputElement>('#product-search');
@@ -17,18 +22,86 @@ const categories = [...new Set(products.map(p => p.category))];
     const cards = [...document.querySelectorAll<HTMLElement>('[data-product]')];
     const count = document.querySelector<HTMLElement>('#product-count');
     const empty = document.querySelector<HTMLElement>('#no-products');
+    const comparePanel = document.querySelector<HTMLElement>('#compare-panel');
+    const compareStatus = document.querySelector<HTMLElement>('#compare-status');
+    const compareWrap = document.querySelector<HTMLElement>('#compare-table-wrap');
+    const selected = new Map<string, { title: string; category: string; href: string; specs: { label: string; value: string }[] }>();
+    const compareKey = (info: { href: string }) => info.href;
+
     const filter = () => {
       const query = search?.value.trim().toLowerCase() || '';
-      const selected = category?.value || '';
+      const selectedCategory = category?.value || '';
       let visible = 0;
       cards.forEach(card => {
-        const match = (card.dataset.title || '').includes(query) && (!selected || card.dataset.category === selected);
-        card.hidden = !match;
-        if (match) visible++;
+        const matches = (card.dataset.title || '').includes(query) && (!selectedCategory || card.dataset.category === selectedCategory);
+        card.hidden = !matches;
+        if (matches) visible++;
       });
-      if (count) count.textContent = `${visible} product${visible===1?'':'s'}`;
+      if (count) count.textContent = `${visible} product${visible === 1 ? '' : 's'}`;
       if (empty) empty.hidden = visible > 0;
     };
+
+    const renderComparison = () => {
+      if (comparePanel) comparePanel.hidden = selected.size === 0;
+      if (compareStatus) compareStatus.textContent = selected.size === 0 ? 'Choose up to three products to compare.' : `${selected.size} of 3 products selected. Confirm exact model specifications with YASH TECH.`;
+      if (!compareWrap) return;
+      compareWrap.replaceChildren();
+      if (!selected.size) return;
+      const items = [...selected.values()];
+      const labels = [...new Set(items.flatMap(item => item.specs.map(spec => spec.label)))].slice(0, 5);
+      const table = document.createElement('table');
+      table.className = 'compare-table';
+      const thead = document.createElement('thead');
+      const headRow = document.createElement('tr');
+      const corner = document.createElement('th');
+      corner.scope = 'col'; corner.textContent = 'PRODUCT'; headRow.append(corner);
+      items.forEach(item => {
+        const th = document.createElement('th'); th.scope = 'col';
+        const link = document.createElement('a'); link.href = item.href; link.textContent = item.title; th.append(link);
+        const categoryLabel = document.createElement('small'); categoryLabel.textContent = item.category; th.append(categoryLabel);
+        headRow.append(th);
+      });
+      thead.append(headRow); table.append(thead);
+      const tbody = document.createElement('tbody');
+      labels.forEach(label => {
+        const row = document.createElement('tr');
+        const th = document.createElement('th'); th.scope = 'row'; th.textContent = label; row.append(th);
+        items.forEach(item => {
+          const td = document.createElement('td');
+          td.textContent = item.specs.find(spec => spec.label === label)?.value || 'Not listed';
+          row.append(td);
+        });
+        tbody.append(row);
+      });
+      table.append(tbody); compareWrap.append(table);
+    };
+
+    document.querySelectorAll<HTMLButtonElement>('[data-compare-toggle]').forEach(button => {
+      button.addEventListener('click', () => {
+        const raw = button.dataset.compareInfo;
+        if (!raw) return;
+        try {
+          const info = JSON.parse(raw) as { title: string; category: string; href: string; specs: { label: string; value: string }[] };
+          const key = compareKey(info);
+          if (selected.has(key)) {
+            selected.delete(key); button.setAttribute('aria-pressed', 'false'); button.textContent = 'Compare +';
+          } else if (selected.size >= 3) {
+            if (compareStatus) compareStatus.textContent = 'You can compare up to three products. Remove one to add another.';
+            return;
+          } else {
+            selected.set(key, info); button.setAttribute('aria-pressed', 'true'); button.textContent = 'Added ✓';
+          }
+          renderComparison();
+        } catch (error) {
+          console.error('Unable to compare this product.', error);
+        }
+      });
+    });
+    document.querySelector('#clear-compare')?.addEventListener('click', () => {
+      selected.clear();
+      document.querySelectorAll<HTMLButtonElement>('[data-compare-toggle]').forEach(button => { button.setAttribute('aria-pressed', 'false'); button.textContent = 'Compare +'; });
+      renderComparison();
+    });
     search?.addEventListener('input', filter);
     category?.addEventListener('change', filter);
   </script>
