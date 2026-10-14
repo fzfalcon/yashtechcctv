@@ -1,5 +1,17 @@
 ---
 import { asset } from '../lib';
+
+interface Reel {
+  id: string;
+  number: string;
+  image: string;
+}
+
+interface Props {
+  reels: Reel[];
+  compact?: boolean;
+}
+
 const { reels, compact = false } = Astro.props;
 ---
 <div class:list={['instagram-reel-grid', compact && 'instagram-reel-grid--compact']}>
