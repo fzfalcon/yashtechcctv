@@ -1,81 +1,96 @@
 ---
+import slides from '../data/slides.json';
 import { asset, BASE, waLink } from '../lib';
-const features = [
-  { image: 'assets/catalog/product-04.jpg', eyebrow: 'COVER MORE. WORRY LESS.', lead: 'Security that sees', accent: 'what matters.', description: 'Thoughtful CCTV systems for homes, shops and businesses — from choosing the right camera to planning a practical installation.', label: '4G + SOLAR', code: 'OUTDOOR SERIES / 04' },
-  { image: 'assets/catalog/product-05.jpg', eyebrow: 'SMARTER HOME MONITORING', lead: 'A clearer view of', accent: 'everyday life.', description: 'Discover connected indoor cameras, two-way audio and remote viewing options for the spaces that matter to you.', label: 'SMART WI-FI', code: 'INDOOR SERIES / 05' },
-  { image: 'assets/catalog/product-15.jpg', eyebrow: 'BUILT FOR YOUR PROPERTY', lead: 'Confidence around', accent: 'every corner.', description: 'Explore indoor and outdoor camera options, recording systems and accessories with support from the YASH TECH team.', label: 'HD / IP CAMERAS', code: 'CAMERA SERIES / 15' },
-  { image: 'assets/catalog/product-23.jpeg', eyebrow: 'RECORD. REVIEW. PROTECT.', lead: 'Your system,', accent: 'connected.', description: 'Compare recording options and discuss camera compatibility, storage needs and installation requirements.', label: 'NVR / DVR', code: 'RECORDING SERIES / 23' }
-];
+const heroSlides = slides.map((slide, index) => ({ ...slide, number: String(index + 1).padStart(2, '0') }));
 ---
-<section class="hero-experience" aria-label="YASH TECH smart security introduction" data-carousel>
-  <div class="hero-ambient hero-ambient-one" aria-hidden="true"></div><div class="hero-ambient hero-ambient-two" aria-hidden="true"></div>
-  <div class="container hero-layout">
-    <div class="hero-content">
-      <div class="hero-kicker"><span class="status-pip"></span><span data-eyebrow>{features[0].eyebrow}</span></div>
-      <h1><span data-title-lead>{features[0].lead}</span><em data-title-accent>{features[0].accent}</em></h1>
-      <p data-description>{features[0].description}</p>
-      <div class="hero-actions"><a class="btn btn-primary" href={waLink('Hello YASH TECH, I would like a quote for a CCTV/security solution.')} target="_blank" rel="noopener noreferrer">Plan my security <span aria-hidden="true">↗</span></a><a class="btn btn-glass" href={`${BASE}products/`}>Explore products <span aria-hidden="true">↓</span></a></div>
-      <div class="hero-proof"><div class="proof-avatars" aria-hidden="true"><span>YT</span><span>24/7</span><span>HD</span></div><div><strong>One place for your security needs</strong><small>Products · System planning · Installation support</small></div></div>
-    </div>
-    <div class="hero-showcase" aria-label="Featured products">
-      <div class="showcase-topline"><span class="showcase-index" data-code>{features[0].code}</span><span class="showcase-live"><i></i> PRODUCT SPOTLIGHT</span></div>
-      <div class="hero-stage">
-        <div class="stage-grid" aria-hidden="true"></div>
-        {features.map((feature, index) => <div class="hero-product-slide" data-slide data-eyebrow={feature.eyebrow} data-lead={feature.lead} data-accent={feature.accent} data-description={feature.description} data-label={feature.label} data-code={feature.code} aria-hidden={index !== 0} style={`opacity:${index === 0 ? 1 : 0};`}><img src={asset(feature.image)} alt={feature.label} width="680" height="560" loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : undefined} /></div>)}
-        <span class="stage-orbit orbit-one" aria-hidden="true"></span><span class="stage-orbit orbit-two" aria-hidden="true"></span>
-        <div class="stage-badge"><span class="badge-icon">✳</span><span><strong data-stage-label>{features[0].label}</strong><small>Explore a better fit</small></span></div>
-        <div class="stage-index"><span>FEATURED</span><strong data-current>01</strong><span class="stage-index-line"></span><span>04</span></div>
+<section class="hero-experience command-hero" data-carousel aria-label="YASH TECH security command visual showcase">
+  <div class="command-ambient command-ambient-a" aria-hidden="true"></div>
+  <div class="command-ambient command-ambient-b" aria-hidden="true"></div>
+  <div class="command-trace command-trace-a" aria-hidden="true"></div>
+  <div class="command-trace command-trace-b" aria-hidden="true"></div>
+  <div class="container command-layout hero-layout">
+    <div class="hero-content command-copy">
+      <div class="hero-kicker"><span class="status-pip"></span><span>YASH TECH / SECURITY SYSTEMS</span></div>
+      <h1>Visualize.<br /><em>Protect.</em><br />Stay ahead.</h1>
+      <p>Security cameras, recording systems and practical installation support for homes, shops and businesses. Explore the range, compare options, and talk to the YASH TECH team.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={`${BASE}products/`}>Explore products <span aria-hidden="true">↗</span></a>
+        <a class="btn btn-glass" href={waLink('Hello YASH TECH, I would like to discuss a security solution for my property.')} target="_blank" rel="noopener noreferrer">Plan a setup <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="showcase-bottom"><span>PRODUCTS SELECTED FOR REAL-WORLD USE</span><div class="hero-controls"><button type="button" data-prev aria-label="Previous featured product">←</button><button type="button" data-next aria-label="Next featured product">→</button><button type="button" data-pause aria-label="Pause featured products">Ⅱ</button></div></div>
+      <div class="command-scope" aria-label="Product categories">
+        <span class="scope-bracket scope-bracket-tl" aria-hidden="true"></span><span class="scope-bracket scope-bracket-br" aria-hidden="true"></span>
+        <div class="scope-label">SYSTEM COVERAGE / CATALOGUE OVERVIEW</div>
+        <div class="scope-items">
+          <span><i>◉</i> CCTV / IP</span><span><i>⌁</i> 4G / SOLAR</span><span><i>▣</i> DVR / NVR</span><span><i>⌘</i> ACCESS</span>
+        </div>
+        <p>Product imagery showcase · Not live camera feeds</p>
+      </div>
+    </div>
+    <div class="hero-showcase command-showcase" aria-label="Automatic YASH TECH product and campaign image slider">
+      <div class="showcase-topline command-window-head"><span class="showcase-index">VISUAL ARCHIVE / SLIDER</span><span class="showcase-live"><i></i> FEATURE ROTATION</span></div>
+      <div class="hero-stage command-stage">
+        <div class="command-stage-grid" aria-hidden="true"></div>
+        {heroSlides.map((slide, index) => (
+          <figure class="hero-product-slide command-slide" data-slide data-title={slide.title} data-eyebrow={slide.eyebrow} data-description={slide.description} aria-hidden={index !== 0} style={`opacity:${index === 0 ? 1 : 0};`}>
+            <img src={asset(slide.image)} alt={slide.alt} width="1672" height="941" loading="eager" fetchpriority={index === 0 ? 'high' : undefined} />
+          </figure>
+        ))}
+        <div class="command-corner command-corner-left" aria-hidden="true">YT / VISUAL FEED</div>
+        <div class="command-corner command-corner-right" aria-hidden="true">ASSET ROTATION</div>
+        <div class="stage-index command-stage-index"><span>SLIDE</span><strong data-current>01</strong><span class="stage-index-line"></span><span>07</span></div>
+      </div>
+      <div class="command-slide-caption"><div><span class="eyebrow" data-feature-eyebrow>{heroSlides[0].eyebrow}</span><h2 data-feature-title>{heroSlides[0].title}</h2><p data-feature-description>{heroSlides[0].description}</p></div><div class="hero-controls"><button type="button" data-prev aria-label="Previous image">←</button><button type="button" data-pause aria-label="Pause automatic image slider">Ⅱ</button><button type="button" data-next aria-label="Next image">→</button></div></div>
       <div class="hero-progress"><span data-progress></span></div>
+      <div class="command-slide-dots" aria-label="Choose a featured image">
+        {heroSlides.map((slide, index) => <button type="button" data-dot={index} aria-label={`Show slide ${index + 1}: ${slide.title}`} aria-pressed={index === 0 ? 'true' : 'false'} class:list={{'is-active': index === 0}}></button>)}
+      </div>
     </div>
   </div>
-  <div class="container hero-bottom-note"><span>01 — SMARTER SECURITY, MADE PRACTICAL</span><span>SCROLL TO EXPLORE <b>↓</b></span></div>
+  <div class="container hero-bottom-note"><span><b>01</b> / SECURITY SYSTEMS · PRODUCT DISCOVERY · SUPPORT</span><a href="#command-categories">SCROLL TO EXPLORE <b>↓</b></a></div>
 </section>
 <script>
   const carousel = document.querySelector<HTMLElement>('[data-carousel]');
   if (carousel) {
     const items = [...carousel.querySelectorAll<HTMLElement>('[data-slide]')];
-    const lead = carousel.querySelector<HTMLElement>('[data-title-lead]');
-    const accent = carousel.querySelector<HTMLElement>('[data-title-accent]');
-    const eyebrow = carousel.querySelector<HTMLElement>('[data-eyebrow]');
-    const description = carousel.querySelector<HTMLElement>('[data-description]');
-    const label = carousel.querySelector<HTMLElement>('[data-stage-label]');
-    const code = carousel.querySelector<HTMLElement>('[data-code]');
+    const title = carousel.querySelector<HTMLElement>('[data-feature-title]');
+    const eyebrow = carousel.querySelector<HTMLElement>('[data-feature-eyebrow]');
+    const description = carousel.querySelector<HTMLElement>('[data-feature-description]');
     const current = carousel.querySelector<HTMLElement>('[data-current]');
     const progress = carousel.querySelector<HTMLElement>('[data-progress]');
+    const dots = [...carousel.querySelectorAll<HTMLButtonElement>('[data-dot]')];
+    const pauseButton = carousel.querySelector<HTMLButtonElement>('[data-pause]');
     let index = 0;
     let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let timer = 0;
+    let hoverPaused = false;
     const render = (next: number) => {
       index = (next + items.length) % items.length;
       items.forEach((item, i) => {
         item.style.opacity = i === index ? '1' : '0';
+        item.style.pointerEvents = i === index ? 'auto' : 'none';
         item.setAttribute('aria-hidden', String(i !== index));
       });
       const item = items[index];
-      if (lead) lead.textContent = item.dataset.lead || '';
-      if (accent) accent.textContent = item.dataset.accent || '';
+      if (title) title.textContent = item.dataset.title || '';
       if (eyebrow) eyebrow.textContent = item.dataset.eyebrow || '';
       if (description) description.textContent = item.dataset.description || '';
-      if (label) label.textContent = item.dataset.label || '';
-      if (code) code.textContent = item.dataset.code || '';
       if (current) current.textContent = String(index + 1).padStart(2, '0');
       if (progress) progress.style.width = `${((index + 1) / items.length) * 100}%`;
+      dots.forEach((dot, i) => { dot.classList.toggle('is-active', i === index); dot.setAttribute('aria-pressed', String(i === index)); });
     };
-    const restart = () => { window.clearInterval(timer); if (!paused) timer = window.setInterval(() => render(index + 1), 6500); };
+    const restart = () => { window.clearInterval(timer); if (!paused && !hoverPaused && !document.hidden) timer = window.setInterval(() => render(index + 1), 6500); };
     carousel.querySelector('[data-prev]')?.addEventListener('click', () => { render(index - 1); restart(); });
     carousel.querySelector('[data-next]')?.addEventListener('click', () => { render(index + 1); restart(); });
-    carousel.querySelector('[data-pause]')?.addEventListener('click', event => {
+    dots.forEach(dot => dot.addEventListener('click', () => { render(Number(dot.dataset.dot)); restart(); }));
+    pauseButton?.addEventListener('click', () => {
       paused = !paused;
-      const button = event.currentTarget as HTMLButtonElement;
-      button.textContent = paused ? '▶' : 'Ⅱ';
-      button.setAttribute('aria-label', paused ? 'Play featured products' : 'Pause featured products');
+      pauseButton.textContent = paused ? '▶' : 'Ⅱ';
+      pauseButton.setAttribute('aria-label', paused ? 'Play automatic image slider' : 'Pause automatic image slider');
       restart();
     });
-    carousel.addEventListener('mouseenter', () => window.clearInterval(timer));
-    carousel.addEventListener('mouseleave', restart);
-    document.addEventListener('visibilitychange', () => { if (document.hidden) window.clearInterval(timer); else restart(); });
+    carousel.addEventListener('mouseenter', () => { hoverPaused = true; window.clearInterval(timer); });
+    carousel.addEventListener('mouseleave', () => { hoverPaused = false; restart(); });
+    document.addEventListener('visibilitychange', restart);
     render(0); restart();
   }
 </script>

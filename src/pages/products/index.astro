@@ -5,23 +5,32 @@ import products from '../../data/products.json';
 import { BASE } from '../../lib';
 const categories = [...new Set(products.map(p => p.category))];
 ---
-<Layout title="CCTV Products | YASH TECH" description="Browse CCTV cameras, Wi-Fi and 4G cameras, dome and bullet cameras, power supplies, NVR and DVR products.">
-  <section class="page-hero"><div class="container"><div class="breadcrumbs"><a href={BASE}>Home</a> / Products</div><div class="eyebrow">Catalogue · 23 listings</div><h1>Explore the product catalogue.</h1><p>Search by product or category. Availability, model variants and pricing should be confirmed directly with YASH TECH.</p></div></section>
-  <section class="section catalog-page"><div class="container"><div class="notice">Catalogue migrated from the previous website archive. Prices and current stock are not verified. Some archived listings may describe similar models.</div>
-    <div class="catalog-toolbar"><label class="catalog-search" style="flex:1;min-width:250px"><span class="muted">Search products</span><input class="field" id="product-search" type="search" placeholder="Search camera, NVR, DVR…" /></label><label><span class="muted">Category</span><select class="field filter-select" id="product-category"><option value="">All categories</option>{categories.map(category => <option value={category}>{category}</option>)}</select></label><span class="muted" id="product-count">{products.length} products</span></div>
-    <div class="grid-4 catalog-product-grid" id="product-grid">{products.map((product, index) => <ProductCard product={product} index={index} />)}</div>
-    <p id="no-products" hidden class="muted">No matching products. Try a different search.</p>
-    <section class="compare-panel" id="compare-panel" hidden aria-live="polite">
-      <div class="compare-panel-head"><div><div class="eyebrow">Side-by-side</div><h2>Compare your shortlist.</h2><p id="compare-status">Choose up to three products to compare.</p></div><button class="btn btn-secondary" type="button" id="clear-compare">Clear shortlist</button></div>
-      <div class="compare-table-wrap" id="compare-table-wrap"></div>
-    </section>
+<Layout title="Security Equipment Catalogue | YASH TECH" description="Search and compare CCTV cameras, solar and 4G cameras, recording systems and security accessories from YASH TECH.">
+  <section class="page-hero command-page-hero"><div class="container"><div class="breadcrumbs"><a href={BASE}>Home</a> / Product catalogue</div><div class="eyebrow">SECURITY DATABASE / 23 LISTINGS</div><h1>Choose your equipment.</h1><p>Explore camera types, compare available specifications, and send a shortlist to YASH TECH to confirm exact models, pricing and availability.</p><div class="catalog-hero-tags"><span>4G / SOLAR</span><span>WI-FI / IP</span><span>DVR / NVR</span><span>RECORDING / ACCESSORIES</span></div></div></section>
+  <section class="section catalog-page command-catalog-page"><div class="container"><div class="notice command-notice"><strong>Catalogue note</strong> Products and specifications were recovered from archived listings. Prices and current stock are not verified; some listings may describe similar model variants.</div>
+    <div class="catalog-layout">
+      <aside class="catalog-sidebar" aria-label="Filter products"><div class="catalog-side-head"><div><span class="eyebrow">REFINE RESULTS</span><h2>Filters</h2></div><button id="clear-catalog-filters" type="button">Clear all</button></div>
+        <label class="catalog-search"><span class="filter-section-label">Search catalogue</span><input class="field" id="product-search" type="search" placeholder="Camera, NVR, Wi-Fi…" /></label>
+        <div class="catalog-filter-group"><div class="filter-section-label">Categories</div><div class="category-checks">{categories.map(category => <label class="filter-choice"><input type="checkbox" data-category-check value={category} /><span>{category}</span><small>{products.filter(p => p.category === category).length}</small></label>)}</div></div>
+        <div class="catalog-side-callout"><span class="side-callout-icon">⌁</span><strong>Need help choosing?</strong><p>Share your site, connectivity and coverage needs with our team.</p><a href="https://wa.me/918667015532?text=Hello%20YASH%20TECH%2C%20please%20help%20me%20choose%20a%20security%20camera." target="_blank" rel="noopener noreferrer">Ask for guidance ↗</a></div>
+      </aside>
+      <div class="catalog-results"><div class="catalog-results-head"><div><div class="eyebrow">AVAILABLE CATALOGUE</div><h2>All products <span id="product-count">{products.length}</span></h2></div><label class="catalog-sort"><span>Sort by</span><select class="field" id="product-sort"><option value="default">Catalogue order</option><option value="name-asc">Name: A–Z</option><option value="name-desc">Name: Z–A</option></select></label></div>
+        <div class="catalog-active-filters" id="active-filters"><span>Showing all product categories</span><span>Use filters to narrow the list</span></div>
+        <div class="grid-4 catalog-product-grid" id="product-grid">{products.map((product, index) => <ProductCard product={product} index={index} />)}</div>
+        <p id="no-products" hidden class="muted no-products-panel">No matching products. Try changing the search or clearing category filters.</p>
+        <section class="compare-panel" id="compare-panel" hidden aria-live="polite"><div class="compare-panel-head"><div><div class="eyebrow">SIDE-BY-SIDE REVIEW</div><h2>Compare your shortlist.</h2><p id="compare-status">Choose up to three products to compare.</p></div><button class="btn btn-secondary" type="button" id="clear-compare">Clear shortlist</button></div><div class="compare-table-wrap" id="compare-table-wrap"></div></section>
+      </div>
+    </div>
   </div></section>
   <script>
     const search = document.querySelector<HTMLInputElement>('#product-search');
-    const category = document.querySelector<HTMLSelectElement>('#product-category');
+    const categoryChecks = [...document.querySelectorAll<HTMLInputElement>('[data-category-check]')];
+    const sortSelect = document.querySelector<HTMLSelectElement>('#product-sort');
+    const grid = document.querySelector<HTMLElement>('#product-grid');
     const cards = [...document.querySelectorAll<HTMLElement>('[data-product]')];
     const count = document.querySelector<HTMLElement>('#product-count');
     const empty = document.querySelector<HTMLElement>('#no-products');
+    const activeFilters = document.querySelector<HTMLElement>('#active-filters');
     const comparePanel = document.querySelector<HTMLElement>('#compare-panel');
     const compareStatus = document.querySelector<HTMLElement>('#compare-status');
     const compareWrap = document.querySelector<HTMLElement>('#compare-table-wrap');
@@ -30,16 +39,28 @@ const categories = [...new Set(products.map(p => p.category))];
 
     const filter = () => {
       const query = search?.value.trim().toLowerCase() || '';
-      const selectedCategory = category?.value || '';
+      const checked = categoryChecks.filter(input => input.checked).map(input => input.value);
       let visible = 0;
       cards.forEach(card => {
-        const matches = (card.dataset.title || '').includes(query) && (!selectedCategory || card.dataset.category === selectedCategory);
+        const textMatches = (card.dataset.title || '').includes(query);
+        const categoryMatches = checked.length === 0 || checked.includes(card.dataset.category || '');
+        const matches = textMatches && categoryMatches;
         card.hidden = !matches;
         if (matches) visible++;
       });
-      if (count) count.textContent = `${visible} product${visible === 1 ? '' : 's'}`;
+      if (count) count.textContent = String(visible);
       if (empty) empty.hidden = visible > 0;
+      if (activeFilters) activeFilters.innerHTML = checked.length ? `<span>FILTERED / ${checked.length} category${checked.length === 1 ? '' : 'ies'}</span><span>Search: ${query ? '“' + query.replace(/[&<>"']/g, '') + '”' : 'All names'}</span>` : `<span>SHOWING ALL CATEGORIES</span><span>${query ? 'Search results for “' + query.replace(/[&<>"']/g, '') + '”' : 'Choose filters to narrow the list'}</span>`;
     };
+    const sortCards = () => {
+      if (!grid) return;
+      const mode = sortSelect?.value || 'default';
+      const ordered = [...cards];
+      if (mode === 'name-asc') ordered.sort((a, b) => (a.dataset.title || '').localeCompare(b.dataset.title || ''));
+      if (mode === 'name-desc') ordered.sort((a, b) => (b.dataset.title || '').localeCompare(a.dataset.title || ''));
+      ordered.forEach(card => grid.append(card));
+    };
+    document.querySelector('#clear-catalog-filters')?.addEventListener('click', () => { if (search) search.value = ''; categoryChecks.forEach(input => input.checked = false); if (sortSelect) sortSelect.value = 'default'; sortCards(); filter(); });
 
     const renderComparison = () => {
       if (comparePanel) comparePanel.hidden = selected.size === 0;
@@ -48,61 +69,27 @@ const categories = [...new Set(products.map(p => p.category))];
       compareWrap.replaceChildren();
       if (!selected.size) return;
       const items = [...selected.values()];
-      const labels = [...new Set(items.flatMap(item => item.specs.map(spec => spec.label)))].slice(0, 5);
-      const table = document.createElement('table');
-      table.className = 'compare-table';
-      const thead = document.createElement('thead');
-      const headRow = document.createElement('tr');
-      const corner = document.createElement('th');
-      corner.scope = 'col'; corner.textContent = 'PRODUCT'; headRow.append(corner);
-      items.forEach(item => {
-        const th = document.createElement('th'); th.scope = 'col';
-        const link = document.createElement('a'); link.href = item.href; link.textContent = item.title; th.append(link);
-        const categoryLabel = document.createElement('small'); categoryLabel.textContent = item.category; th.append(categoryLabel);
-        headRow.append(th);
-      });
-      thead.append(headRow); table.append(thead);
-      const tbody = document.createElement('tbody');
-      labels.forEach(label => {
-        const row = document.createElement('tr');
-        const th = document.createElement('th'); th.scope = 'row'; th.textContent = label; row.append(th);
-        items.forEach(item => {
-          const td = document.createElement('td');
-          td.textContent = item.specs.find(spec => spec.label === label)?.value || 'Not listed';
-          row.append(td);
-        });
-        tbody.append(row);
-      });
+      const labels = [...new Set(items.flatMap(item => item.specs.map(spec => spec.label)))].slice(0, 8);
+      const table = document.createElement('table'); table.className = 'compare-table';
+      const thead = document.createElement('thead'); const headRow = document.createElement('tr'); const corner = document.createElement('th'); corner.scope = 'col'; corner.textContent = 'PRODUCT'; headRow.append(corner);
+      items.forEach(item => { const th = document.createElement('th'); th.scope = 'col'; const link = document.createElement('a'); link.href = item.href; link.textContent = item.title; th.append(link); const categoryLabel = document.createElement('small'); categoryLabel.textContent = item.category; th.append(categoryLabel); headRow.append(th); });
+      thead.append(headRow); table.append(thead); const tbody = document.createElement('tbody');
+      labels.forEach(label => { const row = document.createElement('tr'); const th = document.createElement('th'); th.scope = 'row'; th.textContent = label; row.append(th); items.forEach(item => { const td = document.createElement('td'); td.textContent = item.specs.find(spec => spec.label === label)?.value || 'Not listed'; row.append(td); }); tbody.append(row); });
       table.append(tbody); compareWrap.append(table);
     };
-
-    document.querySelectorAll<HTMLButtonElement>('[data-compare-toggle]').forEach(button => {
-      button.addEventListener('click', () => {
-        const raw = button.dataset.compareInfo;
-        if (!raw) return;
-        try {
-          const info = JSON.parse(raw) as { title: string; category: string; href: string; specs: { label: string; value: string }[] };
-          const key = compareKey(info);
-          if (selected.has(key)) {
-            selected.delete(key); button.setAttribute('aria-pressed', 'false'); button.textContent = 'Compare +';
-          } else if (selected.size >= 3) {
-            if (compareStatus) compareStatus.textContent = 'You can compare up to three products. Remove one to add another.';
-            return;
-          } else {
-            selected.set(key, info); button.setAttribute('aria-pressed', 'true'); button.textContent = 'Added ✓';
-          }
-          renderComparison();
-        } catch (error) {
-          console.error('Unable to compare this product.', error);
-        }
-      });
-    });
-    document.querySelector('#clear-compare')?.addEventListener('click', () => {
-      selected.clear();
-      document.querySelectorAll<HTMLButtonElement>('[data-compare-toggle]').forEach(button => { button.setAttribute('aria-pressed', 'false'); button.textContent = 'Compare +'; });
-      renderComparison();
-    });
-    search?.addEventListener('input', filter);
-    category?.addEventListener('change', filter);
+    document.querySelectorAll<HTMLButtonElement>('[data-compare-toggle]').forEach(button => button.addEventListener('click', () => {
+      const raw = button.dataset.compareInfo; if (!raw) return;
+      try { const info = JSON.parse(raw) as { title: string; category: string; href: string; specs: { label: string; value: string }[] }; const key = compareKey(info);
+        if (selected.has(key)) { selected.delete(key); button.setAttribute('aria-pressed', 'false'); button.textContent = 'Compare +'; }
+        else if (selected.size >= 3) { if (compareStatus) compareStatus.textContent = 'You can compare up to three products. Remove one to add another.'; return; }
+        else { selected.set(key, info); button.setAttribute('aria-pressed', 'true'); button.textContent = 'Added ✓'; }
+        renderComparison();
+      } catch (error) { console.error('Unable to compare this product.', error); }
+    }));
+    document.querySelector('#clear-compare')?.addEventListener('click', () => { selected.clear(); document.querySelectorAll<HTMLButtonElement>('[data-compare-toggle]').forEach(button => { button.setAttribute('aria-pressed', 'false'); button.textContent = 'Compare +'; }); renderComparison(); });
+    search?.addEventListener('input', filter); categoryChecks.forEach(input => input.addEventListener('change', filter)); sortSelect?.addEventListener('change', sortCards);
+    const initialCategory = new URLSearchParams(window.location.search).get('category');
+    if (initialCategory) categoryChecks.forEach(input => { if (input.value.toLowerCase() === initialCategory.toLowerCase()) input.checked = true; });
+    sortCards(); filter();
   </script>
 </Layout>

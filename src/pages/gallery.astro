@@ -1,25 +1,49 @@
 ---
 import Layout from '../components/Layout.astro';
 import InstagramReelGrid from '../components/InstagramReelGrid.astro';
-import { BASE } from '../lib';
-const reels = [{"id": "DecbWZYz1bk", "number": "01", "image": "assets/catalog/product-01.jpg"}, {"id": "DeCTb3UpncP", "number": "02", "image": "assets/catalog/product-02.jpg"}, {"id": "DeAPCdczwML", "number": "03", "image": "assets/catalog/product-03.jpg"}, {"id": "DdMsfgjTcNp", "number": "04", "image": "assets/catalog/product-04.jpg"}, {"id": "Dc3qrbtJdqC", "number": "05", "image": "assets/catalog/product-05.jpg"}, {"id": "Dcq5zDDJ18u", "number": "06", "image": "assets/catalog/product-06.jpg"}, {"id": "DcqyQ9jpLcy", "number": "07", "image": "assets/catalog/product-07.jpg"}, {"id": "DcquMAdprVQ", "number": "08", "image": "assets/catalog/product-08.jpg"}, {"id": "DcjU_3ZJqXj", "number": "09", "image": "assets/catalog/product-09.jpg"}, {"id": "DcJs70vS6Xe", "number": "10", "image": "assets/catalog/product-10.jpg"}];
+import products from '../data/products.json';
+import slides from '../data/slides.json';
+import { BASE, asset } from '../lib';
+const reels = [
+  { id: 'DecbWZYz1bk', number: '01' }, { id: 'DeCTb3UpncP', number: '02' }, { id: 'DeAPCdczwML', number: '03' },
+  { id: 'DdMsfgjTcNp', number: '04' }, { id: 'Dc3qrbtJdqC', number: '05' }, { id: 'Dcq5zDDJ18u', number: '06' },
+  { id: 'DcqyQ9jpLcy', number: '07' }, { id: 'DcquMAdprVQ', number: '08' }, { id: 'DcjU_3ZJqXj', number: '09' }, { id: 'DcJs70vS6Xe', number: '10' }
+];
+const currentProductPhotos = products.map(product => ({ title: product.title, image: product.image, alt: product.alt || product.title }));
+const archivedProductPhotos = ([
+  ['001.jpg','Outdoor antenna CCTV camera'], ['002.jpg','Dual-antenna outdoor camera'], ['003.jpg','Pan-tilt outdoor camera'], ['004.jpg','Solar PTZ camera'], ['005.jpg','CCTV accessory module'],
+  ['034.jpg','Outdoor bullet camera'], ['035.jpg','Dome CCTV camera'], ['036.jpg','Compact outdoor camera'], ['037.jpg','Outdoor bullet camera'], ['038.jpg','Dome security camera'],
+  ['042.jpg','Ceiling dome camera'], ['044.jpg','Outdoor bullet camera'], ['045.jpg','Dome camera'], ['049.jpg','Outdoor camera with antenna'], ['050.jpg','Pan-tilt security camera'],
+  ['051.jpg','Dual-lens indoor camera'], ['052.jpg','Smart indoor camera'], ['053.jpg','Multi-camera system'], ['054.jpg','Outdoor bullet camera'], ['055.jpg','Camera and mobile-viewing bundle'], ['056.jpg','Bulb-style camera'],
+  ['WhatsApp_Image_2022-12-10_at_10_36_27_AM.jpeg','Archived DVR recording system'], ['WhatsApp_Image_2022-12-10_at_10_36_27_AM_(1).jpeg','Archived NVR recording system']
+] as const).map(([file, title]) => ({ title, image: `assets/legacy-site/images/tour/${file}` }));
+const clientImages = ([
+  ['NAGA-HEALTHCARE-SOLUTION.jpg','Naga Healthcare Solution'], ['PON-SUZUKI.jpg','Pon Suzuki'], ['RAMNAD-ENTERPRISES.jpeg','Ramnad Enterprises'], ['SKYTECH.jpeg','Skytech'],
+  ['TMB.jpeg','TMB'], ['UBI.jpeg','Union Bank of India'], ['UTA.jpeg','UTA'], ['YAMAHA.jpeg','Yamaha']
+] as const).map(([file, title]) => ({ title, image: `assets/legacy-site/images/gallery/${file}` }));
+const originalBanners = ([
+  ['F786B310-62A6-47F4-B4FA-CD3AD45A1781.jpeg','Archived banner 01'],
+  ['WhatsApp_Image_2022-12-03_at_07_55_24.jpeg','Archived banner 02'],
+  ['WhatsApp_Image_2022-12-03_at_10_44_19_(1).jpeg','Archived banner 03'],
+  ['WhatsApp_Image_2022-12-03_at_10_44_19_(2).jpeg','Archived banner 04'],
+  ['WhatsApp_Image_2022-12-03_at_10_44_19_(3).jpeg','Archived banner 05']
+] as const).map(([file, title]) => ({ title, image: `assets/legacy-site/images/banner/${file}` }));
+const extraArchive = ([
+  ['008.jpg','Business security campaign image'], ['016.jpg','Outdoor camera campaign image'], ['017.jpg','Security camera campaign artwork']
+] as const).map(([file, title]) => ({ title, image: `assets/legacy-site/images/yt/${file}` }));
 ---
-<Layout title="YASH TECH Gallery | Instagram Reels" description="Browse YASH TECH Instagram Reels, load public posts inline, or open the original Reel on Instagram.">
-  <section class="page-hero">
-    <div class="container">
-      <div class="breadcrumbs"><a href={BASE}>Home</a> / Gallery & updates</div>
-      <div class="eyebrow">Gallery & updates</div>
-      <h1>See more from YASH TECH.</h1>
-      <p>The actual Instagram Reels are embedded in the cards below. Use the video controls inside each Reel, or open it directly on Instagram if the embed is unavailable.</p>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <InstagramReelGrid reels={reels} />
-      <div class="instagram-follow-panel">
-        <div><div class="eyebrow">Follow our updates</div><h2>More from YASH TECH.</h2><p>Product videos, security tips and updates from our official Instagram account.</p></div>
-        <a class="btn btn-primary" href="https://www.instagram.com/yashtechcctv/" target="_blank" rel="noopener noreferrer">Follow @yashtechcctv ↗</a>
-      </div>
-    </div>
-  </section>
+<Layout title="YASH TECH Media Archive | Product Photos & Instagram Reels" description="Browse YASH TECH catalogue images, archived product photos, original gallery images and all ten Instagram Reels.">
+  <section class="page-hero command-page-hero"><div class="container"><div class="breadcrumbs"><a href={BASE}>Home</a> / Media archive</div><div class="eyebrow">MEDIA ARCHIVE / PRODUCTS · PHOTO GALLERY · REELS</div><h1>Every view. Every asset.</h1><p>The complete visual library brings together current product catalogue photography, the original website's photo archive, campaign artwork, the seven homepage slider images, client-gallery images and all ten Instagram Reels.</p><nav class="gallery-jump-nav" aria-label="Gallery sections"><a href="#current-products">Product catalogue</a><a href="#archived-products">Archived product photos</a><a href="#original-project-gallery">Original gallery</a><a href="#campaign-archive">Campaign artwork</a><a href="#homepage-slider-assets">Homepage slider</a><a href="#instagram-reels">Instagram Reels</a></nav></div></section>
+
+  <section class="section command-gallery-section" id="current-products"><div class="container"><div class="section-head"><div><div class="eyebrow">01 / CURRENT CATALOGUE</div><h2>All catalogue product images.</h2></div><p>Every product photo attached to the current 23-item catalogue is retained and shown here. Select an image to view it at full size.</p></div><div class="archive-image-grid archive-products-grid">{currentProductPhotos.map((item, index) => <a class="archive-image-card reveal" href={asset(item.image)} target="_blank" rel="noopener noreferrer" data-archive-card><div class="archive-image-stage"><img src={asset(item.image)} alt={item.alt} loading="lazy" width="520" height="420" /></div><div class="archive-image-copy"><span>CATALOGUE / {String(index + 1).padStart(2,'0')}</span><strong>{item.title}</strong><small>Open original image ↗</small></div></a>)}</div></div></section>
+
+  <section class="section command-gallery-section alt-gallery-section" id="archived-products"><div class="container"><div class="section-head"><div><div class="eyebrow">02 / LEGACY WEBSITE ASSETS</div><h2>Archived product photos.</h2></div><p>These 23 photos and recording-system images are retained from the previous YASH TECH website archive.</p></div><div class="archive-image-grid">{archivedProductPhotos.map((item, index) => <a class="archive-image-card reveal" href={asset(item.image)} target="_blank" rel="noopener noreferrer" data-archive-card><div class="archive-image-stage"><img src={asset(item.image)} alt={item.title} loading="lazy" /></div><div class="archive-image-copy"><span>LEGACY PRODUCT / {String(index + 1).padStart(2,'0')}</span><strong>{item.title}</strong><small>Open original image ↗</small></div></a>)}</div></div></section>
+
+  <section class="section command-gallery-section" id="original-project-gallery"><div class="container"><div class="section-head"><div><div class="eyebrow">03 / ORIGINAL GALLERY</div><h2>Business and client-gallery images.</h2></div><p>These logo images were present in the original website's gallery. They are preserved as archived artwork, not presented as a claim about current contracts.</p></div><div class="archive-logo-grid">{clientImages.map((item, index) => <a class="archive-logo-card reveal" href={asset(item.image)} target="_blank" rel="noopener noreferrer"><img src={asset(item.image)} alt={item.title} loading="lazy" /><span>{item.title}</span><small>Archived image {String(index + 1).padStart(2,'0')}</small></a>)}<a class="archive-logo-card reveal" href={asset('assets/legacy-site/images/logo.png')} target="_blank" rel="noopener noreferrer"><img src={asset('assets/legacy-site/images/logo.png')} alt="Original YASH TECH logo" loading="lazy" /><span>Original YASH TECH logo</span><small>Legacy brand asset</small></a></div></div></section>
+
+  <section class="section command-gallery-section alt-gallery-section" id="campaign-archive"><div class="container"><div class="section-head"><div><div class="eyebrow">04 / CAMPAIGN ARCHIVE</div><h2>Original campaign artwork.</h2></div><p>Previous website banners and supporting YASH TECH media are retained in their own section so they aren't lost behind the Reel gallery.</p></div><div class="archive-banner-grid">{originalBanners.map((item, index) => <a class="archive-banner-card reveal" href={asset(item.image)} target="_blank" rel="noopener noreferrer"><img src={asset(item.image)} alt={item.title} loading="lazy" /><span>{item.title} · Open full size ↗</span></a>)}</div><div class="archive-extra-grid">{extraArchive.map((item, index) => <a class="archive-extra-card reveal" href={asset(item.image)} target="_blank" rel="noopener noreferrer"><img src={asset(item.image)} alt={item.title} loading="lazy" /><span>{item.title} ↗</span></a>)}</div></div></section>
+
+  <section class="section command-gallery-section" id="homepage-slider-assets"><div class="container"><div class="section-head"><div><div class="eyebrow">05 / HOMEPAGE SLIDER MEDIA</div><h2>The complete seven-image slider set.</h2></div><p>All seven hero images remain in the automatic homepage slider. This archive gives each source image a direct link too.</p></div><div class="archive-banner-grid hero-archive-grid">{slides.map((item, index) => <a class="archive-banner-card reveal" href={asset(item.image)} target="_blank" rel="noopener noreferrer"><img src={asset(item.image)} alt={item.alt} loading="lazy" /><span>{String(index + 1).padStart(2,'0')} / {item.title} ↗</span></a>)}</div></div></section>
+
+  <section class="section command-gallery-section alt-gallery-section" id="instagram-reels"><div class="container"><div class="section-head"><div><div class="eyebrow">06 / INSTAGRAM VIDEO</div><h2>All ten actual Reels.</h2></div><p>These cards embed the original Instagram posts. If Instagram doesn't allow an embed in a browser, use the direct link below each player.</p></div><InstagramReelGrid reels={reels} /><div class="instagram-follow-panel command-instagram-follow"><div><div class="eyebrow">OFFICIAL INSTAGRAM</div><h2>Follow @yashtechcctv.</h2><p>Product posts, videos and updates from YASH TECH.</p></div><a class="btn btn-primary" href="https://www.instagram.com/yashtechcctv/" target="_blank" rel="noopener noreferrer">Open Instagram profile ↗</a></div></div></section>
 </Layout>
