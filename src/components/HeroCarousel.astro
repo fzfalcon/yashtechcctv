@@ -3,50 +3,58 @@ import slides from '../data/slides.json';
 import { asset, BASE, waLink } from '../lib';
 const heroSlides = slides.map((slide, index) => ({ ...slide, number: String(index + 1).padStart(2, '0') }));
 ---
-<section class="hero-experience command-hero" data-carousel aria-label="YASH TECH security command visual showcase">
-  <div class="command-ambient command-ambient-a" aria-hidden="true"></div>
-  <div class="command-ambient command-ambient-b" aria-hidden="true"></div>
-  <div class="command-trace command-trace-a" aria-hidden="true"></div>
-  <div class="command-trace command-trace-b" aria-hidden="true"></div>
-  <div class="container command-layout hero-layout">
-    <div class="hero-content command-copy">
-      <div class="hero-kicker"><span class="status-pip"></span><span>YASH TECH / SECURITY SYSTEMS</span></div>
-      <h1>Visualize.<br /><em>Protect.</em><br />Stay ahead.</h1>
-      <p>Security cameras, recording systems and practical installation support for homes, shops and businesses. Explore the range, compare options, and talk to the YASH TECH team.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href={`${BASE}products/`}>Explore products <span aria-hidden="true">↗</span></a>
-        <a class="btn btn-glass" href={waLink('Hello YASH TECH, I would like to discuss a security solution for my property.')} target="_blank" rel="noopener noreferrer">Plan a setup <span aria-hidden="true">↗</span></a>
-      </div>
-      <div class="command-scope" aria-label="Product categories">
-        <span class="scope-bracket scope-bracket-tl" aria-hidden="true"></span><span class="scope-bracket scope-bracket-br" aria-hidden="true"></span>
-        <div class="scope-label">SYSTEM COVERAGE / CATALOGUE OVERVIEW</div>
-        <div class="scope-items">
-          <span><i>◉</i> CCTV / IP</span><span><i>⌁</i> 4G / SOLAR</span><span><i>▣</i> DVR / NVR</span><span><i>⌘</i> ACCESS</span>
-        </div>
-        <p>Product imagery showcase · Not live camera feeds</p>
-      </div>
+<section class="ref-hero" data-carousel aria-label="YASH TECH featured security campaigns">
+  <div class="container ref-hero-heading">
+    <div class="ref-hero-title-block">
+      <div class="hero-kicker"><span class="status-pip"></span><span>SMART SECURITY / YASH TECH</span></div>
+      <h1>Protection for <em>every space.</em></h1>
     </div>
-    <div class="hero-showcase command-showcase" aria-label="Automatic YASH TECH product and campaign image slider">
-      <div class="showcase-topline command-window-head"><span class="showcase-index">VISUAL ARCHIVE / SLIDER</span><span class="showcase-live"><i></i> FEATURE ROTATION</span></div>
-      <div class="hero-stage command-stage">
-        <div class="command-stage-grid" aria-hidden="true"></div>
+    <div class="ref-hero-summary">
+      <p>Explore CCTV cameras, recording systems, connected security and installation support for homes, shops and businesses.</p>
+      <a href={`${BASE}products/`} class="ref-text-link">Explore the product range <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="campaign-carousel">
+      <div class="campaign-frame" aria-live="off">
         {heroSlides.map((slide, index) => (
-          <figure class="hero-product-slide command-slide" data-slide data-title={slide.title} data-eyebrow={slide.eyebrow} data-description={slide.description} aria-hidden={index !== 0} style={`opacity:${index === 0 ? 1 : 0};`}>
-            <img src={asset(slide.image)} alt={slide.alt} width="1672" height="941" loading="eager" fetchpriority={index === 0 ? 'high' : undefined} />
+          <figure class="campaign-slide" data-slide data-title={slide.title} data-eyebrow={slide.eyebrow} data-description={slide.description} aria-hidden={index !== 0} style={`opacity:${index === 0 ? 1 : 0};pointer-events:${index === 0 ? 'auto' : 'none'};`}>
+            <img src={asset(slide.image)} alt={slide.alt} width="1672" height="941" loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : undefined} />
           </figure>
         ))}
-        <div class="command-corner command-corner-left" aria-hidden="true">YT / VISUAL FEED</div>
-        <div class="command-corner command-corner-right" aria-hidden="true">ASSET ROTATION</div>
-        <div class="stage-index command-stage-index"><span>SLIDE</span><strong data-current>01</strong><span class="stage-index-line"></span><span>07</span></div>
+        <div class="campaign-frame-label"><span class="status-pip"></span> YASH TECH / CAMPAIGN VISUALS</div>
+        <div class="campaign-frame-counter"><span data-current>01</span><i></i><span>07</span></div>
       </div>
-      <div class="command-slide-caption"><div><span class="eyebrow" data-feature-eyebrow>{heroSlides[0].eyebrow}</span><h2 data-feature-title>{heroSlides[0].title}</h2><p data-feature-description>{heroSlides[0].description}</p></div><div class="hero-controls"><button type="button" data-prev aria-label="Previous image">←</button><button type="button" data-pause aria-label="Pause automatic image slider">Ⅱ</button><button type="button" data-next aria-label="Next image">→</button></div></div>
-      <div class="hero-progress"><span data-progress></span></div>
-      <div class="command-slide-dots" aria-label="Choose a featured image">
-        {heroSlides.map((slide, index) => <button type="button" data-dot={index} aria-label={`Show slide ${index + 1}: ${slide.title}`} aria-pressed={index === 0 ? 'true' : 'false'} class:list={{'is-active': index === 0}}></button>)}
+      <div class="campaign-details">
+        <div class="campaign-caption">
+          <span class="eyebrow" data-feature-eyebrow>{heroSlides[0].eyebrow}</span>
+          <h2 data-feature-title>{heroSlides[0].title}</h2>
+          <p data-feature-description>{heroSlides[0].description}</p>
+        </div>
+        <div class="campaign-actions">
+          <a class="btn btn-primary" href={`${BASE}products/`}>Explore products <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-secondary" href={waLink('Hello YASH TECH, I would like to discuss a security setup for my property.')} target="_blank" rel="noopener noreferrer">Get a quote</a>
+        </div>
+        <div class="campaign-controls" aria-label="Featured campaign controls">
+          <button class="campaign-control" type="button" data-prev aria-label="Previous campaign">←</button>
+          <button class="campaign-control" type="button" data-pause aria-label="Pause automatic campaign slider">Ⅱ</button>
+          <button class="campaign-control" type="button" data-next aria-label="Next campaign">→</button>
+        </div>
+      </div>
+      <div class="campaign-bottomline">
+        <div class="campaign-dots" aria-label="Choose a featured campaign">{heroSlides.map((slide, index) => <button type="button" data-dot={index} aria-label={`Show slide ${index + 1}: ${slide.title}`} aria-pressed={index === 0 ? 'true' : 'false'} class:list={{'is-active': index === 0}}></button>)}</div>
+        <div class="campaign-progress" aria-hidden="true"><span data-progress></span></div>
+        <a href={`${BASE}gallery/#homepage-slider-assets`}>View all campaign images ↗</a>
       </div>
     </div>
   </div>
-  <div class="container hero-bottom-note"><span><b>01</b> / SECURITY SYSTEMS · PRODUCT DISCOVERY · SUPPORT</span><a href="#command-categories">SCROLL TO EXPLORE <b>↓</b></a></div>
+  <div class="container ref-hero-quicklinks">
+    <span>QUICK ACCESS</span>
+    <a href={`${BASE}products/`}>Camera systems <b>↗</b></a>
+    <a href={`${BASE}products/`}>Recording & storage <b>↗</b></a>
+    <a href={`${BASE}solutions/`}>Solutions by space <b>↗</b></a>
+    <a href={`${BASE}services/`}>Installation & support <b>↗</b></a>
+  </div>
 </section>
 <script>
   const carousel = document.querySelector<HTMLElement>('[data-carousel]');
@@ -85,7 +93,7 @@ const heroSlides = slides.map((slide, index) => ({ ...slide, number: String(inde
     pauseButton?.addEventListener('click', () => {
       paused = !paused;
       pauseButton.textContent = paused ? '▶' : 'Ⅱ';
-      pauseButton.setAttribute('aria-label', paused ? 'Play automatic image slider' : 'Pause automatic image slider');
+      pauseButton.setAttribute('aria-label', paused ? 'Play automatic campaign slider' : 'Pause automatic campaign slider');
       restart();
     });
     carousel.addEventListener('mouseenter', () => { hoverPaused = true; window.clearInterval(timer); });

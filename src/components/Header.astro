@@ -1,34 +1,80 @@
 ---
 import { BASE, asset, waLink } from '../lib';
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
-const links = [
-  ['Home', `${BASE}`, 'home'],
-  ['Products', `${BASE}products/`, 'products'],
-  ['Services', `${BASE}services/`, 'services'],
-  ['Solutions', `${BASE}solutions/`, 'solutions'],
-  ['Gallery', `${BASE}gallery/`, 'gallery'],
-  ['About', `${BASE}about/`, 'about'],
-  ['Contact', `${BASE}contact/`, 'contact']
-];
 const isActive = (key: string) => key === 'home'
-  ? pathname === BASE.replace(/\/$/, '') || pathname === '/'
+  ? pathname === (BASE.replace(/\/$/, '') || '/') || pathname === '/'
   : pathname.startsWith(`${BASE}${key}`.replace(/\/$/, ''));
+const productCategories = [
+  { title: 'CCTV & IP cameras', detail: 'Indoor, outdoor and network cameras', href: `${BASE}products/` },
+  { title: '4G & solar cameras', detail: 'Remote sites and low-cable locations', href: `${BASE}products/?category=4G%20%2F%20Solar` },
+  { title: 'Wi-Fi cameras', detail: 'Connected home and business monitoring', href: `${BASE}products/?category=Wi-Fi%20Cameras` },
+  { title: 'DVR / NVR systems', detail: 'Recording, storage and playback', href: `${BASE}products/` },
+  { title: 'Access control', detail: 'Biometrics and entry systems', href: `${BASE}products/` },
+  { title: 'Networking & accessories', detail: 'Cabling and system components', href: `${BASE}products/` }
+];
 ---
 <div class="announcement-bar">
   <div class="container announcement-inner">
-    <span><i class="status-pip"></i> Security products · Installation · Technical support</span>
-    <span class="announcement-location">Ramanathapuram, Tamil Nadu <span aria-hidden="true">↗</span></span>
+    <span><i class="status-pip"></i> YASH TECH / SMART SECURITY SYSTEMS</span>
+    <span class="announcement-location">Ramanathapuram, Tamil Nadu <span aria-hidden="true">·</span> <a href="tel:+919385898667">+91 93858 98667</a></span>
   </div>
 </div>
 <header class="site-header">
   <div class="container nav">
     <a class="brand" href={BASE} aria-label="YASH TECH home">
       <span class="brand-mark"><img src={asset('assets/yash-tech-logo.png')} alt="" width="44" height="44" /></span>
-      <span class="brand-word">YASH TECH<small>SMART SECURITY SYSTEMS</small></span>
+      <span class="brand-word">YASH TECH<small>SECURITY · NETWORKS · SUPPORT</small></span>
     </a>
     <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav"><span></span><span></span></button>
     <nav class="nav-links" id="main-nav" aria-label="Main navigation">
-      {links.map(([label, href, key]) => <a href={href} aria-current={isActive(key) ? 'page' : undefined}>{label}</a>)}
+      <a class:list={{'nav-simple-link': true, 'is-active': isActive('home')}} href={BASE}>Home</a>
+      <details class="nav-dropdown mega-products">
+        <summary aria-label="Open products menu">Products <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="mega-panel">
+          <div class="mega-intro">
+            <span class="mega-overline">PRODUCT SYSTEMS / 01</span>
+            <h2>Find the right view.</h2>
+            <p>Explore cameras, recording systems and connected security equipment for different spaces.</p>
+            <a class="mega-feature-link" href={`${BASE}products/`}>Browse full catalogue <span aria-hidden="true">↗</span></a>
+            <form class="mega-search-form" action={`${BASE}products/`} method="get">
+              <label class="visually-hidden" for="nav-catalog-search">Search the catalogue</label>
+              <input id="nav-catalog-search" type="search" name="q" placeholder="Search products…" />
+              <button type="submit" aria-label="Search products">⌕</button>
+            </form>
+          </div>
+          <div class="mega-category-grid">
+            {productCategories.map((item, index) => <a href={item.href} class="mega-category-link"><span class="mega-category-number">{String(index + 1).padStart(2, '0')}</span><span><strong>{item.title}</strong><small>{item.detail}</small></span><b aria-hidden="true">↗</b></a>)}
+          </div>
+        </div>
+      </details>
+      <details class="nav-dropdown nav-solutions">
+        <summary aria-label="Open solutions menu">Solutions <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="mega-panel mega-panel-compact">
+          <div class="mega-intro"><span class="mega-overline">SOLUTIONS / BY SPACE</span><h2>Security for real places.</h2><p>Start with the site, then plan the products around it.</p><a class="mega-feature-link" href={`${BASE}solutions/`}>Explore solutions ↗</a></div>
+          <div class="mega-simple-list">
+            <a href={`${BASE}solutions/`}><strong>Home & villa</strong><small>Entrances, family spaces and remote viewing</small></a>
+            <a href={`${BASE}solutions/`}><strong>Retail & shops</strong><small>Counters, stock rooms and customer areas</small></a>
+            <a href={`${BASE}solutions/`}><strong>Office & warehouse</strong><small>Multi-camera coverage and recording</small></a>
+            <a href={`${BASE}solutions/`}><strong>Outdoor & remote sites</strong><small>Connectivity and solar-powered options</small></a>
+          </div>
+        </div>
+      </details>
+      <a class:list={{'nav-simple-link': true, 'is-active': isActive('services')}} href={`${BASE}services/`}>Services</a>
+      <details class="nav-dropdown">
+        <summary aria-label="Open resources menu">Resources <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="mega-panel mega-panel-compact mega-panel-resources">
+          <div class="mega-intro"><span class="mega-overline">RESOURCES / SUPPORT</span><h2>From discovery to installation.</h2><p>Explore media, understand the service options and contact our team.</p></div>
+          <div class="mega-simple-list">
+            <a href={`${BASE}gallery/`}><strong>Image & Reel gallery</strong><small>Product photos, archive images and Instagram videos</small></a>
+            <a href={`${BASE}about/`}><strong>About YASH TECH</strong><small>Local business and service overview</small></a>
+            <a href={`${BASE}contact/`}><strong>Contact & enquiries</strong><small>Phone, WhatsApp and business address</small></a>
+          </div>
+        </div>
+      </details>
+      <a class:list={{'nav-simple-link': true, 'is-active': isActive('gallery')}} href={`${BASE}gallery/`}>Gallery</a>
+      <a class:list={{'nav-simple-link': true, 'is-active': isActive('about')}} href={`${BASE}about/`}>About</a>
+      <a class:list={{'nav-simple-link': true, 'is-active': isActive('contact')}} href={`${BASE}contact/`}>Contact</a>
+      <a class="nav-mobile-quote btn btn-primary" href={waLink('Hello YASH TECH, I would like a quote for a security solution.')} target="_blank" rel="noopener noreferrer">Get a quote ↗</a>
     </nav>
     <a class="btn btn-primary nav-cta" href={waLink('Hello YASH TECH, I would like a quote for a security solution.')} target="_blank" rel="noopener noreferrer">Get a quote <span aria-hidden="true">↗</span></a>
   </div>

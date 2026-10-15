@@ -10,7 +10,7 @@ import { SITE_URL } from '../lib';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#050b12" />
+    <meta name="theme-color" content="#05090f" />
     <meta name="color-scheme" content="dark" />
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
@@ -37,6 +37,23 @@ import { SITE_URL } from '../lib';
         toggle?.setAttribute('aria-expanded', 'false');
         nav.classList.remove('is-open');
       }));
+      const megaMenus = [...document.querySelectorAll<HTMLDetailsElement>('.nav-dropdown')];
+      megaMenus.forEach(menu => {
+        menu.addEventListener('toggle', () => {
+          if (menu.open) megaMenus.forEach(other => { if (other !== menu) other.open = false; });
+        });
+        if (window.matchMedia('(hover: hover) and (min-width: 901px)').matches) {
+          menu.addEventListener('mouseenter', () => { menu.open = true; });
+          menu.addEventListener('mouseleave', () => { menu.open = false; });
+        }
+      });
+      document.addEventListener('pointerdown', event => {
+        const target = event.target;
+        if (target instanceof Node && !document.querySelector('.site-header')?.contains(target)) megaMenus.forEach(menu => { menu.open = false; });
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') megaMenus.forEach(menu => { menu.open = false; });
+      });
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const targets = document.querySelectorAll('.reveal');
       if (reducedMotion || !('IntersectionObserver' in window)) {

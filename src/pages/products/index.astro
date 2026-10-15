@@ -42,7 +42,7 @@ const categories = [...new Set(products.map(p => p.category))];
       const checked = categoryChecks.filter(input => input.checked).map(input => input.value);
       let visible = 0;
       cards.forEach(card => {
-        const textMatches = (card.dataset.title || '').includes(query);
+        const textMatches = (card.dataset.search || card.dataset.title || '').includes(query);
         const categoryMatches = checked.length === 0 || checked.includes(card.dataset.category || '');
         const matches = textMatches && categoryMatches;
         card.hidden = !matches;
@@ -88,7 +88,10 @@ const categories = [...new Set(products.map(p => p.category))];
     }));
     document.querySelector('#clear-compare')?.addEventListener('click', () => { selected.clear(); document.querySelectorAll<HTMLButtonElement>('[data-compare-toggle]').forEach(button => { button.setAttribute('aria-pressed', 'false'); button.textContent = 'Compare +'; }); renderComparison(); });
     search?.addEventListener('input', filter); categoryChecks.forEach(input => input.addEventListener('change', filter)); sortSelect?.addEventListener('change', sortCards);
-    const initialCategory = new URLSearchParams(window.location.search).get('category');
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = params.get('q') || '';
+    if (search && initialQuery) search.value = initialQuery;
+    const initialCategory = params.get('category');
     if (initialCategory) categoryChecks.forEach(input => { if (input.value.toLowerCase() === initialCategory.toLowerCase()) input.checked = true; });
     sortCards(); filter();
   </script>

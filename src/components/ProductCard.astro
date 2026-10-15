@@ -9,7 +9,7 @@ const compareInfo = {
   specs: (product.specs || []).slice(0, 4).map((row: { label: string; value: string }) => ({ label: row.label, value: row.value }))
 };
 ---
-<article class="product-card reveal" data-product data-category={product.category} data-title={product.title.toLowerCase()} style={`--card-order:${index % 4};`}>
+<article class="product-card reveal" data-product data-category={product.category} data-title={product.title.toLowerCase()} data-search={`${product.title} ${product.category} ${product.description}`.toLowerCase()} style={`--card-order:${index % 4};`}>
   <a class="product-card-image-link" href={`${BASE}products/${product.slug}/`} aria-label={`View ${product.title} details`}>
     <div class="product-image"><span class="product-image-index">YT / {String(product.id).padStart(2, '0')}</span><img src={asset(product.image)} alt={product.alt || product.title} loading="lazy" width="520" height="420" /><span class="product-image-action" aria-hidden="true">↗</span></div>
   </a>
