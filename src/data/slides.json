@@ -1,5 +1,12 @@
 [
   {
+    "image": "assets/generated/01-homepage-hero.webp",
+    "title": "Security for what matters",
+    "eyebrow": "YASH TECH / SECURITY SOLUTIONS",
+    "description": "CCTV cameras, connected monitoring and practical security support for homes and businesses.",
+    "alt": "YASH TECH security solutions campaign banner"
+  },
+  {
     "image": "assets/hero/smart-wifi-indoor.webp",
     "title": "Smart Wi-Fi Indoor Camera",
     "eyebrow": "SMART HOME SECURITY",

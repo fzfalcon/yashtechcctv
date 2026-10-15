@@ -19,6 +19,19 @@ const productFamilies = [
   { title: 'Power & accessories', detail: 'Components for complete systems', image: 'assets/catalog/product-21.jpg', href: `${BASE}products/?q=power%20accessories`, icon: '⎓' },
   { title: 'Biometric & access', detail: 'Entry and attendance systems', image: 'assets/legacy-site/images/tour/005.jpg', href: `${BASE}services/`, icon: '▣' }
 ];
+const campaignBanners = [
+  { image: 'assets/generated/02-solar-4g.webp', title: '4G & solar camera systems', detail: 'Explore monitoring options for locations where wired internet or power may be limited.', href: `${BASE}products/?category=4G%20%2F%20Solar`, alt: 'YASH TECH 4G and solar camera campaign' },
+  { image: 'assets/generated/03-cctv-ip-cameras.webp', title: 'CCTV & IP cameras', detail: 'Find indoor, outdoor and network camera options for your property.', href: `${BASE}products/?q=IP%20camera`, alt: 'YASH TECH CCTV camera campaign' },
+  { image: 'assets/generated/04-dvr-nvr-recording.webp', title: 'DVR & NVR recording', detail: 'Explore recording, storage and playback options for your security setup.', href: `${BASE}products/?category=DVR%20%2F%20NVR`, alt: 'YASH TECH DVR and NVR recording systems' },
+  { image: 'assets/generated/05-access-control-intercom.webp', title: 'Integrated security systems', detail: 'Bring cameras, access control, networking and installation planning together.', href: `${BASE}services/`, alt: 'YASH TECH integrated security systems' }
+];
+const solutionBanners = [
+  { image: 'assets/generated/06-networking-wifi.webp', title: 'Networking & connectivity', detail: 'Wi-Fi, Ethernet and structured cabling for connected security systems.', href: `${BASE}services/`, alt: 'Networking and Wi-Fi security systems' },
+  { image: 'assets/generated/07-installation-solutions.webp', title: 'Professional installation', detail: 'Plan camera positions, cabling and recording around the needs of the site.', href: `${BASE}services/`, alt: 'Security camera installation solutions' },
+  { image: 'assets/generated/08-home-business-protection.webp', title: 'Home & business protection', detail: 'Explore practical camera options for homes, shops and offices.', href: `${BASE}solutions/`, alt: 'Home and business security solutions' },
+  { image: 'assets/generated/09-commercial-industrial.webp', title: 'Commercial & industrial sites', detail: 'Security planning for workspaces, warehouses, parking and outdoor areas.', href: `${BASE}solutions/`, alt: 'Commercial and industrial security systems' },
+  { image: 'assets/generated/10-installation-gallery.webp', title: 'Real-world security setups', detail: 'Explore equipment and installation visuals from the YASH TECH media collection.', href: `${BASE}gallery/`, alt: 'YASH TECH security and installation visual collection' }
+];
 const featurePanels = [
   { label: 'CAMERA SYSTEMS', title: 'See more of what matters.', text: 'Explore camera options for entrances, rooms, storefronts and outdoor areas.', image: 'assets/hero/outdoor-bullet-camera.webp', href: `${BASE}products/` },
   { label: 'REMOTE LOCATIONS', title: 'Connect beyond cables.', text: 'Review 4G and solar-powered camera options for locations with different power and internet conditions.', image: 'assets/hero/solar-4g-outdoor.webp', href: `${BASE}products/?category=4G%20%2F%20Solar` },
@@ -44,7 +57,9 @@ const fieldPhotos = [
   { image: 'assets/legacy-site/images/yt/008.jpg', alt: 'YASH TECH security campaign image' },
   { image: 'assets/legacy-site/images/yt/016.jpg', alt: 'YASH TECH outdoor camera campaign' },
   { image: 'assets/legacy-site/images/yt/017.jpg', alt: 'YASH TECH security equipment campaign' },
-  { image: 'assets/legacy-site/images/banner/WhatsApp_Image_2022-12-03_at_10_44_19_(1).jpeg', alt: 'YASH TECH CCTV systems and services banner' }
+  { image: 'assets/legacy-site/images/banner/WhatsApp_Image_2022-12-03_at_10_44_19_(1).jpeg', alt: 'YASH TECH CCTV systems and services banner' },
+  { image: 'assets/generated/09-commercial-industrial.webp', alt: 'YASH TECH commercial and industrial security campaign' },
+  { image: 'assets/generated/10-installation-gallery.webp', alt: 'YASH TECH installation and security systems campaign' }
 ];
 const insightCards = [
   { number: '01', tag: 'CAMERA SELECTION', title: 'Start with the view you need.', text: 'Think about mounting height, lighting, viewing angle and the areas that need coverage before choosing a camera.', image: 'assets/catalog/product-15.jpg', href: `${BASE}products/` },
@@ -85,6 +100,23 @@ const insightCards = [
     </div>
   </section>
 
+  <section class="v31-campaign-section section" aria-labelledby="v31-campaign-heading">
+    <div class="container">
+      <div class="v30-section-heading">
+        <div><span class="v30-eyebrow">EXPLORE / SECURITY CAMPAIGNS</span><h2 id="v31-campaign-heading">Explore the systems that protect your space.</h2></div>
+        <p>Start with a camera system, recording setup or integrated security requirement. YASH TECH can help confirm suitable options and availability.</p>
+      </div>
+      <div class="v31-campaign-grid">
+        {campaignBanners.map((item, index) => (
+          <a class="v31-campaign-card reveal" href={item.href}>
+            <div class="v31-campaign-image"><img src={asset(item.image)} alt={item.alt} loading="lazy" /></div>
+            <div class="v31-campaign-copy"><span>{String(index + 1).padStart(2, '0')} / YASH TECH SOLUTIONS</span><h3>{item.title}</h3><p>{item.detail}</p><b>Explore solution <span aria-hidden="true">↗</span></b></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="v30-solution-spotlight section">
     <div class="container">
       <div class="v30-section-heading">
@@ -116,6 +148,23 @@ const insightCards = [
             <a class="v30-tech-image" href={item.href}><img src={asset(item.image)} alt={item.title} loading="lazy" /></a>
             <div class="v30-tech-copy"><span>{item.code} / {item.tag || 'SYSTEM TECHNOLOGY'}</span><h3>{item.title}</h3><p>{item.text}</p><a href={item.href} class="v30-inline-link">{item.link} <b aria-hidden="true">↗</b></a></div>
           </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="v31-solutions-showcase section" aria-labelledby="v31-solutions-heading">
+    <div class="container">
+      <div class="v30-section-heading">
+        <div><span class="v30-eyebrow">SOLUTIONS / BY ENVIRONMENT</span><h2 id="v31-solutions-heading">Security for the way you work and live.</h2></div>
+        <p>From connected homes to commercial sites, explore the visual guide and speak with YASH TECH to plan a suitable setup.</p>
+      </div>
+      <div class="v31-solutions-track">
+        {solutionBanners.map((item, index) => (
+          <a class="v31-solution-banner reveal" href={item.href}>
+            <img src={asset(item.image)} alt={item.alt} loading="lazy" />
+            <div class="v31-solution-banner-copy"><span>{String(index + 1).padStart(2, '0')} / SOLUTION</span><h3>{item.title}</h3><p>{item.detail}</p><b>Learn more ↗</b></div>
+          </a>
         ))}
       </div>
     </div>
@@ -168,9 +217,9 @@ const insightCards = [
   <section class="v30-company section">
     <div class="container v30-company-layout">
       <div class="v30-company-visual">
-        <img class="v30-company-main" src={asset('assets/hero/complete-cctv-solutions.webp')} alt="YASH TECH CCTV security solutions" loading="lazy" />
+        <img class="v30-company-main" src={asset('assets/generated/11-company-expertise-crop.webp')} alt="YASH TECH security solutions showroom and expertise banner" loading="lazy" />
         <div class="v30-company-stamp"><img src={asset('assets/yash-tech-logo.png')} alt="YASH TECH" /><span>SECURITY SYSTEMS<br />RAMANATHAPURAM, TAMIL NADU</span></div>
-        <img class="v30-company-small" src={asset('assets/hero/nvr-dvr-recording.webp')} alt="Recording and monitoring systems" loading="lazy" />
+        <img class="v30-company-small" src={asset('assets/generated/04-dvr-nvr-recording.webp')} alt="YASH TECH recording and monitoring systems" loading="lazy" />
       </div>
       <div class="v30-company-copy">
         <span class="v30-eyebrow">ABOUT YASH TECH</span>
@@ -183,7 +232,7 @@ const insightCards = [
   </section>
 
   <section class="v30-where-to-buy section-tight">
-    <div class="v30-where-backdrop"><img src={asset('assets/hero/smart-security-solutions.webp')} alt="" loading="lazy" /></div>
+    <div class="v30-where-backdrop"><img src={asset('assets/generated/12-customer-support-crop.webp')} alt="" loading="lazy" /></div>
     <div class="container v30-where-content">
       <div><span class="v30-eyebrow">VISIT / CONTACT YASH TECH</span><h2>Let's plan your security setup.</h2><p>Speak with YASH TECH about product options, installation requirements and availability.</p></div>
       <div class="v30-where-actions"><a class="btn btn-primary" href={waLink('Hello YASH TECH, I would like to discuss a CCTV/security setup.')} target="_blank" rel="noopener noreferrer">Enquire on WhatsApp <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&query=152%2F1%20Railway%20Station%20Road%20Ramanathapuram%20623504" target="_blank" rel="noopener noreferrer">Get directions <span aria-hidden="true">↗</span></a></div>

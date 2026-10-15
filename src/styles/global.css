@@ -1380,3 +1380,41 @@ body::before { background: radial-gradient(ellipse at 15% 0%,rgba(0,176,220,.085
 @media(prefers-reduced-motion:reduce) {
   .v30-carousel-slide, .v30-family-card, .v30-family-photo img, .v30-feature-panel>img, .v30-tech-image img, .v30-gallery-highlight img, .v30-insight-image img { transition:none!important; }
 }
+
+
+/* V31: image-led enterprise campaign modules using the twelve new YASH TECH artworks. */
+.v31-campaign-section { background:linear-gradient(180deg,#07111b,#050b12); border-block:1px solid rgba(132,181,211,.12); }
+.v31-campaign-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.v31-campaign-card { display:flex; flex-direction:column; min-width:0; overflow:hidden; border:1px solid var(--v30-line); background:#08131e; transition:border-color .2s ease,transform .2s ease; }
+.v31-campaign-card:hover { border-color:rgba(32,221,250,.48); transform:translateY(-3px); }
+.v31-campaign-image { display:grid; place-items:center; overflow:hidden; aspect-ratio:16/8.5; background:#03070d; }
+.v31-campaign-image img { display:block; width:100%; height:100%; object-fit:contain; }
+.v31-campaign-copy { padding:18px 20px 21px; }
+.v31-campaign-copy>span,.v31-solution-banner-copy>span { color:var(--v30-cyan); font-size:.56rem; font-weight:850; letter-spacing:.13em; }
+.v31-campaign-copy h3 { margin:8px 0; color:#f1f8fb; font-size:clamp(1.15rem,1.9vw,1.55rem); letter-spacing:-.035em; }
+.v31-campaign-copy p { max-width:620px; margin:0 0 13px; color:#9db1c1; font-size:.75rem; line-height:1.7; }
+.v31-campaign-copy>b { display:inline-flex; gap:8px; color:var(--v30-cyan); font-size:.7rem; }
+.v31-solutions-showcase { background:#050b12; border-bottom:1px solid rgba(132,181,211,.12); }
+.v31-solutions-track { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; }
+.v31-solution-banner { position:relative; display:flex; flex-direction:column; min-width:0; grid-column:span 2; overflow:hidden; border:1px solid var(--v30-line); background:#07111a; transition:border-color .2s ease,transform .2s ease; }
+.v31-solution-banner:nth-child(4) { grid-column:2 / span 2; }
+.v31-solution-banner:nth-child(5) { grid-column:4 / span 2; }
+.v31-solution-banner:hover { border-color:rgba(32,221,250,.45); transform:translateY(-3px); }
+.v31-solution-banner>img { display:block; width:100%; aspect-ratio:1944/809; object-fit:cover; background:#06101a; }
+.v31-solution-banner-copy { padding:17px 18px 20px; }
+.v31-solution-banner-copy h3 { margin:8px 0; font-size:1.05rem; letter-spacing:-.025em; }
+.v31-solution-banner-copy p { min-height:50px; margin:0 0 13px; color:#9db1c1; font-size:.72rem; line-height:1.65; }
+.v31-solution-banner-copy>b { color:var(--v30-cyan); font-size:.7rem; }
+.reel-lazy-player { display:block; height:540px; min-height:420px; background:radial-gradient(ellipse at 50% 15%,#153349,#081521 68%); }
+.reel-fallback { display:flex; height:100%; min-height:inherit; flex-direction:column; align-items:flex-start; justify-content:flex-end; gap:10px; padding:23px; background:linear-gradient(180deg,rgba(5,12,20,.04),rgba(4,10,17,.94)); }
+.reel-instagram-mark { display:grid; place-items:center; width:54px; height:54px; border:1px solid rgba(32,221,250,.65); border-radius:15px; color:var(--v30-cyan); font-size:2.8rem; line-height:1; }
+.reel-fallback-kicker { color:var(--v30-cyan); font-size:.55rem; font-weight:850; letter-spacing:.15em; }
+.reel-fallback strong { font-size:1.25rem; }
+.reel-fallback p { max-width:250px; margin:0; color:#9db3c2; font-size:.76rem; line-height:1.65; }
+.reel-load-button { display:flex; align-items:center; gap:13px; margin-top:7px; padding:10px 13px; border:1px solid rgba(32,221,250,.5); color:#00131a; background:var(--v30-cyan); font-size:.7rem; font-weight:850; cursor:pointer; }
+.reel-direct-link { color:#c9e6f0; font-size:.68rem; font-weight:750; }
+.reel-player.is-embedded { height:540px; min-height:0; }
+.reel-player.is-embedded iframe { display:block; width:100%; height:100%; border:0; background:#081521; }
+.v30-video-section .reel-tile-footer { display:flex; align-items:center; min-height:48px; padding:10px 14px; border-top:1px solid var(--v30-line); }
+@media(max-width:900px) { .v31-solutions-track { grid-template-columns:repeat(2,minmax(0,1fr)); } .v31-solution-banner,.v31-solution-banner:nth-child(4),.v31-solution-banner:nth-child(5) { grid-column:auto; } .v31-campaign-grid { gap:12px; } }
+@media(max-width:600px) { .v31-campaign-grid,.v31-solutions-track { grid-template-columns:1fr; } .v31-campaign-copy { padding:15px; } .v31-solution-banner-copy { padding:15px; } .reel-lazy-player,.reel-player.is-embedded { height:500px; min-height:500px; } .v30-video-section .instagram-reel-grid--compact { grid-template-columns:1fr; } }
