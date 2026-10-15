@@ -5,54 +5,189 @@ import ProductCard from '../components/ProductCard.astro';
 import InstagramReelGrid from '../components/InstagramReelGrid.astro';
 import products from '../data/products.json';
 import { BASE, asset, waLink } from '../lib';
-const instagramReels = [
+const homeReels = [
   { id: 'DecbWZYz1bk', number: '01' },
   { id: 'DeCTb3UpncP', number: '02' },
   { id: 'DeAPCdczwML', number: '03' }
 ];
 const featured = products.slice(0, 8);
-const categories = [
-  { title: '4G / Solar', detail: 'Remote outdoor monitoring', image: 'assets/catalog/product-04.jpg', href: `${BASE}products/?category=4G%20%2F%20Solar`, code: 'CAT / 01' },
-  { title: 'Wi-Fi Cameras', detail: 'Connected indoor & outdoor', image: 'assets/catalog/product-05.jpg', href: `${BASE}products/?category=Wi-Fi%20Cameras`, code: 'CAT / 02' },
-  { title: 'Outdoor Bullet', detail: 'Fixed-view camera options', image: 'assets/catalog/product-15.jpg', href: `${BASE}products/`, code: 'CAT / 03' },
-  { title: 'DVR / NVR', detail: 'Recording and storage', image: 'assets/legacy-site/images/tour/WhatsApp_Image_2022-12-10_at_10_36_27_AM.jpeg', href: `${BASE}products/`, code: 'CAT / 04' },
-  { title: 'Indoor Cameras', detail: 'Compact smart monitoring', image: 'assets/catalog/product-13.jpg', href: `${BASE}products/`, code: 'CAT / 05' },
-  { title: 'Accessories', detail: 'Build a complete system', image: 'assets/legacy-site/images/tour/005.jpg', href: `${BASE}products/`, code: 'CAT / 06' }
+const productFamilies = [
+  { title: 'CCTV & IP cameras', detail: 'Indoor, outdoor and network camera options', image: 'assets/catalog/product-15.jpg', href: `${BASE}products/?q=IP%20camera`, icon: '◉' },
+  { title: '4G & solar cameras', detail: 'Remote monitoring and solar-powered options', image: 'assets/catalog/product-04.jpg', href: `${BASE}products/?category=4G%20%2F%20Solar`, icon: '⌁' },
+  { title: 'Wi-Fi cameras', detail: 'Connected cameras for home and business', image: 'assets/catalog/product-05.jpg', href: `${BASE}products/?category=Wi-Fi%20Cameras`, icon: '⌁' },
+  { title: 'DVR & NVR systems', detail: 'Recording, storage and playback', image: 'assets/catalog/product-22.jpeg', href: `${BASE}products/?category=DVR%20%2F%20NVR`, icon: '▤' },
+  { title: 'Power & accessories', detail: 'Components for complete systems', image: 'assets/catalog/product-21.jpg', href: `${BASE}products/?q=power%20accessories`, icon: '⎓' },
+  { title: 'Biometric & access', detail: 'Entry and attendance systems', image: 'assets/legacy-site/images/tour/005.jpg', href: `${BASE}services/`, icon: '▣' }
 ];
-const clientLogos = [
-  { name: 'SKYTECH', image: 'assets/legacy-site/images/gallery/SKYTECH.jpeg' },
-  { name: 'Ramnad Enterprises', image: 'assets/legacy-site/images/gallery/RAMNAD-ENTERPRISES.jpeg' },
+const featurePanels = [
+  { label: 'CAMERA SYSTEMS', title: 'See more of what matters.', text: 'Explore camera options for entrances, rooms, storefronts and outdoor areas.', image: 'assets/hero/outdoor-bullet-camera.webp', href: `${BASE}products/` },
+  { label: 'REMOTE LOCATIONS', title: 'Connect beyond cables.', text: 'Review 4G and solar-powered camera options for locations with different power and internet conditions.', image: 'assets/hero/solar-4g-outdoor.webp', href: `${BASE}products/?category=4G%20%2F%20Solar` },
+  { label: 'RECORDING & STORAGE', title: 'Bring the system together.', text: 'Discuss recording capacity, compatible cameras, storage and playback requirements.', image: 'assets/hero/nvr-dvr-recording.webp', href: `${BASE}products/?category=DVR%20%2F%20NVR` }
+];
+const techCards = [
+  { code: '01', title: 'Visual coverage', text: 'Choose camera types and placement around the views your site needs.', image: 'assets/hero/outdoor-bullet-camera.webp', link: 'Explore cameras', href: `${BASE}products/` },
+  { code: '02', title: 'Recording & review', text: 'Compare DVR and NVR options around camera count, storage and compatibility.', image: 'assets/hero/nvr-dvr-recording.webp', link: 'Explore recording systems', href: `${BASE}products/?category=DVR%20%2F%20NVR` },
+  { code: '03', title: 'Connected monitoring', text: 'Explore Wi-Fi, IP and 4G camera options based on connectivity at the property.', image: 'assets/hero/smart-wifi-indoor.webp', link: 'Explore connected cameras', href: `${BASE}products/` },
+  { code: '04', title: 'Installation & integration', text: 'Plan cameras, cabling, networking and recording as one coordinated setup.', image: 'assets/hero/complete-cctv-solutions.webp', link: 'View services', href: `${BASE}services/` }
+];
+const galleryHighlights = [
   { name: 'Naga Healthcare Solution', image: 'assets/legacy-site/images/gallery/NAGA-HEALTHCARE-SOLUTION.jpg' },
   { name: 'Pon Suzuki', image: 'assets/legacy-site/images/gallery/PON-SUZUKI.jpg' },
-  { name: 'Yamaha', image: 'assets/legacy-site/images/gallery/YAMAHA.jpeg' },
+  { name: 'Ramnad Enterprises', image: 'assets/legacy-site/images/gallery/RAMNAD-ENTERPRISES.jpeg' },
+  { name: 'Skytech', image: 'assets/legacy-site/images/gallery/SKYTECH.jpeg' },
   { name: 'TMB', image: 'assets/legacy-site/images/gallery/TMB.jpeg' },
   { name: 'Union Bank of India', image: 'assets/legacy-site/images/gallery/UBI.jpeg' },
-  { name: 'UTA', image: 'assets/legacy-site/images/gallery/UTA.jpeg' }
+  { name: 'UTA', image: 'assets/legacy-site/images/gallery/UTA.jpeg' },
+  { name: 'Yamaha', image: 'assets/legacy-site/images/gallery/YAMAHA.jpeg' }
 ];
-const archivePhotos = [
-  { name: 'Business security visual', image: 'assets/legacy-site/images/yt/008.jpg' },
-  { name: 'Outdoor camera campaign', image: 'assets/legacy-site/images/yt/016.jpg' },
-  { name: 'Security camera campaign', image: 'assets/legacy-site/images/yt/017.jpg' },
-  { name: 'Original CCTV systems banner', image: 'assets/legacy-site/images/banner/WhatsApp_Image_2022-12-03_at_10_44_19_(1).jpeg' }
+const fieldPhotos = [
+  { image: 'assets/legacy-site/images/yt/008.jpg', alt: 'YASH TECH security campaign image' },
+  { image: 'assets/legacy-site/images/yt/016.jpg', alt: 'YASH TECH outdoor camera campaign' },
+  { image: 'assets/legacy-site/images/yt/017.jpg', alt: 'YASH TECH security equipment campaign' },
+  { image: 'assets/legacy-site/images/banner/WhatsApp_Image_2022-12-03_at_10_44_19_(1).jpeg', alt: 'YASH TECH CCTV systems and services banner' }
+];
+const insightCards = [
+  { number: '01', tag: 'CAMERA SELECTION', title: 'Start with the view you need.', text: 'Think about mounting height, lighting, viewing angle and the areas that need coverage before choosing a camera.', image: 'assets/catalog/product-15.jpg', href: `${BASE}products/` },
+  { number: '02', tag: 'CONNECTIVITY', title: 'Choose how your camera connects.', text: 'Wi-Fi, Ethernet and 4G suit different sites. Availability depends on signal, network and installation conditions.', image: 'assets/hero/solar-4g-outdoor.webp', href: `${BASE}products/?category=4G%20%2F%20Solar` },
+  { number: '03', tag: 'RECORDING', title: 'Plan for the footage you need.', text: 'Camera count, recording duration and storage compatibility all help determine the right recording setup.', image: 'assets/hero/nvr-dvr-recording.webp', href: `${BASE}products/?category=DVR%20%2F%20NVR` }
 ];
 ---
-<Layout title="YASH TECH | Smart Security Systems & Solutions" description="Explore CCTV cameras, solar and 4G cameras, Wi-Fi cameras, recording systems and security installation support from YASH TECH, Ramanathapuram.">
+<Layout title="YASH TECH | CCTV Cameras, Security Systems & Installation" description="Explore CCTV cameras, 4G and solar cameras, Wi-Fi cameras, recording systems, networking and security installation support from YASH TECH in Ramanathapuram, Tamil Nadu.">
   <HeroCarousel />
-  <section class="command-trust-strip"><div class="container command-trust-grid"><div><span>01 / CONNECT</span><strong>4G · Wi-Fi · IP</strong><small>Camera systems for different sites</small></div><div><span>02 / RECORD</span><strong>DVR · NVR</strong><small>Recording system options</small></div><div><span>03 / INTEGRATE</span><strong>Networking · Access</strong><small>Connected security equipment</small></div><div><span>04 / SUPPORT</span><strong>YASH TECH</strong><small>Ramanathapuram, Tamil Nadu</small></div></div></section>
 
-  <section class="section command-categories-section" id="command-categories"><div class="container"><div class="section-head"><div><div class="eyebrow">01 / SYSTEM MODULES</div><h2>Shop by security category.</h2></div><p>Start with the type of space or equipment you want to protect. Explore the catalogue and confirm model compatibility with YASH TECH.</p></div><div class="command-category-grid">{categories.map((item, index) => <a class="command-category-card reveal" href={item.href}><div class="command-category-meta"><span>{item.code}</span><span aria-hidden="true">↗</span></div><div class="command-category-image"><img src={asset(item.image)} alt={item.title} loading="lazy" /></div><div class="command-category-copy"><h3>{item.title}</h3><p>{item.detail}</p><span>View category <b>↗</b></span></div></a>)}</div></div></section>
+  <section class="v30-product-selector section-tight" id="products">
+    <div class="container">
+      <div class="v30-section-heading">
+        <div><span class="v30-eyebrow">PRODUCTS / FIND YOUR SYSTEM</span><h2>Find the right security setup.</h2></div>
+        <p>Browse product families and move directly to the equipment that fits your property, connection and monitoring needs.</p>
+      </div>
+      <div class="v30-family-grid">
+        {productFamilies.map((item, index) => (
+          <a href={item.href} class="v30-family-card reveal">
+            <div class="v30-family-card-top"><span>{String(index + 1).padStart(2, '0')} / SYSTEM</span><b aria-hidden="true">↗</b></div>
+            <div class="v30-family-photo"><img src={asset(item.image)} alt={item.title} loading="lazy" /></div>
+            <div class="v30-family-info"><h3>{item.title}</h3><p>{item.detail}</p><span>Explore category <b aria-hidden="true">→</b></span></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
-  <section class="section command-products-section"><div class="container"><div class="section-head"><div><div class="eyebrow">02 / PRODUCT DATABASE</div><h2>Equipment, clearly presented.</h2></div><p>Explore archived catalogue listings with product photos, available specifications and direct enquiry links.</p></div><div class="command-featured-top"><span><i></i> {products.length} CATALOGUE LISTINGS</span><a class="text-link" href={`${BASE}products/`}>Open full catalogue ↗</a></div><div class="grid-4">{featured.map((product, index) => <ProductCard product={product} index={index} />)}</div><div class="command-centered-action"><a class="btn btn-secondary" href={`${BASE}products/`}>Browse all products ↗</a></div></div></section>
+  <section class="v30-feature-products section">
+    <div class="container">
+      <div class="v30-section-heading">
+        <div><span class="v30-eyebrow">PRODUCT SPOTLIGHTS</span><h2>Security equipment, up close.</h2></div>
+        <p>Explore the catalogue, review available product information and contact YASH TECH to confirm exact specifications and pricing.</p>
+      </div>
+      <div class="v30-section-toolbar"><span><i></i> {products.length} PRODUCTS</span><a href={`${BASE}products/`} class="v30-inline-link">View all products <b aria-hidden="true">↗</b></a></div>
+      <div class="grid-4 v30-featured-product-grid">{featured.map((product, index) => <ProductCard product={product} index={index} />)}</div>
+      <div class="v30-center-action"><a class="btn btn-secondary" href={`${BASE}products/`}>Browse the complete catalogue <span aria-hidden="true">↗</span></a></div>
+    </div>
+  </section>
 
-  <section class="section command-solutions-section"><div class="container"><div class="section-head"><div><div class="eyebrow">03 / SECURITY OPERATIONS</div><h2>Choose a setup for your space.</h2></div><p>Plan around the property, monitoring needs and available connectivity instead of buying on model names alone.</p></div><div class="command-solution-grid"><a class="command-solution-card solution-home" href={`${BASE}solutions/`}><img class="solution-art" src={asset("assets/hero/complete-cctv-solutions.webp")} alt="" loading="lazy" /><span class="solution-code">SITE / 01</span><div><h3>Home security</h3><p>Entry points, family spaces and remote viewing options.</p><span>Explore solution ↗</span></div></a><a class="command-solution-card solution-retail" href={`${BASE}solutions/`}><img class="solution-art" src={asset("assets/hero/cctv-combo-kit.webp")} alt="" loading="lazy" /><span class="solution-code">SITE / 02</span><div><h3>Retail & shops</h3><p>Customer areas, counters, stock rooms and entry coverage.</p><span>Explore solution ↗</span></div></a><a class="command-solution-card solution-office" href={`${BASE}solutions/`}><img class="solution-art" src={asset("assets/hero/nvr-dvr-recording.webp")} alt="" loading="lazy" /><span class="solution-code">SITE / 03</span><div><h3>Office & warehouse</h3><p>Site-specific camera placement, recording and connectivity.</p><span>Explore solution ↗</span></div></a></div></div></section>
+  <section class="v30-solution-spotlight section">
+    <div class="container">
+      <div class="v30-section-heading">
+        <div><span class="v30-eyebrow">SOLUTIONS / BY SPACE</span><h2>Security for real places.</h2></div>
+        <p>Choose a starting point for your site. Camera placement, recording and connectivity can then be planned around the space.</p>
+      </div>
+      <div class="v30-feature-panel-grid">
+        {featurePanels.map((panel, index) => (
+          <a class:list={['v30-feature-panel', `v30-feature-panel-${index + 1}`, 'reveal']} href={panel.href}>
+            <img src={asset(panel.image)} alt="" loading="lazy" />
+            <div class="v30-feature-panel-overlay"></div>
+            <div class="v30-feature-panel-copy"><span>{panel.label}</span><h3>{panel.title}</h3><p>{panel.text}</p><b>Explore <span aria-hidden="true">↗</span></b></div>
+          </a>
+        ))}
+      </div>
+      <div class="v30-scenario-row"><a href={`${BASE}solutions/`}>Home & villa <span>↗</span></a><a href={`${BASE}solutions/`}>Retail & shops <span>↗</span></a><a href={`${BASE}solutions/`}>Office & warehouse <span>↗</span></a><a href={`${BASE}solutions/`}>Outdoor & remote sites <span>↗</span></a></div>
+    </div>
+  </section>
 
-  <section class="section ref-technology-section"><div class="container"><div class="section-head"><div><div class="eyebrow">04 / SECURITY TECHNOLOGY</div><h2>One system. Multiple layers of protection.</h2></div><p>Build a practical security setup by thinking through image coverage, recording and connectivity together. YASH TECH can help you review the options for your site.</p></div><div class="ref-technology-grid"><article class="ref-technology-card reveal"><div class="ref-technology-image"><img src={asset("assets/hero/outdoor-bullet-camera.webp")} alt="YASH TECH outdoor camera product campaign" loading="lazy" /></div><div class="ref-technology-copy"><span>01 / VISUAL COVERAGE</span><h3>See the important details.</h3><p>Explore indoor, outdoor and network camera options around the areas you need to monitor.</p><a class="text-link" href={`${BASE}products/`}>Explore cameras ↗</a></div></article><article class="ref-technology-card reveal"><div class="ref-technology-image"><img src={asset("assets/hero/nvr-dvr-recording.webp")} alt="YASH TECH recorder and monitoring campaign" loading="lazy" /></div><div class="ref-technology-copy"><span>02 / RECORD & REVIEW</span><h3>Keep footage organised.</h3><p>Discuss DVR/NVR choices, compatible cameras, channel counts and storage needs.</p><a class="text-link" href={`${BASE}products/`}>Explore recording systems ↗</a></div></article><article class="ref-technology-card reveal"><div class="ref-technology-image"><img src={asset("assets/hero/solar-4g-outdoor.webp")} alt="YASH TECH solar 4G outdoor camera campaign" loading="lazy" /></div><div class="ref-technology-copy"><span>03 / CONNECT REMOTE SITES</span><h3>Plan around the location.</h3><p>Review solar and 4G camera options where power or fixed internet may be limited.</p><a class="text-link" href={`${BASE}products/?category=4G%20%2F%20Solar`}>Explore 4G & solar ↗</a></div></article></div></div></section>
+  <section class="v30-core-tech section">
+    <div class="container">
+      <div class="v30-section-heading">
+        <div><span class="v30-eyebrow">CORE SYSTEMS</span><h2>Every part has a purpose.</h2></div>
+        <p>A well-planned security setup combines coverage, recording, connectivity and installation in a way that suits the site.</p>
+      </div>
+      <div class="v30-tech-grid">
+        {techCards.map(item => (
+          <article class="v30-tech-card reveal">
+            <a class="v30-tech-image" href={item.href}><img src={asset(item.image)} alt={item.title} loading="lazy" /></a>
+            <div class="v30-tech-copy"><span>{item.code} / {item.tag || 'SYSTEM TECHNOLOGY'}</span><h3>{item.title}</h3><p>{item.text}</p><a href={item.href} class="v30-inline-link">{item.link} <b aria-hidden="true">↗</b></a></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
-  <section class="section command-archive-section"><div class="container"><div class="section-head"><div><div class="eyebrow">05 / ORIGINAL MEDIA ARCHIVE</div><h2>Photos from the YASH TECH archive.</h2></div><p>Original product imagery, campaign photos and business-gallery assets from the previous website are retained in the redesigned gallery.</p></div><div class="command-archive-grid">{archivePhotos.map((item, index) => <a class:list={['command-archive-card', `archive-card-${index + 1}`]} href={asset(item.image)} target="_blank" rel="noopener noreferrer"><img src={asset(item.image)} alt={item.name} loading="lazy" /><span>{item.name} <b>↗</b></span></a>)}</div><div class="command-centered-action"><a class="btn btn-secondary" href={`${BASE}gallery/`}>Open complete image & Reel archive ↗</a></div></div></section>
+  <section class="v30-real-world section">
+    <div class="container">
+      <div class="v30-section-heading">
+        <div><span class="v30-eyebrow">GALLERY / VISUAL HIGHLIGHTS</span><h2>See the YASH TECH range.</h2></div>
+        <p>Explore product campaigns, gallery highlights and images associated with the YASH TECH collection.</p>
+      </div>
+      <div class="v30-gallery-highlight-grid">
+        {fieldPhotos.map((item, index) => <a href={asset(item.image)} target="_blank" rel="noopener noreferrer" class:list={['v30-gallery-highlight', `v30-gallery-highlight-${index + 1}`, 'reveal']}><img src={asset(item.image)} alt={item.alt} loading="lazy" /><span>VIEW IMAGE <b aria-hidden="true">↗</b></span></a>)}
+      </div>
+      <div class="v30-gallery-logos" aria-label="Gallery highlights">
+        {galleryHighlights.map(item => <a href={asset(item.image)} target="_blank" rel="noopener noreferrer" aria-label={`Open ${item.name} gallery image`}><img src={asset(item.image)} alt={item.name} loading="lazy" /></a>)}
+      </div>
+      <div class="v30-center-action"><a class="btn btn-secondary" href={`${BASE}gallery/`}>Explore the complete gallery <span aria-hidden="true">↗</span></a></div>
+    </div>
+  </section>
 
-  <section class="section command-logos-section"><div class="container"><div class="section-head"><div><div class="eyebrow">05 / ORIGINAL CLIENT GALLERY</div><h2>Names from the archived gallery.</h2></div><p>These image assets appeared in the previous YASH TECH website. Their appearance here preserves the original media archive.</p></div><div class="command-logo-strip">{clientLogos.map(item => <a href={asset(item.image)} target="_blank" rel="noopener noreferrer" aria-label={`View ${item.name} archived image`}><img src={asset(item.image)} alt={item.name} loading="lazy" /></a>)}</div></div></section>
+  <section class="v30-video-section section">
+    <div class="container">
+      <div class="v30-section-heading">
+        <div><span class="v30-eyebrow">YASH TECH / INSTAGRAM</span><h2>See YASH TECH in action.</h2></div>
+        <p>Explore product videos and updates from the official YASH TECH Instagram profile.</p>
+      </div>
+      <InstagramReelGrid reels={homeReels} compact={true} />
+      <div class="v30-media-actions"><a class="v30-inline-link" href="https://www.instagram.com/yashtechcctv/" target="_blank" rel="noopener noreferrer">Follow @yashtechcctv <b aria-hidden="true">↗</b></a><a class="v30-inline-link" href={`${BASE}gallery/#instagram-reels`}>View all ten Reels <b aria-hidden="true">↗</b></a></div>
+    </div>
+  </section>
 
-  <section class="section instagram-home-section command-instagram-section"><div class="container"><div class="section-head"><div><div class="eyebrow">07 / SOCIAL VIDEO</div><h2>Real Reels. Real YASH TECH.</h2></div><p>Instagram embeds load the actual posts. If Instagram blocks an embed, open the original Reel directly.</p></div><InstagramReelGrid reels={instagramReels} compact={true} /><div class="instagram-home-cta"><span>Follow <strong>@yashtechcctv</strong> for product videos and updates.</span><a class="btn btn-secondary" href="https://www.instagram.com/yashtechcctv/" target="_blank" rel="noopener noreferrer">Open Instagram profile ↗</a><a class="text-link" href={`${BASE}gallery/`}>View all 10 Reels ↗</a></div></div></section>
+  <section class="v30-insights section">
+    <div class="container">
+      <div class="v30-section-heading">
+        <div><span class="v30-eyebrow">SECURITY KNOW-HOW</span><h2>Plan with the essentials in mind.</h2></div>
+        <p>A few practical starting points can help you choose the right camera and recording setup for your property.</p>
+      </div>
+      <div class="v30-insight-grid">
+        {insightCards.map(item => (
+          <article class="v30-insight-card reveal">
+            <a href={item.href} class="v30-insight-image"><img src={asset(item.image)} alt="" loading="lazy" /></a>
+            <div class="v30-insight-copy"><span>{item.number} / {item.tag}</span><h3>{item.title}</h3><p>{item.text}</p><a class="v30-inline-link" href={item.href}>Explore options <b aria-hidden="true">↗</b></a></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
-  <section class="section-tight command-final-cta"><div class="container"><div class="command-cta-panel"><img class="command-cta-art" src={asset("assets/hero/smart-security-solutions.webp")} alt="" loading="lazy" /><div class="command-cta-copy"><div class="eyebrow">08 / ENQUIRY CHANNEL</div><h2>Let's plan your security setup.</h2><p>Tell us about your home, shop or business. Ask about current model options, installation and availability.</p></div><a class="btn btn-primary" href={waLink('Hello YASH TECH, I would like to discuss a CCTV/security setup.')} target="_blank" rel="noopener noreferrer">Enquire on WhatsApp ↗</a></div></div></section>
+  <section class="v30-company section">
+    <div class="container v30-company-layout">
+      <div class="v30-company-visual">
+        <img class="v30-company-main" src={asset('assets/hero/complete-cctv-solutions.webp')} alt="YASH TECH CCTV security solutions" loading="lazy" />
+        <div class="v30-company-stamp"><img src={asset('assets/yash-tech-logo.png')} alt="YASH TECH" /><span>SECURITY SYSTEMS<br />RAMANATHAPURAM, TAMIL NADU</span></div>
+        <img class="v30-company-small" src={asset('assets/hero/nvr-dvr-recording.webp')} alt="Recording and monitoring systems" loading="lazy" />
+      </div>
+      <div class="v30-company-copy">
+        <span class="v30-eyebrow">ABOUT YASH TECH</span>
+        <h2>Security products.<br /><em>Practical support.</em></h2>
+        <p>YASH TECH brings together CCTV cameras, recording systems, networking equipment and security installation support from Ramanathapuram, Tamil Nadu.</p>
+        <div class="v30-company-values"><div><b>01</b><span><strong>Product guidance</strong><small>Discuss features and compatibility before choosing.</small></span></div><div><b>02</b><span><strong>System planning</strong><small>Consider the site, connectivity and recording needs.</small></span></div><div><b>03</b><span><strong>Installation support</strong><small>Talk through setup requirements with the team.</small></span></div></div>
+        <a class="btn btn-secondary" href={`${BASE}about/`}>About YASH TECH <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="v30-where-to-buy section-tight">
+    <div class="v30-where-backdrop"><img src={asset('assets/hero/smart-security-solutions.webp')} alt="" loading="lazy" /></div>
+    <div class="container v30-where-content">
+      <div><span class="v30-eyebrow">VISIT / CONTACT YASH TECH</span><h2>Let's plan your security setup.</h2><p>Speak with YASH TECH about product options, installation requirements and availability.</p></div>
+      <div class="v30-where-actions"><a class="btn btn-primary" href={waLink('Hello YASH TECH, I would like to discuss a CCTV/security setup.')} target="_blank" rel="noopener noreferrer">Enquire on WhatsApp <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&query=152%2F1%20Railway%20Station%20Road%20Ramanathapuram%20623504" target="_blank" rel="noopener noreferrer">Get directions <span aria-hidden="true">↗</span></a></div>
+      <div class="v30-where-address"><span>152/1 Railway Station Road, opposite Kalyan Jewellerys, Ramanathapuram – 623504</span><a href="tel:+919385898667">+91 93858 98667</a></div>
+    </div>
+  </section>
 </Layout>

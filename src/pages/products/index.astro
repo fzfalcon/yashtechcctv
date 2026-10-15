@@ -6,15 +6,15 @@ import { BASE } from '../../lib';
 const categories = [...new Set(products.map(p => p.category))];
 ---
 <Layout title="Security Equipment Catalogue | YASH TECH" description="Search and compare CCTV cameras, solar and 4G cameras, recording systems and security accessories from YASH TECH.">
-  <section class="page-hero command-page-hero"><div class="container"><div class="breadcrumbs"><a href={BASE}>Home</a> / Product catalogue</div><div class="eyebrow">SECURITY DATABASE / 23 LISTINGS</div><h1>Choose your equipment.</h1><p>Explore camera types, compare available specifications, and send a shortlist to YASH TECH to confirm exact models, pricing and availability.</p><div class="catalog-hero-tags"><span>4G / SOLAR</span><span>WI-FI / IP</span><span>DVR / NVR</span><span>RECORDING / ACCESSORIES</span></div></div></section>
-  <section class="section catalog-page command-catalog-page"><div class="container"><div class="notice command-notice"><strong>Catalogue note</strong> Products and specifications were recovered from archived listings. Prices and current stock are not verified; some listings may describe similar model variants.</div>
+  <section class="page-hero command-page-hero"><div class="container"><div class="breadcrumbs"><a href={BASE}>Home</a> / Product catalogue</div><div class="eyebrow">PRODUCTS / COMPLETE CATALOGUE</div><h1>Choose your equipment.</h1><p>Explore camera types, compare available specifications, and send a shortlist to YASH TECH to confirm exact models, pricing and availability.</p><div class="catalog-hero-tags"><span>4G / SOLAR</span><span>WI-FI / IP</span><span>DVR / NVR</span><span>RECORDING / ACCESSORIES</span></div></div></section>
+  <section class="section catalog-page command-catalog-page"><div class="container"><div class="notice command-notice"><strong>Product information</strong> Product features can vary by model or variant. Contact YASH TECH to confirm specifications, compatibility, price and availability.</div>
     <div class="catalog-layout">
       <aside class="catalog-sidebar" aria-label="Filter products"><div class="catalog-side-head"><div><span class="eyebrow">REFINE RESULTS</span><h2>Filters</h2></div><button id="clear-catalog-filters" type="button">Clear all</button></div>
         <label class="catalog-search"><span class="filter-section-label">Search catalogue</span><input class="field" id="product-search" type="search" placeholder="Camera, NVR, Wi-Fi…" /></label>
         <div class="catalog-filter-group"><div class="filter-section-label">Categories</div><div class="category-checks">{categories.map(category => <label class="filter-choice"><input type="checkbox" data-category-check value={category} /><span>{category}</span><small>{products.filter(p => p.category === category).length}</small></label>)}</div></div>
         <div class="catalog-side-callout"><span class="side-callout-icon">⌁</span><strong>Need help choosing?</strong><p>Share your site, connectivity and coverage needs with our team.</p><a href="https://wa.me/918667015532?text=Hello%20YASH%20TECH%2C%20please%20help%20me%20choose%20a%20security%20camera." target="_blank" rel="noopener noreferrer">Ask for guidance ↗</a></div>
       </aside>
-      <div class="catalog-results"><div class="catalog-results-head"><div><div class="eyebrow">AVAILABLE CATALOGUE</div><h2>All products <span id="product-count">{products.length}</span></h2></div><label class="catalog-sort"><span>Sort by</span><select class="field" id="product-sort"><option value="default">Catalogue order</option><option value="name-asc">Name: A–Z</option><option value="name-desc">Name: Z–A</option></select></label></div>
+      <div class="catalog-results"><div class="catalog-results-head"><div><div class="eyebrow">PRODUCT CATALOGUE</div><h2>All products <span id="product-count">{products.length}</span></h2></div><label class="catalog-sort"><span>Sort by</span><select class="field" id="product-sort"><option value="default">Recommended order</option><option value="name-asc">Name: A–Z</option><option value="name-desc">Name: Z–A</option></select></label></div>
         <div class="catalog-active-filters" id="active-filters"><span>Showing all product categories</span><span>Use filters to narrow the list</span></div>
         <div class="grid-4 catalog-product-grid" id="product-grid">{products.map((product, index) => <ProductCard product={product} index={index} />)}</div>
         <p id="no-products" hidden class="muted no-products-panel">No matching products. Try changing the search or clearing category filters.</p>
@@ -92,7 +92,14 @@ const categories = [...new Set(products.map(p => p.category))];
     const initialQuery = params.get('q') || '';
     if (search && initialQuery) search.value = initialQuery;
     const initialCategory = params.get('category');
-    if (initialCategory) categoryChecks.forEach(input => { if (input.value.toLowerCase() === initialCategory.toLowerCase()) input.checked = true; });
+    if (initialCategory) {
+      const normalizedCategory = initialCategory.trim().toLowerCase();
+      if (normalizedCategory === 'dvr / nvr' || normalizedCategory === 'dvr/nvr') {
+        categoryChecks.forEach(input => { if (['dvr', 'nvr'].includes(input.value.toLowerCase())) input.checked = true; });
+      } else {
+        categoryChecks.forEach(input => { if (input.value.toLowerCase() === normalizedCategory) input.checked = true; });
+      }
+    }
     sortCards(); filter();
   </script>
 </Layout>

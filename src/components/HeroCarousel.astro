@@ -3,102 +3,91 @@ import slides from '../data/slides.json';
 import { asset, BASE, waLink } from '../lib';
 const heroSlides = slides.map((slide, index) => ({ ...slide, number: String(index + 1).padStart(2, '0') }));
 ---
-<section class="ref-hero" data-carousel aria-label="YASH TECH featured security campaigns">
-  <div class="container ref-hero-heading">
-    <div class="ref-hero-title-block">
-      <div class="hero-kicker"><span class="status-pip"></span><span>SMART SECURITY / YASH TECH</span></div>
-      <h1>Protection for <em>every space.</em></h1>
-    </div>
-    <div class="ref-hero-summary">
-      <p>Explore CCTV cameras, recording systems, connected security and installation support for homes, shops and businesses.</p>
-      <a href={`${BASE}products/`} class="ref-text-link">Explore the product range <span aria-hidden="true">↗</span></a>
-    </div>
+<section class="v30-home-hero" data-carousel aria-label="YASH TECH featured security campaigns">
+  <div class="v30-carousel-stage">
+    {heroSlides.map((slide, index) => (
+      <figure class:list={['v30-carousel-slide', index === 0 && 'is-active']} data-slide data-title={slide.title} data-description={slide.description} aria-hidden={index !== 0}>
+        <a href={`${BASE}products/`} tabindex={index === 0 ? 0 : -1} aria-label={`Explore products featured in ${slide.title}`} data-slide-link>
+          <img src={asset(slide.image)} alt={slide.alt} width="1672" height="941" loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : undefined} />
+        </a>
+      </figure>
+    ))}
+    <div class="v30-carousel-shade" aria-hidden="true"></div>
+    <div class="v30-carousel-corner v30-carousel-corner-left"><span class="status-pip"></span> YASH TECH / SECURITY SYSTEMS</div>
+    <div class="v30-carousel-corner v30-carousel-corner-right"><span data-current>01</span><i></i><span>07</span></div>
+    <button class="v30-carousel-arrow v30-carousel-prev" type="button" data-prev aria-label="Previous campaign">‹</button>
+    <button class="v30-carousel-arrow v30-carousel-next" type="button" data-next aria-label="Next campaign">›</button>
   </div>
-  <div class="container">
-    <div class="campaign-carousel">
-      <div class="campaign-frame" aria-live="off">
-        {heroSlides.map((slide, index) => (
-          <figure class="campaign-slide" data-slide data-title={slide.title} data-eyebrow={slide.eyebrow} data-description={slide.description} aria-hidden={index !== 0} style={`opacity:${index === 0 ? 1 : 0};pointer-events:${index === 0 ? 'auto' : 'none'};`}>
-            <img src={asset(slide.image)} alt={slide.alt} width="1672" height="941" loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : undefined} />
-          </figure>
-        ))}
-        <div class="campaign-frame-label"><span class="status-pip"></span> YASH TECH / CAMPAIGN VISUALS</div>
-        <div class="campaign-frame-counter"><span data-current>01</span><i></i><span>07</span></div>
+  <div class="v30-carousel-rail">
+    <div class="container v30-carousel-rail-inner">
+      <div class="v30-carousel-pagination">
+        <div class="v30-carousel-dots" aria-label="Choose a campaign">
+          {heroSlides.map((slide, index) => <button type="button" data-dot={index} aria-label={`Show campaign ${index + 1}: ${slide.title}`} aria-pressed={index === 0 ? 'true' : 'false'} class:list={{ 'is-active': index === 0 }}></button>)}
+        </div>
+        <div class="v30-carousel-progress" aria-hidden="true"><span data-progress></span></div>
       </div>
-      <div class="campaign-details">
-        <div class="campaign-caption">
-          <span class="eyebrow" data-feature-eyebrow>{heroSlides[0].eyebrow}</span>
-          <h2 data-feature-title>{heroSlides[0].title}</h2>
-          <p data-feature-description>{heroSlides[0].description}</p>
-        </div>
-        <div class="campaign-actions">
-          <a class="btn btn-primary" href={`${BASE}products/`}>Explore products <span aria-hidden="true">↗</span></a>
-          <a class="btn btn-secondary" href={waLink('Hello YASH TECH, I would like to discuss a security setup for my property.')} target="_blank" rel="noopener noreferrer">Get a quote</a>
-        </div>
-        <div class="campaign-controls" aria-label="Featured campaign controls">
-          <button class="campaign-control" type="button" data-prev aria-label="Previous campaign">←</button>
-          <button class="campaign-control" type="button" data-pause aria-label="Pause automatic campaign slider">Ⅱ</button>
-          <button class="campaign-control" type="button" data-next aria-label="Next campaign">→</button>
-        </div>
-      </div>
-      <div class="campaign-bottomline">
-        <div class="campaign-dots" aria-label="Choose a featured campaign">{heroSlides.map((slide, index) => <button type="button" data-dot={index} aria-label={`Show slide ${index + 1}: ${slide.title}`} aria-pressed={index === 0 ? 'true' : 'false'} class:list={{'is-active': index === 0}}></button>)}</div>
-        <div class="campaign-progress" aria-hidden="true"><span data-progress></span></div>
-        <a href={`${BASE}gallery/#homepage-slider-assets`}>View all campaign images ↗</a>
+      <div class="v30-carousel-controls">
+        <button type="button" data-pause aria-label="Pause automatic campaign slider">Ⅱ <span>Pause</span></button>
+        <a href={`${BASE}products/`} class="v30-carousel-link">Explore products <span aria-hidden="true">↗</span></a>
+        <a href={waLink('Hello YASH TECH, I would like to enquire about CCTV and security products.')} target="_blank" rel="noopener noreferrer" class="v30-carousel-quote">Get a quote <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </div>
-  <div class="container ref-hero-quicklinks">
-    <span>QUICK ACCESS</span>
-    <a href={`${BASE}products/`}>Camera systems <b>↗</b></a>
-    <a href={`${BASE}products/`}>Recording & storage <b>↗</b></a>
-    <a href={`${BASE}solutions/`}>Solutions by space <b>↗</b></a>
-    <a href={`${BASE}services/`}>Installation & support <b>↗</b></a>
+  <div class="v30-quick-access">
+    <div class="container v30-quick-access-inner">
+      <span class="v30-quick-label">QUICK ACCESS</span>
+      <a href={`${BASE}products/`}>CCTV cameras <b aria-hidden="true">↗</b></a>
+      <a href={`${BASE}products/?category=4G%20%2F%20Solar`}>4G & solar <b aria-hidden="true">↗</b></a>
+      <a href={`${BASE}products/?category=Wi-Fi%20Cameras`}>Wi-Fi cameras <b aria-hidden="true">↗</b></a>
+      <a href={`${BASE}products/?category=DVR%20%2F%20NVR`}>DVR / NVR systems <b aria-hidden="true">↗</b></a>
+      <a href={`${BASE}services/`}>Installation & support <b aria-hidden="true">↗</b></a>
+    </div>
   </div>
 </section>
 <script>
   const carousel = document.querySelector<HTMLElement>('[data-carousel]');
   if (carousel) {
     const items = [...carousel.querySelectorAll<HTMLElement>('[data-slide]')];
-    const title = carousel.querySelector<HTMLElement>('[data-feature-title]');
-    const eyebrow = carousel.querySelector<HTMLElement>('[data-feature-eyebrow]');
-    const description = carousel.querySelector<HTMLElement>('[data-feature-description]');
     const current = carousel.querySelector<HTMLElement>('[data-current]');
     const progress = carousel.querySelector<HTMLElement>('[data-progress]');
     const dots = [...carousel.querySelectorAll<HTMLButtonElement>('[data-dot]')];
     const pauseButton = carousel.querySelector<HTMLButtonElement>('[data-pause]');
     let index = 0;
     let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let timer = 0;
     let hoverPaused = false;
+    let timer = 0;
     const render = (next: number) => {
       index = (next + items.length) % items.length;
       items.forEach((item, i) => {
-        item.style.opacity = i === index ? '1' : '0';
-        item.style.pointerEvents = i === index ? 'auto' : 'none';
+        item.classList.toggle('is-active', i === index);
         item.setAttribute('aria-hidden', String(i !== index));
+        const link = item.querySelector<HTMLAnchorElement>('[data-slide-link]');
+        if (link) link.tabIndex = i === index ? 0 : -1;
       });
-      const item = items[index];
-      if (title) title.textContent = item.dataset.title || '';
-      if (eyebrow) eyebrow.textContent = item.dataset.eyebrow || '';
-      if (description) description.textContent = item.dataset.description || '';
       if (current) current.textContent = String(index + 1).padStart(2, '0');
       if (progress) progress.style.width = `${((index + 1) / items.length) * 100}%`;
-      dots.forEach((dot, i) => { dot.classList.toggle('is-active', i === index); dot.setAttribute('aria-pressed', String(i === index)); });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === index);
+        dot.setAttribute('aria-pressed', String(i === index));
+      });
     };
-    const restart = () => { window.clearInterval(timer); if (!paused && !hoverPaused && !document.hidden) timer = window.setInterval(() => render(index + 1), 6500); };
+    const restart = () => {
+      window.clearInterval(timer);
+      if (!paused && !hoverPaused && !document.hidden) timer = window.setInterval(() => render(index + 1), 6500);
+    };
     carousel.querySelector('[data-prev]')?.addEventListener('click', () => { render(index - 1); restart(); });
     carousel.querySelector('[data-next]')?.addEventListener('click', () => { render(index + 1); restart(); });
     dots.forEach(dot => dot.addEventListener('click', () => { render(Number(dot.dataset.dot)); restart(); }));
     pauseButton?.addEventListener('click', () => {
       paused = !paused;
-      pauseButton.textContent = paused ? '▶' : 'Ⅱ';
+      pauseButton.innerHTML = paused ? '▶ <span>Play</span>' : 'Ⅱ <span>Pause</span>';
       pauseButton.setAttribute('aria-label', paused ? 'Play automatic campaign slider' : 'Pause automatic campaign slider');
       restart();
     });
     carousel.addEventListener('mouseenter', () => { hoverPaused = true; window.clearInterval(timer); });
     carousel.addEventListener('mouseleave', () => { hoverPaused = false; restart(); });
     document.addEventListener('visibilitychange', restart);
-    render(0); restart();
+    render(0);
+    restart();
   }
 </script>
